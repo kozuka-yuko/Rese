@@ -5,18 +5,20 @@
 @endsection
 
 @section('search')
-<div class="search">
-    <select name="area" class="area">
-        <option value="">All area</option>
-        
-    </select>
-    <select name="genre" class="genre">
-        <option value="" disabled>All genre</option>
-        
-    </select>
-    <input type="text" class="search-form__input" name="name__input" placeholder="Search..." value="{{ old('name__input') }}" />
-    <input type="submit" />
-</div>
+<form action="" method="">
+    <div class="search">
+        <select name="area" class="area">
+            <option value="">All area</option>
+            
+        </select>
+        <select name="genre" class="genre">
+            <option value="" disabled>All genre</option>
+            
+        </select>
+        <input type="text" class="search-form__input" name="name__input" placeholder="Search..." value="{{ old('name__input') }}" />
+        <input type="submit" />
+    </div>
+</form>
 @endsection
 
 @section('content')
