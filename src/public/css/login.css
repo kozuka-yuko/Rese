@@ -1,0 +1,60 @@
+.form__input-email::before {
+    content: "";
+    background: url();
+    background-size: cover;
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+}
+
+.login__content {
+    width: 60%;
+    height: 30%;
+    display: block grid;
+    place-items: center;
+    border-radius: 5px;
+    box-shadow: 5px 5px 3px #808081;
+}
+
+.login-form__heading {
+    background-color: #212df3;
+}
+
+.title {
+    color: white;
+}
+
+.form__group {
+    border-bottom: 1px solid #787878;
+}
+
+.form__input {
+    color: #a1a1a1;
+    padding: 10px;
+}
+
+.form__error {
+    height: 20px;
+    width: 400px;
+    color: #ff0000;
+    text-align: left;
+}
+
+.form__button {
+    text-align: right;
+    padding: 10px 20px;
+    background-color: #212df3;
+    border-radius: 5px;
+}
+
+.form__button-submit {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form__group,
+.form__button {
+    margin: 20px 25px;
+}

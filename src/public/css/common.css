@@ -1,0 +1,22 @@
+body {
+    height: 100%;
+}
+
+.header {
+    position: fixed;
+    width: 100%;
+}
+
+.menu {
+    cursor: pointer;
+    box-shadow: 5px 5px 3px #808080;
+}
+
+.header__heading-inner {
+    color: #4b54f5;
+    font-weight: bold;
+}
+
+.content {
+    background-color: #f4f4f4;
+}
