@@ -15,6 +15,7 @@
         
     </select>
     <input type="text" class="search-form__input" name="name__input" placeholder="Search..." value="{{ old('name__input') }}" />
+    <input type="submit" />
 </div>
 @endsection
 
