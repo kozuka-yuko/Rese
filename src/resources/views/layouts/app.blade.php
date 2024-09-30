@@ -14,12 +14,27 @@
     <div class="app">
         <header class="header">
             <div class="header__heading">
-                <button class="menu">
-                    ここはモーダル？
-                </button>
+                <a href="#modal" class="modal__menu"></a>
+                <div class="modal" id="modal">
+                    <div class="modal__inner">
+                        <a href="#" class="close">&times;</a>
+                        <div class="modal__content">
+                            <a href="/shop" class="home">Home</a><br>
+                            <a href="/register" class="registration">Registration</a><br>
+                            <a href="/login" class="login">Login</a><br>
+                            @if (Auth::check())
+                            <a href="/shop" class="home">Home</a><br>
+                            <a href="/logout" class="logout">Logout</a><br>
+                            <a href="/mypage" class="mypage">Mypage</a><br>
+                            @endif
+                        </div>
+                    </div>
+                </div>
                 <h1 class="header__heading-inner">Rese</h1>
             </div>
-            @yield('search')
+            <div class="search">
+                @yield('search')
+            </div>
         </header>
         <div class="content">
             @yield('content')

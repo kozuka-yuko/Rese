@@ -13,6 +13,7 @@
     height: 30%;
     display: block grid;
     place-items: center;
+    border-color: #212df3;
     border-radius: 5px;
     box-shadow: 5px 5px 3px #808081;
 }
@@ -22,7 +23,7 @@
 }
 
 .title {
-    color: white;
+    color: #FEFEFE;
 }
 
 .form__group {
@@ -44,14 +45,16 @@
 .form__button {
     text-align: right;
     padding: 10px 20px;
-    background-color: #212df3;
-    border-radius: 5px;
+    cursor: pointer;
 }
 
 .form__button-submit {
-    color: white;
+    color: #FEFEFE;
+    padding: 10px 20px 20px;
     text-decoration: none;
-    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background-color: #212df3;
 }
 
 .form__group,

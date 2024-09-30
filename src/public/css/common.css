@@ -2,7 +2,10 @@ body {
     height: 100%;
 }
 
-
+.app {
+    background-color: #f4f4f4;
+    height: 100vh;
+}
 
 .header {
     display: flex;
@@ -10,16 +13,75 @@ body {
     padding: 25px 40px;
 }
 
-.menu {
-    cursor: pointer;
-    box-shadow: 5px 5px 3px #808080;
-}
-
 .header__heading-inner {
+    display: inline-block;
+    margin-left: 15px;
     color: #4b54f5;
     font-weight: bold;
 }
 
-.content {
-    background-color: #f4f4f4;
+.modal__menu {
+    padding: 10px 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #212df3;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.modal:target {
+    display: flex;
+}
+
+.close {
+    font-size: 24px;
+    text-decoration: none;
+    color: #FEFEFE;
+    background-color: #212df3;
+    border-radius: 5px;
+    box-shadow: 5px 5px 3px #808080;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 20px 90px;
+}
+
+.modal__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #FEFEFE;
+    overflow: auto;
+}
+
+.modal__content {
+    color: #212df3;
+    font-size: 35px;
+    display: block grid;
+    place-items: center;
+    margin-top: 8%;
+}
+
+.home,
+.registration,
+.login,
+.mypage {
+    text-decoration: none;
 }

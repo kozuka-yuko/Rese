@@ -1,18 +1,20 @@
 .register__content {
     width: 60%;
     height: 30%;
-    display: block grid;
-    place-items: center;
+    background-color: #FEFEFE;
     border-radius: 5px;
     box-shadow: 5px 5px 3px #808081;
+    text-align: left;
 }
 
 .register-form__heading {
     background-color: #212df3;
+    border-radius: 5px;
 }
 
 .title {
-    color: white;
+    color: #FEFEFE;
+    padding: 20px;
 }
 
 .form__group {
@@ -22,6 +24,7 @@
 .form__input {
     color: #a1a1a1;
     padding: 10px;
+    text-decoration: none;
 }
 
 .form__error {
@@ -33,15 +36,17 @@
 
 .form__button {
     text-align: right;
-    padding: 10px 20px;
-    background-color: #212df3;
-    border-radius: 5px;
+    padding: 10px 20px 20px;
+    cursor: pointer;
 }
 
 .form__button-submit {
-    color: white;
+    color: #FEFEFE;
+    padding: 10px 20px;
     text-decoration: none;
-    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background-color: #212df3;
 }
 
 .form__group,
