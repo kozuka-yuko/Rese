@@ -1,3 +1,7 @@
+.submit {
+    display: none;
+}
+
 .shop__content {
     display: flex;
     flex-wrap: wrap;
@@ -7,6 +11,7 @@
 .shop {
     border: 1px solid #b5b5b5;
     border-radius: 5px;
+    background-color: #FEFEFE;
     box-shadow: 5px 5px 3px #808081;
     width: 20%;
     margin: 0 10px;
@@ -21,21 +26,21 @@
     margin: 20px 10px;
 }
 
-.shop__naeme {
+.shop__name {
     font-weight: bold;
 }
 
 .button {
-    padding: 10px 20px;
+    padding: 20px 0;
     margin-left: 10px;
 }
 
 .detail__button {
     color: #FEFEFE;
     background-color: #212df3;
+    text-decoration: none;
+    padding: 10px 20px;
     border-radius: 5px;
     box-shadow: 5px 5px 3px #808080;
-    width: 100px;
-    height: 50px;
     cursor: pointer;
 }

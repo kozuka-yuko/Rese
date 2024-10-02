@@ -14,6 +14,9 @@
     <div class="app">
         <header class="header">
             <div class="header__heading">
+                <span class="hamburger-top"></span>
+                <span class="hamburger-middle"></span>
+                <span class="hamburger-under"></span>
                 <a href="#modal" class="modal__menu"></a>
                 <div class="modal" id="modal">
                     <div class="modal__inner">

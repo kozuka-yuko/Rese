@@ -20,10 +20,26 @@ body {
     font-weight: bold;
 }
 
+.hamburger-top {
+    width: 20px;
+    height: 2px;
+    color: #FEFEFE;
+}
+
+.hamburger-midle {
+    width: 40px;
+    height: 2px;
+    color: #FEFEFE;
+}
+
+.hamburger-under {
+    width: 10px;
+    height: 2px;
+    color: #FEFEFE;
+}
+
 .modal__menu {
     padding: 10px 20px;
-    width: 50px;
-    height: 50px;
     background-color: #212df3;
     text-decoration: none;
     cursor: pointer;
@@ -37,8 +53,6 @@ body {
     left: 0;
     z-index: 1;
     display: none;
-    align-items: center;
-    justify-content: center;
     width: 100%;
     height: 100%;
 }

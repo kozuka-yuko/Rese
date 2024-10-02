@@ -1,6 +1,6 @@
 .register__content {
-    width: 60%;
-    height: 30%;
+    width: 40%;
+    margin: 0 auto;
     background-color: #FEFEFE;
     border-radius: 5px;
     box-shadow: 5px 5px 3px #808081;
@@ -18,13 +18,14 @@
 }
 
 .form__group {
-    border-bottom: 1px solid #787878;
+    margin: 0 25px;
 }
 
 .form__input {
     color: #a1a1a1;
     padding: 10px;
     text-decoration: none;
+    border-bottom: 1px solid #787878;
 }
 
 .form__error {
