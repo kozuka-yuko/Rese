@@ -11,13 +11,13 @@ class Shop extends Model
 
     protected $guarded = ['id'];
 
-    public function areas()
+    public function area()
     {
-        return $this->belongsToMany(Area::class,'area_shop');
+        return $this->belongsTo(Area::class);
     }
 
-    public function genres()
+    public function genre()
     {
-        return $this->belongsToMany(Genre::class,'genre_shop');
+        return $this->belongsTo(Genre::class);
     }
 }

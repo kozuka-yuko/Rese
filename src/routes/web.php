@@ -17,5 +17,5 @@ use App\Http\Controllers\RegisterController;
 */
 
 Route::get('/', [ReseController::class, 'index']);
-Route::get('/shop',[ReseController::class,'home']);
-Route::post('/detail',[ReseController::class,'detail']);
+Route::get('/shop', [ReseController::class, 'home']);
+Route::get('/detail', [ReseController::class, 'detail']);

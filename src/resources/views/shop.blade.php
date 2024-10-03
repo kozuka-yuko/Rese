@@ -33,7 +33,7 @@
             <p class="tag">#{{ $shop->area->name ?? 'エリア不明' }} #{{ $shop->genre->name ?? 'ジャンル不明' }}</p>
         </div>
         <div class="button">
-            <a href="" class="detail__button">詳しく見る</a>
+            <a href="{{ url('detail?id=' . $shop->id) }}" class="detail__button">詳しく見る</a>
         </div>
         <div class="favorite">
         </div>

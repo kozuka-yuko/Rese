@@ -10,9 +10,4 @@ class Area extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-
-    public function shops()
-    {
-        return $this->belongsToMany(Shop::class,'area_shop');
-    }
 }

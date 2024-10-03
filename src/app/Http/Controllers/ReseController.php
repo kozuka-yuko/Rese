@@ -18,15 +18,15 @@ class ReseController extends Controller
 
     public function home()
     {
-        $shops = Shop::select('id','name','info','img_url','area_id','genre_id')->get();
-        return view('shop',compact('shops'));
+        $shops = Shop::select('id', 'name', 'info', 'img_url', 'area_id', 'genre_id')->get();
+        return view('shop', compact('shops'));
     }
 
     public function detail(Request $request)
     {
-        $shopId = $request->input('shop_id');
-        $shop = Shop::where('shop_id',$shopId)->first();
+        $shopId = $request->input('id');
+        $shop = Shop::where('id', $shopId)->first();
 
-        return view('detail',compact('shop'));
+        return view('detail', compact('shop'));
     }
 }

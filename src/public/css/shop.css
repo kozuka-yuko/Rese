@@ -14,7 +14,7 @@
     background-color: #FEFEFE;
     box-shadow: 5px 5px 3px #808081;
     width: 20%;
-    margin: 0 10px;
+    margin: 10px;
 }
 
 .img_url {
@@ -41,6 +41,5 @@
     text-decoration: none;
     padding: 10px 20px;
     border-radius: 5px;
-    box-shadow: 5px 5px 3px #808080;
     cursor: pointer;
 }

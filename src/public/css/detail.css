@@ -1,0 +1,63 @@
+.content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.return_btn {
+    padding: 10px 20px;
+    background-color: #FEFEFE;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+.detail-content {
+    width: 50%;
+    padding: 10px 20px 40px 40px;
+}
+
+.shop-name__inner {
+    font-size: 40px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.img {
+    width: 100%;
+}
+
+.tag {
+    padding: 30px 0;
+}
+
+.reservation {
+    border: none;
+    background-color: #4b54f5;
+    border-radius: 5px;
+    margin: 10px 40px 40px 20px;
+    padding: 30px 20px 0 20px;
+}
+
+.reservation__header--inner {
+    color: #FEFEFE;
+}
+
+.reservation__date,
+.reservation__time,
+.number__inner {
+    border: none;
+    background-color: #FEFEFE;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.reservation__btn {
+    border: none;
+    background-color: #212df3;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #FEFEFE;
+    text-align: center;
+}
