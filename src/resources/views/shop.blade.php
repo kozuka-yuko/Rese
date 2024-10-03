@@ -23,21 +23,21 @@
 
 @section('content')
 <div class="shop__content">
+    @foreach ($shops as $shop)
     <div class="shop">
-        @foreach ($shops as $shop)
         <div class="img">
-            {{ $shop->img_url }}
+            <img class="img_url" src="{{ asset($shop->img_url) }}" alt="お店の画像" />
         </div>
         <div class="info">
             <h3 class="shop__name">{{ $shop->name }}</h3>
-            <p class="tag">#{{ $shops->area->name ?? 'エリア不明' }} #{{ $shops->genre->name ?? 'ジャンル不明' }}</p>
+            <p class="tag">#{{ $shop->area->name ?? 'エリア不明' }} #{{ $shop->genre->name ?? 'ジャンル不明' }}</p>
         </div>
         <div class="button">
             <a href="" class="detail__button">詳しく見る</a>
         </div>
         <div class="favorite">
-
         </div>
     </div>
+    @endforeach
 </div>
 @endsection
