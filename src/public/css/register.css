@@ -3,13 +3,14 @@
     margin: 0 auto;
     background-color: #FEFEFE;
     border-radius: 5px;
-    box-shadow: 5px 5px 3px #808081;
+    box-shadow: 3px 3px 5px #bebebe;
     text-align: left;
 }
 
 .register-form__heading {
     background-color: #212df3;
-    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .title {
