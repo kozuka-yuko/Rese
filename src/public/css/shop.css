@@ -1,3 +1,8 @@
+.area_id,
+.genre_id {
+    text-decoration: none;
+}
+
 .submit {
     display: none;
 }

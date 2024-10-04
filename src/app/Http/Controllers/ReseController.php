@@ -18,8 +18,10 @@ class ReseController extends Controller
 
     public function home()
     {
+        $areas = Area::all();
+        $genres = Genre::all();
         $shops = Shop::select('id', 'name', 'info', 'img_url', 'area_id', 'genre_id')->get();
-        return view('shop', compact('shops'));
+        return view('shop', compact('areas', 'genres', 'shops'));
     }
 
     public function detail(Request $request)
@@ -28,5 +30,16 @@ class ReseController extends Controller
         $shop = Shop::where('id', $shopId)->first();
 
         return view('detail', compact('shop'));
+    }
+
+    public function search(Request $request)
+    {
+        $areas = Area::all();
+        $genres = Genre::all();
+        $shops = Shop::with(['area', 'genre'])->AreaSearch($request->area_id)
+            ->GenreSearch($request->genre_id)
+            ->NameSearch($request->name_input)->get();
+
+        return view('shop', compact('areas', 'genres', 'shops'));
     }
 }

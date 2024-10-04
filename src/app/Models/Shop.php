@@ -35,10 +35,10 @@ class Shop extends Model
         }
     }
 
-    public function scopeNameSearch($query, $name)
+    public function scopeNameSearch($query, $name_input)
     {
-        if (!empty($name)) {
-            $query->where('name', 'like', '%' . $name . '%');
+        if (!empty($name_input)) {
+            $query->where('name', 'like', '%' . $name_input . '%');
         }
     }
 }
