@@ -16,7 +16,12 @@ use App\Http\Controllers\RegisterController;
 |
 */
 
-Route::get('/', [ReseController::class, 'index']);
 Route::get('/shop', [ReseController::class, 'home']);
 Route::get('/detail', [ReseController::class, 'detail']);
-Route::get('/search',[ReseController::class, 'search']);
+Route::get('/search', [ReseController::class, 'search']);
+
+Route::middleware('auth')->group(function () {
+    Route::get('/', [ReseController::class, 'index']);
+    Route::get('/mypage', [ReseController::class, 'mypage']);
+    Route::post('/reservation', [ReseController::class, 'reservation']);
+});

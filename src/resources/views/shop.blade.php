@@ -10,13 +10,13 @@
         <select name="area_id" class="area">
             <option value="" hidden>All area</option>
             @foreach ($areas as $area)
-            <option value="{{ $area['id'] }}">{{ $area['name'] }}</option>
+            <option value="{{ $area->id }}">{{ $area->name }}</option>
             @endforeach
         </select>
         <select name="genre_id" class="genre">
             <option value="" hidden>All genre</option>
             @foreach ($genres as $genre)
-            <option value="{{ $genre['id'] }}">{{ $genre['name'] }}</option>
+            <option value="{{ $genre->id }}">{{ $genre->name }}</option>
             @endforeach
         </select>
         <input type="text" class="search-form__input" name="name_input" placeholder="Search..." value="{{ old('name_input') }}" />

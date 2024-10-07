@@ -93,6 +93,10 @@ body {
     margin-top: 8%;
 }
 
+.modal__content--item {
+    list-style: none;
+}
+
 .home,
 .registration,
 .login,

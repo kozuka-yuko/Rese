@@ -9,7 +9,8 @@
 
 .login-form__heading {
     background-color: #212df3;
-    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .title {
@@ -44,8 +45,7 @@
     color: #FEFEFE;
     padding: 10px 20px;
     text-decoration: none;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-radius: 5px;
     border: none;
     background-color: #212df3;
 }
