@@ -9,6 +9,7 @@ use App\Models\Favorite;
 use App\Models\Genre;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class ReseController extends Controller
 {
@@ -30,6 +31,7 @@ class ReseController extends Controller
 
     public function detail(Request $request)
     {
+        $today = Carbon::today()->addDay()->format('Y-m-d');
         $shopId = $request->input('id');
         $shop = Shop::where('id', $shopId)->first();
         $times = [];
@@ -38,7 +40,7 @@ class ReseController extends Controller
         }
         $numbers = range(1, 20);
 
-        return view('detail', compact('shop', 'times', 'numbers'));
+        return view('detail', compact('today', 'shop', 'times', 'numbers'));
     }
 
     public function search(Request $request)
@@ -56,17 +58,13 @@ class ReseController extends Controller
     {
         $userId = Auth::id();
         $shopId = $request->input('shop_id');
-        $date = $request->input('date');
-        $time = $request->input('time');
-        $number = $request->input('number');
-        Reservation::create([
-            'user_id' => $userId,
-            'shop_id' => $shopId,
-            'date' => $date,
-            'time' => $time,
-            'number' => $number,
-            'status' => '予約'
-        ]);
+        $data = $request->only(['date','time','number']);
+        $data['user_id'] = $userId;
+        $data['shop_id'] = $shopId;
+        $data['status'] = '予約';
+        
+        Reservation::create($data);
+
         return view('/done');
     }
 }

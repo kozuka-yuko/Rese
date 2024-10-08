@@ -28,7 +28,7 @@
                 <h2 class="reservation__header--inner">予約</h2>
             </div>
             <div class="date">
-                <input type="date" name="date" class="reservation__date" required>
+                <input type="date" name="date" class="reservation__date" min="{{ $today }}" required>
             </div>
             <div class="time">
                 <select name="time" class="reservation__time" required>
