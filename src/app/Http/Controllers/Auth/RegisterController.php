@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
-    public function redirectPath()
-    {
-        return 'views/thanks';
-    }
+    // use RegistersUsers;
+    
+    // protected function redirectTo()
+    // {
+        // return '/thanks';
+    // }
 }

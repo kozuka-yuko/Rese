@@ -56,6 +56,11 @@
             <div class="search">
                 @yield('search')
             </div>
+            <div class="messsage">
+                @if (session('message'))
+                <div class="todo__alert--success">{{ session('message') }}</div>
+                @endif
+            </div>
         </header>
         <div class="content">
             @yield('content')

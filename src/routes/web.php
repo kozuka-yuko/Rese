@@ -24,4 +24,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [ReseController::class, 'index']);
     Route::get('/mypage', [ReseController::class, 'mypage']);
     Route::post('/reservation', [ReseController::class, 'reservation']);
+    Route::delete('/delete',[ReseController::class, 'destroy']);
 });

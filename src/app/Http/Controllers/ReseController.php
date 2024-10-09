@@ -67,4 +67,20 @@ class ReseController extends Controller
 
         return view('/done');
     }
+
+    public function mypage()
+    {
+        $user = Auth::user();
+        $reservations = Reservation::where('user_id',$user->id)->get();
+        $favorites = Favorite::where('user_id', $user->id)->get();
+
+        return view('/mypage', compact('user','reservations','favorites'));
+    }
+
+    public function destroy(Request $request)
+    {
+        Reservation::find($request->id)->delete();
+
+        return redirect('/mypage')->with('message','予約を削除しました');
+    }
 }
