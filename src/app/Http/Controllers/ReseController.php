@@ -5,22 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\Area;
-use App\Models\Favorite;
 use App\Models\Genre;
+use App\Models\Favorite;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Http\Requests\ReservationRequest;
 
 class ReseController extends Controller
 {
-    public function index()
-    {
-        $areas = Area::all();
-        $genres = Genre::all();
-        $shops = Shop::select('id', 'name', 'info', 'img_url', 'area_id', 'genre_id')->get();
-        return view('shop', compact('areas', 'genres', 'shops'));
-    }
-
     public function home()
     {
         $areas = Area::all();
@@ -54,15 +47,13 @@ class ReseController extends Controller
         return view('shop', compact('areas', 'genres', 'shops'));
     }
 
-    public function reservation(Request $request)
+    public function reservation(ReservationRequest $request)
     {
         $userId = Auth::id();
-        $shopId = $request->input('shop_id');
-        $data = $request->only(['date','time','number']);
+        $data = $request->only(['date', 'time', 'number', 'shop_id']);
         $data['user_id'] = $userId;
-        $data['shop_id'] = $shopId;
         $data['status'] = '予約';
-        
+
         Reservation::create($data);
 
         return view('/done');
@@ -71,16 +62,16 @@ class ReseController extends Controller
     public function mypage()
     {
         $user = Auth::user();
-        $reservations = Reservation::where('user_id',$user->id)->get();
+        $reservations = Reservation::where('user_id', $user->id)->get();
         $favorites = Favorite::where('user_id', $user->id)->get();
 
-        return view('/mypage', compact('user','reservations','favorites'));
+        return view('/mypage', compact('user', 'reservations', 'favorites'));
     }
 
     public function destroy(Request $request)
     {
         Reservation::find($request->id)->delete();
 
-        return redirect('/mypage')->with('message','予約を削除しました');
+        return redirect('/mypage')->with('message', '予約を削除しました');
     }
 }

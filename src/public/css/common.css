@@ -13,11 +13,13 @@ body {
     padding: 25px 40px;
 }
 
-.header__heading-inner {
+.header__logo {
     display: inline-block;
     margin-left: 15px;
     color: #4b54f5;
+    font-size: 38px;
     font-weight: bold;
+    text-decoration: none;
 }
 
 .hamburger-top {

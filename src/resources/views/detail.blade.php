@@ -28,10 +28,10 @@
                 <h2 class="reservation__header--inner">予約</h2>
             </div>
             <div class="date">
-                <input type="date" name="date" class="reservation__date" min="{{ $today }}" required>
+                <input type="date" name="date" class="reservation__date" min="{{ $today }}">
             </div>
             <div class="time">
-                <select name="time" class="reservation__time" required>
+                <select name="time" class="reservation__time">
                     <option value="" hidden>time</option>
                     @foreach ($times as $time)
                     <option value="{{ $time }}">{{ $time }}</option>
@@ -39,7 +39,7 @@
                 </select>
             </div>
             <div class="number">
-                <select name="number" class="number__inner" required>
+                <select name="number" class="number__inner">
                     <option value="" hidden>number of person</option>
                     @foreach ($numbers as $number)
                     <option value="{{ $number }}">{{ $number }}人</option>

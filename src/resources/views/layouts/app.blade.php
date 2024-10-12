@@ -51,14 +51,14 @@
                         </ul>
                     </div>
                 </div>
-                <h1 class="header__heading-inner">Rese</h1>
+                <a href="/shop" class="header__logo">Rese</a>
             </div>
             <div class="search">
                 @yield('search')
             </div>
             <div class="messsage">
                 @if (session('message'))
-                <div class="todo__alert--success">{{ session('message') }}</div>
+                <div class="message__inner">{{ session('message') }}</div>
                 @endif
             </div>
         </header>
