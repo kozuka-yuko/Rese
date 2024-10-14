@@ -19,7 +19,7 @@ class AuthController extends Controller
         return view('shop', compact('areas', 'genres', 'shops'));
     }
 
-    public function register()
+    public function thanks()
     {
         return view('/thanks');
     }

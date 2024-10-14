@@ -17,7 +17,7 @@ use App\Http\Controllers\AuthController;
 Route::get('/shop', [ReseController::class, 'home']);
 Route::get('/detail', [ReseController::class, 'detail']);
 Route::get('/search', [ReseController::class, 'search']);
-Route::post('/register',[AuthController::class, 'register']);
+Route::get('/thanks',[AuthController::class, 'thanks']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [AuthController::class, 'index']);
