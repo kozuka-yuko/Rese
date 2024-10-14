@@ -18,13 +18,10 @@
     background-color: #212df3;
     border-radius: 5px;
     margin: 20px 25px;
-}
-
-.form__button {
-    text-decoration: none;
     cursor: pointer;
 }
 
 .loginpage {
     color: #FEFEFE;
+    text-decoration: none;
 }

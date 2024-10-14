@@ -58,7 +58,9 @@
             </div>
             <div class="messsage">
                 @if (session('message'))
-                <div class="message__inner">{{ session('message') }}</div>
+                <div class="message__inner">
+                    {{ session('message') }}
+                </div>
                 @endif
             </div>
         </header>

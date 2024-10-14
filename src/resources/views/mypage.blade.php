@@ -18,7 +18,7 @@
             @method('DELETE')
             @csrf
             <input type="hidden" name="id" value="{{ $reservation->id }}">
-            <button class="delete-form__button-submit" type="submit">&times;</button>
+            <button class="delete-form__button-submit" type="submit" title="削除">&times;</button>
         </form>
         <table class="reservation__table">
             <tr class="table__row">

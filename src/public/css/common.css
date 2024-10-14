@@ -87,7 +87,8 @@ body {
     overflow: auto;
 }
 
-.modal__content {
+.modal__content,
+.modal__content-btn {
     color: #212df3;
     font-size: 35px;
     display: block grid;
@@ -102,6 +103,7 @@ body {
 .home,
 .registration,
 .login,
-.mypage {
+.mypage,
+.modal__content-btn {
     text-decoration: none;
 }
