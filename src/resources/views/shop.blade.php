@@ -20,9 +20,20 @@
             @endforeach
         </select>
         <input type="text" class="search-form__input" name="name_input" placeholder="Search..." value="{{ old('name_input') }}" />
-        <input type="submit" class="submit" />
     </div>
 </form>
+
+<script>
+    function handleEnterKey(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            document.querySelector('.search-form').submit();
+        }
+    }
+    document.querySelector('.area').addEventListener('keydown', handleEnterKey);
+    document.querySelector('.genre').addEventListener('keydown', handleEnterKey);
+    document.querySelector('.search-form__input').addEventListener('keydown', handleEnterKey);
+</script>
 @endsection
 
 @section('content')

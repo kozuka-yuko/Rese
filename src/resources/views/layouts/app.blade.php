@@ -57,9 +57,9 @@
                 @yield('search')
             </div>
             <div class="messsage">
-                @if (session('message'))
+                @if (session('result'))
                 <div class="message__inner">
-                    {{ session('message') }}
+                    {{ session('result') }}
                 </div>
                 @endif
             </div>

@@ -72,6 +72,6 @@ class ReseController extends Controller
     {
         Reservation::find($request->id)->delete();
 
-        return redirect('/mypage')->with('message', '予約を削除しました');
+        return redirect('/mypage')->with('result', '予約を削除しました');
     }
 }

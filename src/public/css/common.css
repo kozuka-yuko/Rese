@@ -99,11 +99,3 @@ body {
 .modal__content--item {
     list-style: none;
 }
-
-.home,
-.registration,
-.login,
-.mypage,
-.modal__content-btn {
-    text-decoration: none;
-}
