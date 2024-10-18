@@ -42,6 +42,7 @@
     @endforeach
     @foreach ($favorites as $favorite)
     <div class="favorite">
+        <p class="title">お気に入り店舗</p>
         <div class="shop">
             <div class="img">
                 <img class="img_url" src="{{ asset($favorite->shop->img_url) }}" alt="お店の画像" />
@@ -53,7 +54,14 @@
             <div class="button">
                 <a href="{{ url('detail?id=' . $favorite->shop->id) }}" class="detail__button">詳しく見る</a>
             </div>
-            <div class="favorite">
+            <div class="isfavorite">
+                <form class="favorite-form" action="/delete" method="post">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit" class="favorite__btn" title="削除" onclick='return confirm("{{ $reservation->shop->name }}をお気に入りから削除しますか？")'>
+                        <div class="heart"></div>
+                    </button>
+                </form>
             </div>
         </div>
     </div>

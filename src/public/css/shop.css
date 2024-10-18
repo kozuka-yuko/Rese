@@ -38,6 +38,11 @@
 }
 
 .button {
+    display: flex;
+    justify-content: space-between;
+}
+
+.detail {
     padding: 20px 0;
     margin-left: 10px;
 }
@@ -49,4 +54,53 @@
     border-radius: 5px;
     cursor: pointer;
     color: #FEFEFE;
+}
+
+.favorite-form {
+    padding: 10px 0;
+    margin: 0 10px;
+}
+
+.favorite__btn {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.btn-favorite-active .heart::before,
+.btn-favorite-active .heart::after {
+    background-color: #f44336;
+}
+
+.btn-favorite-inactive .heart::before,
+.btn-favorite-inactive .heart::after {
+    background-color: #e4e4e4;
+}
+
+.heart {
+    position: relative;
+    width: 50px;
+    height: 40px;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 25px;
+    height: 40px;
+    border-radius: 100px 100px 0 0;
+}
+
+.heart::before {
+    left: 25px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
 }

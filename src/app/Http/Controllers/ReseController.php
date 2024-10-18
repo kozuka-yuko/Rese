@@ -74,4 +74,22 @@ class ReseController extends Controller
 
         return redirect('/mypage')->with('result', '予約を削除しました');
     }
+
+    public function favorite(Request $request)
+    {
+        $user = Auth::user();
+        $shopId = $request->shop_id;
+
+        $isfavorite = Favorite::where('user_id',$user->id)->where('shop_id', $shopId)->exists();
+
+        if ($isfavorite) {
+            Favorite::where('user_id', $user->id)->where('shop_id', $shopId)->delete();
+        } else {
+            Favorite::create([
+                'user_id' => $user->id,
+                'shop_id' => $shopId
+            ]);
+        }
+        return back();
+    }
 }

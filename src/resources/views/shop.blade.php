@@ -48,9 +48,17 @@
             <p class="tag">#{{ $shop->area->name ?? 'エリア不明' }} #{{ $shop->genre->name ?? 'ジャンル不明' }}</p>
         </div>
         <div class="button">
-            <a href="{{ url('detail?id=' . $shop->id) }}" class="detail__button">詳しく見る</a>
-        </div>
-        <div class="favorite">
+            <div class="detail">
+                <a href="{{ url('detail?id=' . $shop->id) }}" class="detail__button">詳しく見る</a>
+            </div>
+            <div class="favorite">
+                <form class="favorite-form" action="/favorite/{{ $shop->id }}" method="post">
+                    @csrf
+                    <button type="submit" class="favorite__btn {{ $shop->favorites->contains('user_id', auth()->id()) ? 'btn-favorite-active' : 'btn-favorite-inactive' }}">
+                        <div class="heart"></div>
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
     @endforeach
