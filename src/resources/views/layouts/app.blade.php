@@ -56,14 +56,14 @@
             <div class="search">
                 @yield('search')
             </div>
-            <div class="messsage">
-                @if (session('result'))
-                <div class="message__inner">
-                    {{ session('result') }}
-                </div>
-                @endif
-            </div>
         </header>
+        <div class="messsage">
+            @if (session('result'))
+            <div class="message__inner">
+                {{ session('result') }}
+            </div>
+            @endif
+        </div>
         <div class="content">
             @yield('content')
         </div>

@@ -16,11 +16,16 @@ class AuthController extends Controller
         $areas = Area::all();
         $genres = Genre::all();
         $shops = Shop::select('id', 'name', 'info', 'img_url', 'area_id', 'genre_id')->get();
-        return view('shop', compact('areas', 'genres', 'shops'))->with('result', 'ログインしました');
+        return view('/shop', compact('areas', 'genres', 'shops'))->with('result', 'ログインしました');
     }
 
     public function thanks()
     {
         return view('/thanks');
+    }
+
+    public function tologin()
+    {
+        return view('auth/login');
     }
 }

@@ -68,11 +68,18 @@ class ReseController extends Controller
         return view('/mypage', compact('user', 'reservations', 'favorites'));
     }
 
-    public function destroy(Request $request)
+    public function reservationDestroy(Request $request)
     {
         Reservation::find($request->id)->delete();
 
         return redirect('/mypage')->with('result', '予約を削除しました');
+    }
+
+    public function favoriteDestroy(Request $request)
+    {
+        Favorite::find($request->id)->delete();
+
+        return redirect('/mypage')->with('result', 'お気に入りを削除しました');
     }
 
     public function favorite(Request $request)

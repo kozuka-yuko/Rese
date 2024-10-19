@@ -1,0 +1,131 @@
+.content {
+    flex-wrap: wrap;
+    padding: 0 40px;
+    display: flex;
+}
+
+.mypage__content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.content__header--inner {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.reservation {
+    border: none;
+    border-radius: 5px;
+    background-color: #212df3;
+    box-shadow: 3px 3px 5px #bebebe;
+    width: 30%;
+    margin: 40px;
+    padding: 0 15px 30px;
+    line-height: 210%;
+    color: #FEFEFE;
+}
+
+.title__num {
+    display: inline-block;
+}
+
+.delete-reservation {
+    display: inline-block;
+}
+
+.delete-reservation__button-submit {
+    position: absolute;
+    color: #FEFEFE;
+    background-color: #212df3;
+    border: solid 2px;
+    cursor: pointer;
+    border-radius: 50px;
+}
+
+.shop {
+    border: 1px solid #b5b5b5;
+    border-radius: 5px;
+    background-color: #FEFEFE;
+    box-shadow: 3px 3px 5px #bebebe;
+    width: 30%;
+    margin: 10px;
+}
+
+.img_url {
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.info {
+    width: 100%;
+    margin: 20px 10px;
+}
+
+.shop__name {
+    font-weight: bold;
+}
+
+.button {
+    display: flex;
+    justify-content: space-between;
+}
+
+.detail {
+    padding: 20px 0;
+    margin-left: 10px;
+}
+
+.detail__button {
+    background-color: #212df3;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #FEFEFE;
+}
+
+.favorite-form {
+    padding: 10px 0;
+    margin: 0 15px;
+}
+
+.favorite__btn {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.heart {
+    position: relative;
+    width: 40px;
+    height: 30px;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 20px;
+    height: 35px;
+    border-radius: 100px 100px 0 0;
+    background-color: #f44336;
+}
+
+.heart::before {
+    left: 20px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}

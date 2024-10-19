@@ -62,7 +62,14 @@
     margin-left: 20px;
 }
 
-.reservation__date,
+.reservation__date {
+    border: none;
+    background-color: #FEFEFE;
+    padding: 10px 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
 .reservation__time,
 .number__inner {
     border: none;

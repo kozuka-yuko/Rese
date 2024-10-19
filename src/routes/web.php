@@ -17,12 +17,14 @@ use App\Http\Controllers\AuthController;
 Route::get('/shop', [ReseController::class, 'home']);
 Route::get('/detail', [ReseController::class, 'detail']);
 Route::get('/search', [ReseController::class, 'search']);
-Route::get('/thanks',[AuthController::class, 'thanks']);
+Route::get('/thanks', [AuthController::class, 'thanks']);
 
 Route::middleware('auth')->group(function () {
+    Route::get('/thanks/login', [AuthController::class, 'tologin']);
     Route::get('/', [AuthController::class, 'index']);
     Route::get('/mypage', [ReseController::class, 'mypage']);
     Route::post('/reservation', [ReseController::class, 'reservation']);
-    Route::delete('/delete',[ReseController::class, 'destroy']);
+    Route::delete('/reservation/delete', [ReseController::class, 'reservationDestroy']);
+    Route::delete('/favorite/delete', [ReseController::class, 'favoriteDestroy']);
     Route::post('/favorite/{shop_id}', [ReseController::class, 'favorite']);
 });

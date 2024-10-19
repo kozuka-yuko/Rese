@@ -58,13 +58,41 @@
 
 .favorite-form {
     padding: 10px 0;
-    margin: 0 10px;
+    margin: 0 15px;
 }
 
 .favorite__btn {
     border: none;
     background-color: transparent;
     cursor: pointer;
+}
+
+.heart {
+    position: relative;
+    width: 40px;
+    height: 30px;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 20px;
+    height: 35px;
+    border-radius: 100px 100px 0 0;
+}
+
+.heart::before {
+    left: 20px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
 }
 
 .btn-favorite-active .heart::before,
@@ -75,32 +103,4 @@
 .btn-favorite-inactive .heart::before,
 .btn-favorite-inactive .heart::after {
     background-color: #e4e4e4;
-}
-
-.heart {
-    position: relative;
-    width: 50px;
-    height: 40px;
-}
-
-.heart::before,
-.heart::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 25px;
-    height: 40px;
-    border-radius: 100px 100px 0 0;
-}
-
-.heart::before {
-    left: 25px;
-    transform: rotate(-45deg);
-    transform-origin: 0 100%;
-}
-
-.heart::after {
-    left: 0;
-    transform: rotate(45deg);
-    transform-origin: 100% 100%;
 }
