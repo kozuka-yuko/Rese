@@ -9,7 +9,7 @@
     <div class="done-form__heading">
         <h2 class="title">ご予約ありがとうございます</h2>
     </div>
-    <form action="/" class="done__form" method="get">
+    <form action="/shop" class="done__form" method="get">
         <div class="form__button">
             <button class="form__button-submit" type="submit">
                 戻る

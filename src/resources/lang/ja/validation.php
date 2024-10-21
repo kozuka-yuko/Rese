@@ -70,15 +70,15 @@ return [
         'array'   => ':attributeの項目数は、:value個より小さくなければなりません。',
     ],
     'lte'                  => [
-        'numeric' => ':attributeは、:value以下でなければなりません。',
-        'file'    => ':attributeは、:value KB以下でなければなりません。',
-        'string'  => ':attributeは、:value文字以下でなければなりません。',
-        'array'   => ':attributeの項目数は、:value個以下でなければなりません。',
+        'numeric' => ':attributeは、:value以下にしてください。',
+        'file'    => ':attributeは、:value KB以下のファイルを指定してください。',
+        'string'  => ':attributeは、:value文字以下で入力してください。',
+        'array'   => ':attributeの項目数は、:value個以下にしてください。',
     ],
     'max'                  => [
         'numeric' => ':attributeには、:max以下の数字を指定してください。',
         'file'    => ':attributeには、:max KB以下のファイルを指定してください。',
-        'string'  => ':attributeは、:max文字以下にしてください。',
+        'string'  => ':attributeは、:max文字以下で入力してください。',
         'array'   => ':attributeの項目は、:max個以下にしてください。',
     ],
     'mimes'                => ':attributeには、:valuesタイプのファイルを指定してください。',
@@ -86,7 +86,7 @@ return [
     'min'                  => [
         'numeric' => ':attributeには、:min以上の数字を指定してください。',
         'file'    => ':attributeには、:min KB以上のファイルを指定してください。',
-        'string'  => ':attributeは、:min文字以上にしてください。',
+        'string'  => ':attributeは、:min文字以上で入力してください。',
         'array'   => ':attributeの項目は、:min個以上にしてください。',
     ],
     'multiple_of'          => 'The :attribute must be a multiple of :value',
@@ -146,5 +146,9 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name' => '名前',
+        'email' => 'メールアドレス',
+        'password' => 'パスワード',
+    ],
 ];

@@ -28,8 +28,11 @@
                 <h2 class="reservation__header--inner">予約</h2>
             </div>
             <div class="date">
-                <input type="date" name="date" class="reservation__date" min="{{ $today }}" title="日付け選択カレンダー">
+                <input type="date" name="date" class="reservation__date" min="{{ $today }}">
             </div>
+            @error('date')
+            {{ $message }}
+            @enderror
             <div class="time">
                 <select name="time" class="reservation__time">
                     <option value="" hidden>time</option>
@@ -38,6 +41,11 @@
                     @endforeach
                 </select>
             </div>
+            <div class="form__error">
+                @error('time')
+                {{ $message }}
+                @enderror
+            </div>
             <div class="number">
                 <select name="number" class="number__inner">
                     <option value="" hidden>number of person</option>
@@ -45,6 +53,11 @@
                     <option value="{{ $number }}">{{ $number }}人</option>
                     @endforeach
                 </select>
+            </div>
+            <div class="form__error">
+                @error('number')
+                {{ $message }}
+                @enderror
             </div>
             <input type="hidden" name="shop_id" value="{{ $shop->id }}">
         </div>

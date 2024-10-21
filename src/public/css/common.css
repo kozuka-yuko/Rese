@@ -1,10 +1,6 @@
 body {
     height: 100%;
-}
-
-.app {
     background-color: #f4f4f4;
-    height: 100vh;
 }
 
 .header {
@@ -16,7 +12,7 @@ body {
 .header__logo {
     display: inline-block;
     margin-left: 15px;
-    color: #4b54f5;
+    color: #212df3;
     font-size: 38px;
     font-weight: bold;
     text-decoration: none;

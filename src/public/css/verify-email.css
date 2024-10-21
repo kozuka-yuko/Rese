@@ -1,0 +1,14 @@
+.info {
+    padding: 20px;
+}
+
+.resend__button {
+    padding: 10px;
+    height: 50px;
+    margin-left: 100px;
+    color: #FEFEFE;
+    border: none;
+    border-radius: 3px;
+    background: blue;
+    cursor: pointer;
+}

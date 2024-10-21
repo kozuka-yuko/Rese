@@ -57,11 +57,14 @@
                 @yield('search')
             </div>
         </header>
-        <div class="messsage">
+        <div class="message">
             @if (session('result'))
             <div class="message__inner">
                 {{ session('result') }}
             </div>
+            @php
+            session()->forget('result');
+            @endphp
             @endif
         </div>
         <div class="content">

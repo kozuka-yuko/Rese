@@ -24,8 +24,8 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|string|email',
-            'password' => 'required|string'
+            'email' => 'required|string|email|unique|max:191',
+            'password' => 'required|min:8|max:191'
         ];
     }
 
@@ -35,8 +35,11 @@ class LoginRequest extends FormRequest
             'email.required' => 'メールアドレスを入力してください',
             'email.string' => 'メールアドレスを正しく入力してください',
             'email.email' => '有効なメールアドレス形式で入力してください',
+            'email.unique' => 'このメールアドレスはすでに使用されています',
+            'email.max:191' => 'マールアドレスを191文字以内で入力してください',
             'password.required' => 'パスワードを入力してください',
-            'password.string' => 'パスワードが間違っています',
+            'password.min:8' => 'パスワードを8文字以上で設定してください',
+            'password.max:191' => 'パスワードを191文字以内で設定してください',
         ];
     }
 }

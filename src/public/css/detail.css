@@ -85,6 +85,13 @@
     width: 90%;
 }
 
+.form__error {
+    height: 20px;
+    width: 100%;
+    color: #ff0000;
+    text-align: left;
+}
+
 .reservation__btn {
     width: 100%;
     border: none;
