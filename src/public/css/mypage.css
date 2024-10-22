@@ -43,15 +43,27 @@
 
 .delete-reservation {
     display: inline-block;
+    width: 75%;
 }
 
 .delete-reservation__button-submit {
-    position: absolute;
-    color: #FEFEFE;
+    font-size: 20px;
     background-color: #212df3;
+    color: #FEFEFE;
     border: solid 2px;
+    border-radius: 50%;
     cursor: pointer;
-    border-radius: 50px;
+    margin-left: 100%;
+}
+
+.modal__update {
+    padding: 5px 10px;
+    background-color: #212df3;
+    text-decoration: none;
+    cursor: pointer;
+    border: solid 1px #FEFEFE;
+    color: #FEFEFE;
+    border-radius: 5px;
 }
 
 .favorite__content {

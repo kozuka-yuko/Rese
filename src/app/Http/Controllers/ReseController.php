@@ -28,7 +28,7 @@ class ReseController extends Controller
         $shopId = $request->input('id');
         $shop = Shop::where('id', $shopId)->first();
         $times = [];
-        for ($i = 9; $i <= 18; $i++) {
+        for ($i = 9; $i <= 19; $i++) {
             $times[] = sprintf('%02d:00', $i);
         }
         $numbers = range(1, 20);

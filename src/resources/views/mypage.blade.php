@@ -42,6 +42,10 @@
                             <td class="reservation__data">{{ $reservation->number }}人</td>
                         </tr>
                     </table>
+                    <div class="update__button">
+                        <a href="#modal" class="modal__update">変更</a>
+                    </div>
+                    @yield('modal')
                 </div>
                 @endforeach
             </div>

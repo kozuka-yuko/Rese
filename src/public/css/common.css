@@ -94,6 +94,7 @@ body {
 
 .modal__content--item {
     list-style: none;
+    text-decoration: none;
 }
 
 .message__inner {
