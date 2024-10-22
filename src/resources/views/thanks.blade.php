@@ -12,7 +12,7 @@
     <form action="/register" class="thnks__form" method="post">
         @csrf
         <div class="form__button">
-            <a href="/thanks/login" class="loginpage">ログインする</a>
+            <a href="route('tologin')" class="loginpage">ログインする</a>
         </div>
     </form>
 </div>

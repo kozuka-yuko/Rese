@@ -70,6 +70,7 @@
         <div class="content">
             @yield('content')
         </div>
+        @yield('modals')
     </div>
 </body>
 

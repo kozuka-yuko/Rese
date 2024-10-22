@@ -75,6 +75,29 @@ class ReseController extends Controller
         return redirect('/mypage')->with('result', '予約を削除しました');
     }
 
+    public function modal($id) {
+
+        $today = Carbon::today()->addDay()->format('Y-m-d');
+        $reservation = Reservation::findOrFail($id);
+        $times = [];
+        for ($i = 9; $i <= 19; $i++) {
+            $times[] = sprintf('%02d:00', $i);
+        }
+        $numbers = range(1, 20);
+
+        return view('modal', compact('reservation','today', 'shop', 'times', 'numbers'));
+    }
+
+    public function reservationUpdate(ReservationRequest $request) {
+        $userId = Auth::id();
+        $data = $request->only(['date', 'time', 'number', 'shop_id']);
+        $data['user_id'] = $userId;
+        $data['status'] = '予約';
+
+        Reservation::updated($data);
+        redirect()->route('mypage')->with('result', '予約を変更しました');
+    }
+
     public function favoriteDestroy(Request $request)
     {
         Favorite::find($request->id)->delete();

@@ -1,4 +1,4 @@
-@section('modal')
+@section('update-modal')
 <div class="modal">
     <a href="#" class="close" title="閉じる">&times;</a>
     @method('PATCH')
@@ -12,7 +12,7 @@
             <tr class="table__row">
                 <td class="reservation__data">Date</td>
                 <td class="reservation__data">
-                    <input type="date" name="date" class="reservation__date" min="{{ $today }}">
+                    <input type="date" name="date" class="reservation__date" value="{{ old('date', $reservation->date) }}" min="{{ $today }}">
                 </td>
             </tr>
             <tr class="table__row">
