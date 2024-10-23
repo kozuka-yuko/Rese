@@ -5,7 +5,7 @@
 @endsection
 
 @section('search')
-<form class="search-form" action="route('search')" method="get">
+<form class="search-form" action="{{ route('search') }}" method="get">
     <div class="search">
         <select name="area_id" class="area">
             <option value="" hidden>All area</option>
@@ -49,10 +49,10 @@
         </div>
         <div class="button">
             <div class="detail">
-                <a href="{{ url('detail?id=' . $shop->id) }}" class="detail__button">詳しく見る</a>
+                <a href="{{ route('detail', $shop->id) }}" class="detail__button">詳しく見る</a>
             </div>
             <div class="favorite">
-                <form class="favorite-form" action="route('favorite')" method="post">
+                <form class="favorite-form" action="{{ route('favorite', $shop->id) }}" method="post">
                     @csrf
                     <button type="submit" class="favorite__btn {{ $shop->favorites->contains('user_id', auth()->id()) ? 'btn-favorite-active' : 'btn-favorite-inactive' }}">
                         <div class="heart"></div>

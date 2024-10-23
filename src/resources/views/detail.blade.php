@@ -8,7 +8,7 @@
 <div class="content">
     <div class="detail-content">
         <div class="shop-name">
-            <a href="route('home')" class="return__btn" title="戻る">&lt;</a>
+            <a href="{{ route('home') }}" class="return__btn" title="戻る">&lt;</a>
             <span class="shop-name__inner">{{ $shop->name }}</span>
         </div>
         <div class="img">
@@ -21,7 +21,7 @@
             <p class="info__inner">{{ $shop->info }}</p>
         </div>
     </div>
-    <form action="route('reservation')" method="post" class="reservation-form">
+    <form action="{{ route('reservation') }}" method="post" class="reservation-form">
         @csrf
         <div class="reservation__content">
             <div class="reservation__header">

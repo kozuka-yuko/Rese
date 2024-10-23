@@ -18,7 +18,7 @@
                 @foreach ($reservations as $reservation)
                 <div class="reservation">
                     <p class="title__num">予約{{ $loop->iteration }}</p>
-                    <form action="route('reservationDestroy')" method="post" class="delete-reservation">
+                    <form action="{{ route('reservationDestroy') }}" method="post" class="delete-reservation">
                         @method('DELETE')
                         @csrf
                         <input type="hidden" name="id" value="{{ $reservation->id }}">
@@ -68,10 +68,10 @@
                         </div>
                         <div class="button">
                             <div class="detail">
-                                <a href="{{ url('detail?id=' . $favorite->shop->id) }}" class="detail__button">詳しく見る</a>
+                                <a href="{{ route('detail', $favorite->shop->id) }}" class="detail__button">詳しく見る</a>
                             </div>
                             <div class="isfavorite">
-                                <form action="route('favoriteDestroy')" method="post" class="delete-favorite">
+                                <form action="{{ route('favoriteDestroy') }}" method="post" class="delete-favorite">
                                     @method('DELETE')
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $favorite->id }}">

@@ -44,7 +44,11 @@ class ReseController extends Controller
             ->GenreSearch($request->genre_id)
             ->NameSearch($request->name_input)->get();
 
-        return view('shop', compact('areas', 'genres', 'shops'));
+        if ($shops->isEmpty()) {
+            return view('shop', compact('areas', 'genres', 'shops'))->with('result', '該当する店舗がありませんでした');
+        } else {
+            return view('shop', compact('areas', 'genres', 'shops'));
+        }
     }
 
     public function reservation(ReservationRequest $request)
@@ -75,7 +79,8 @@ class ReseController extends Controller
         return redirect('/mypage')->with('result', '予約を削除しました');
     }
 
-    public function modal($id) {
+    public function modal($id)
+    {
 
         $today = Carbon::today()->addDay()->format('Y-m-d');
         $reservation = Reservation::findOrFail($id);
@@ -85,10 +90,11 @@ class ReseController extends Controller
         }
         $numbers = range(1, 20);
 
-        return view('modal', compact('reservation','today', 'shop', 'times', 'numbers'));
+        return view('modal', compact('reservation', 'today', 'shop', 'times', 'numbers'));
     }
 
-    public function reservationUpdate(ReservationRequest $request) {
+    public function reservationUpdate(ReservationRequest $request)
+    {
         $userId = Auth::id();
         $data = $request->only(['date', 'time', 'number', 'shop_id']);
         $data['user_id'] = $userId;
@@ -110,7 +116,7 @@ class ReseController extends Controller
         $user = Auth::user();
         $shopId = $request->shop_id;
 
-        $isfavorite = Favorite::where('user_id',$user->id)->where('shop_id', $shopId)->exists();
+        $isfavorite = Favorite::where('user_id', $user->id)->where('shop_id', $shopId)->exists();
 
         if ($isfavorite) {
             Favorite::where('user_id', $user->id)->where('shop_id', $shopId)->delete();

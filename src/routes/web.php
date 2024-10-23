@@ -28,7 +28,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/reservation', [ReseController::class, 'reservation'])->name('reservation');
     Route::delete('/reservation/delete', [ReseController::class, 'reservationDestroy'])->name('reservationDestroy');
     Route::get('/reservation/{id}/edit', [ReseController::class, 'edit'])->name('reservation.edit');
-    Route::put('/reservation/{id}', [ReseController::class, 'update'])->name('reservation.update');
+    Route::patch('/reservation/{id}', [ReseController::class, 'reservationUpdate'])->name('reservation.update');
     Route::delete('/favorite/delete', [ReseController::class, 'favoriteDestroy'])->name('favoriteDestroy');
     Route::post('/favorite/{shop_id}', [ReseController::class, 'favorite'])->name('favorite');
 });

@@ -2,7 +2,7 @@
 <div class="modal">
     <a href="#" class="close" title="閉じる">&times;</a>
     @method('PATCH')
-    <form action="/reservation/update" method="post" class="reservation-form">
+    <form action="{{ route('reservation.update') }}" method="post" class="reservation-form">
         @csrf
         <table class="reservation__table">
             <tr class="table__row">
