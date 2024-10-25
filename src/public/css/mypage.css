@@ -56,14 +56,14 @@
     margin-left: 100%;
 }
 
-.modal__update {
+.modal__edit {
     padding: 5px 10px;
     background-color: #212df3;
     text-decoration: none;
-    cursor: pointer;
     border: solid 1px #FEFEFE;
     color: #FEFEFE;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .favorite__content {

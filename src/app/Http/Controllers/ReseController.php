@@ -22,11 +22,10 @@ class ReseController extends Controller
         return view('shop', compact('areas', 'genres', 'shops'));
     }
 
-    public function detail(Request $request)
+    public function detail(Request $request, $id)
     {
         $today = Carbon::today()->addDay()->format('Y-m-d');
-        $shopId = $request->input('id');
-        $shop = Shop::where('id', $shopId)->first();
+        $shop = Shop::where('id', $id)->first();
         $times = [];
         for ($i = 9; $i <= 19; $i++) {
             $times[] = sprintf('%02d:00', $i);
@@ -51,10 +50,11 @@ class ReseController extends Controller
         }
     }
 
-    public function reservation(ReservationRequest $request)
+    public function reservation(ReservationRequest $request, $id)
     {
         $userId = Auth::id();
-        $data = $request->only(['date', 'time', 'number', 'shop_id']);
+        $data = $request->only(['date', 'time', 'number']);
+        $data['shop_id'] = $id;
         $data['user_id'] = $userId;
         $data['status'] = '予約';
 
@@ -68,8 +68,14 @@ class ReseController extends Controller
         $user = Auth::user();
         $reservations = Reservation::where('user_id', $user->id)->get();
         $favorites = Favorite::where('user_id', $user->id)->get();
+        $today = Carbon::today()->addDay()->format('Y-m-d');
+        $times = [];
+        for ($i = 9; $i <= 19; $i++) {
+            $times[] = sprintf('%02d:00', $i);
+        }
+        $numbers = range(1, 20);
 
-        return view('/mypage', compact('user', 'reservations', 'favorites'));
+        return view('/mypage', compact('user', 'reservations', 'favorites', 'today', 'times', 'numbers'));
     }
 
     public function reservationDestroy(Request $request)
@@ -79,29 +85,18 @@ class ReseController extends Controller
         return redirect('/mypage')->with('result', '予約を削除しました');
     }
 
-    public function modal($id)
+    public function edit($id)
     {
-
-        $today = Carbon::today()->addDay()->format('Y-m-d');
         $reservation = Reservation::findOrFail($id);
-        $times = [];
-        for ($i = 9; $i <= 19; $i++) {
-            $times[] = sprintf('%02d:00', $i);
-        }
-        $numbers = range(1, 20);
-
-        return view('modal', compact('reservation', 'today', 'shop', 'times', 'numbers'));
+        return view('/mypage', compact('reservation'));
     }
 
-    public function reservationUpdate(ReservationRequest $request)
+    public function reservationUpdate(ReservationRequest $request, $id)
     {
-        $userId = Auth::id();
-        $data = $request->only(['date', 'time', 'number', 'shop_id']);
-        $data['user_id'] = $userId;
-        $data['status'] = '予約';
+        $reservation = Reservation::findOrFail($id);
+        $reservation->update($request->all());
 
-        Reservation::updated($data);
-        redirect()->route('mypage')->with('result', '予約を変更しました');
+        return redirect()->route('mypage')->with('result', '予約を変更しました');
     }
 
     public function favoriteDestroy(Request $request)
@@ -111,10 +106,10 @@ class ReseController extends Controller
         return redirect('/mypage')->with('result', 'お気に入りを削除しました');
     }
 
-    public function favorite(Request $request)
+    public function favorite($id)
     {
         $user = Auth::user();
-        $shopId = $request->shop_id;
+        $shopId = $id;
 
         $isfavorite = Favorite::where('user_id', $user->id)->where('shop_id', $shopId)->exists();
 

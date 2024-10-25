@@ -17,7 +17,7 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::get('/shop', [ReseController::class, 'home'])->name('home');
-Route::get('/detail', [ReseController::class, 'detail'])->name('detail');
+Route::get('/detail/{id}', [ReseController::class, 'detail'])->name('detail');
 Route::get('/search', [ReseController::class, 'search'])->name('search');
 Route::get('/thanks', [AuthController::class, 'thanks'])->name('thanks');
 
@@ -25,12 +25,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/thanks/login', [AuthController::class, 'tologin'])->name('tologin');
     Route::get('/', [AuthController::class, 'index'])->name('index');
     Route::get('/mypage', [ReseController::class, 'mypage'])->name('mypage');
-    Route::post('/reservation', [ReseController::class, 'reservation'])->name('reservation');
+    Route::post('/reservation/{id}', [ReseController::class, 'reservation'])->name('reservation');
     Route::delete('/reservation/delete', [ReseController::class, 'reservationDestroy'])->name('reservationDestroy');
     Route::get('/reservation/{id}/edit', [ReseController::class, 'edit'])->name('reservation.edit');
     Route::patch('/reservation/{id}', [ReseController::class, 'reservationUpdate'])->name('reservation.update');
     Route::delete('/favorite/delete', [ReseController::class, 'favoriteDestroy'])->name('favoriteDestroy');
-    Route::post('/favorite/{shop_id}', [ReseController::class, 'favorite'])->name('favorite');
+    Route::post('/favorite/{id}', [ReseController::class, 'favorite'])->name('favorite');
 });
 
 Route::get('/email/verify', function () {

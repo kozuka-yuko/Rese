@@ -15,13 +15,14 @@
     <div class="app">
         <header class="header">
             <div class="header__heading">
+                <a href="#modal" class="modal__menu">
                 <span class="hamburger-top"></span>
                 <span class="hamburger-middle"></span>
                 <span class="hamburger-under"></span>
-                <a href="#modal" class="modal__menu"></a>
-                <div class="modal" id="modal">
-                    <div class="modal__inner">
-                        <a href="#" class="close">&times;</a>
+                    </a>
+                    <div class="modal" id="modal">
+                        <div class="modal__inner">
+                            <a href="#" class="close">&times;</a>
                         <ul class="modal__content">
                             @if (Auth::check())
                             <li class="modal__content--item">

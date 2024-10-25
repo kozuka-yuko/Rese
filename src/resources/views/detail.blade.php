@@ -21,7 +21,7 @@
             <p class="info__inner">{{ $shop->info }}</p>
         </div>
     </div>
-    <form action="{{ route('reservation') }}" method="post" class="reservation-form">
+    <form action="{{ route('reservation', $shop->id) }}" method="post" class="reservation-form">
         @csrf
         <div class="reservation__content">
             <div class="reservation__header">
@@ -59,7 +59,6 @@
                 {{ $message }}
                 @enderror
             </div>
-            <input type="hidden" name="shop_id" value="{{ $shop->id }}">
         </div>
         <div class="button-submit">
             <div class="reservation__button">

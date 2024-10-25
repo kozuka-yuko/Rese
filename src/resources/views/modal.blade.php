@@ -1,8 +1,7 @@
-@section('update-modal')
-<div class="modal">
-    <a href="#" class="close" title="閉じる">&times;</a>
-    @method('PATCH')
-    <form action="{{ route('reservation.update') }}" method="post" class="reservation-form">
+<div class="modal__update" id="modal__update">
+    <a href="#" class="close__update" title="閉じる">&times;</a>
+    <form action="{{ route('reservation.update', $reservation->id) }}" method="post" class="reservation-form">
+        @method('PATCH')
         @csrf
         <table class="reservation__table">
             <tr class="table__row">
@@ -40,9 +39,8 @@
         </table>
         <div class="button-submit">
             <div class="reservation__button">
-                <button class="reservation__btn" type="submit">変更する</button>
+                <button class="update__btn" type="submit">変更する</button>
             </div>
         </div>
     </form>
 </div>
-@endsection

@@ -2,13 +2,14 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
+<link rel="stylesheet" href="{{ asset('css/modal.css') }}">
 @endsection
 
 @section('content')
 <div class="content">
     <div class="content__header">
         <h2 class="content__header--inner">
-            {{ $user->name }}さん
+            {{ $user->name ?? '' }}さん
         </h2>
     </div>
     <div class="mypage__content">
@@ -43,12 +44,9 @@
                         </tr>
                     </table>
                     <div class="update__button">
-
-                        <a href="{{ route('reservation.edit', $reservation->id) }}" class="modal__update">変更</a>
+                        <a href="#modal__update" class="modal__edit">変更</a>
+                        @include('modal')
                     </div>
-                    @section('modals')
-                    @include('modal')
-                    @endsection
                 </div>
                 @endforeach
             </div>
