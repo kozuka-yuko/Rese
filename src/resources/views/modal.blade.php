@@ -14,6 +14,11 @@
                     <input type="date" name="date" class="reservation__date" value="{{ old('date', $reservation->date) }}" min="{{ $today }}">
                 </td>
             </tr>
+            <tr class="form__error">
+                @error('date')
+                {{ $message }}
+                @enderror
+            </tr>
             <tr class="table__row">
                 <td class="reservation__data">Time</td>
                 <td class="reservation__data">
@@ -25,6 +30,11 @@
                     </select>
                 </td>
             </tr>
+            <tr class="form__error">
+                @error('time')
+                {{ $message }}
+                @enderror
+            </tr>
             <tr class="table__row">
                 <td class="reservation__data">Number</td>
                 <td class="reservation__data">
@@ -35,6 +45,11 @@
                         @endforeach
                     </select>
                 </td>
+            </tr>
+            <tr class="form__error">
+                @error('number')
+                {{ $message }}
+                @enderror
             </tr>
         </table>
         <div class="button-submit">

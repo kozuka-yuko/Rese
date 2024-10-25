@@ -30,9 +30,11 @@
             <div class="date">
                 <input type="date" name="date" class="reservation__date" min="{{ $today }}">
             </div>
-            @error('date')
-            {{ $message }}
-            @enderror
+            <div class="form__error">
+                @error('date')
+                {{ $message }}
+                @enderror
+            </div>
             <div class="time">
                 <select name="time" class="reservation__time">
                     <option value="" hidden>time</option>

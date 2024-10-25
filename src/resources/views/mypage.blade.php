@@ -9,7 +9,7 @@
 <div class="content">
     <div class="content__header">
         <h2 class="content__header--inner">
-            {{ $user->name ?? '' }}さん
+            {{ $user->name }}さん
         </h2>
     </div>
     <div class="mypage__content">

@@ -85,12 +85,6 @@ class ReseController extends Controller
         return redirect('/mypage')->with('result', '予約を削除しました');
     }
 
-    public function edit($id)
-    {
-        $reservation = Reservation::findOrFail($id);
-        return view('/mypage', compact('reservation'));
-    }
-
     public function reservationUpdate(ReservationRequest $request, $id)
     {
         $reservation = Reservation::findOrFail($id);

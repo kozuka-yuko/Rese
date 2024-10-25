@@ -90,6 +90,7 @@
     width: 100%;
     color: #ff0000;
     text-align: left;
+    padding-left: 20px;
 }
 
 .reservation__btn {
