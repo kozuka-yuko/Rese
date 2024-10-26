@@ -18,14 +18,14 @@ class ReseController extends Controller
     {
         $areas = Area::all();
         $genres = Genre::all();
-        $shops = Shop::select('id', 'name', 'info', 'img_url', 'area_id', 'genre_id')->get();
+        $shops = Shop::with(['area', 'genre'])->get();
         return view('shop', compact('areas', 'genres', 'shops'));
     }
 
     public function detail(Request $request, $id)
     {
         $today = Carbon::today()->addDay()->format('Y-m-d');
-        $shop = Shop::where('id', $id)->first();
+        $shop = Shop::with(['area', 'genre'])->findOrFail($id);
         $times = [];
         for ($i = 9; $i <= 19; $i++) {
             $times[] = sprintf('%02d:00', $i);
@@ -42,7 +42,7 @@ class ReseController extends Controller
         $shops = Shop::with(['area', 'genre'])->AreaSearch($request->area_id)
             ->GenreSearch($request->genre_id)
             ->NameSearch($request->name_input)->get();
-
+        dd($shops);
         if ($shops->isEmpty()) {
             return view('shop', compact('areas', 'genres', 'shops'))->with('result', '該当する店舗がありませんでした');
         } else {
@@ -67,7 +67,7 @@ class ReseController extends Controller
     {
         $user = Auth::user();
         $reservations = Reservation::where('user_id', $user->id)->get();
-        $favorites = Favorite::where('user_id', $user->id)->get();
+        $favorites = Favorite::where('user_id', $user->id)->with('shop')->get();
         $today = Carbon::today()->addDay()->format('Y-m-d');
         $times = [];
         for ($i = 9; $i <= 19; $i++) {
@@ -85,7 +85,20 @@ class ReseController extends Controller
         return redirect('/mypage')->with('result', '予約を削除しました');
     }
 
-    public function reservationUpdate(ReservationRequest $request, $id)
+    public function edit($id)
+    {
+        $reservation = Reservation::findOrFail($id);
+        $today = Carbon::today()->addDay()->format('Y-m-d');
+        $times = [];
+        for ($i = 9; $i <= 19; $i++) {
+            $times[] = sprintf('%02d:00', $i);
+        }
+        $numbers = range(1, 20);
+
+        return view('/edit', compact('reservation', 'today', 'times', 'numbers'));
+    }
+
+    public function reservationUpdate(Request $request, $id)
     {
         $reservation = Reservation::findOrFail($id);
         $reservation->update($request->all());

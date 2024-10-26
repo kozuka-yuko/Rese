@@ -2,7 +2,6 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
-<link rel="stylesheet" href="{{ asset('css/modal.css') }}">
 @endsection
 
 @section('content')
@@ -44,8 +43,7 @@
                         </tr>
                     </table>
                     <div class="update__button">
-                        <a href="#modal__update" class="modal__edit">変更</a>
-                        @include('modal')
+                        <a href="{{ route('edit',$reservation->id) }}" class="edit">変更</a>
                     </div>
                 </div>
                 @endforeach
