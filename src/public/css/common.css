@@ -39,7 +39,6 @@ body {
 .modal__menu {
     padding: 10px 20px;
     background-color: #212df3;
-    text-decoration: none;
     cursor: pointer;
     border: none;
     border-radius: 5px;
@@ -90,6 +89,18 @@ body {
     display: block grid;
     place-items: center;
     margin-top: 8%;
+}
+
+.home,
+.mypage,
+.registration,
+.login {
+    text-decoration: none;
+}
+
+.modal__content-btn {
+    border: none;
+    background-color: #FEFEFE;
 }
 
 .modal__content--item {

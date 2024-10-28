@@ -1,21 +1,18 @@
 .thanks__content {
-    width: 60%;
-    height: 30%;
+    width: 40%;
     display: block grid;
     place-items: center;
-    border: 1px solid #b5b5b5;
+    border: 1px solid #bebebe;
     border-radius: 5px;
     box-shadow: 3px 3px 5px #bebebe;
     margin: 0 auto;
-}
-
-.title {
-    font-weight: bold;
+    padding: 50px;
+    background-color: #FEFEFE;
 }
 
 .form__button {
     text-align: right;
-    padding: 10px 20px;
+    padding: 5px 20px;
     background-color: #212df3;
     border-radius: 5px;
     margin: 20px 25px;
