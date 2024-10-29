@@ -42,7 +42,6 @@ class ReseController extends Controller
         $shops = Shop::with(['area', 'genre'])->AreaSearch($request->area_id)
             ->GenreSearch($request->genre_id)
             ->NameSearch($request->name_input)->get();
-        dd($shops);
         if ($shops->isEmpty()) {
             return view('shop', compact('areas', 'genres', 'shops'))->with('result', '該当する店舗がありませんでした');
         } else {

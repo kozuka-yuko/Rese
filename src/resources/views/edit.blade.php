@@ -12,17 +12,17 @@
         @csrf
         <table class="reservation__table">
             <tr class="table__row">
-                <td class="reservation__data">Shop</td>
+                <td class="reservation__item">Shop</td>
                 <td class="reservation__data">{{ $reservation->shop->name }}</td>
             </tr>
             <tr class="table__row">
-                <td class="reservation__data">Date</td>
+                <td class="reservation__item">Date</td>
                 <td class="reservation__data">
                     <input type="date" name="date" class="reservation__date" value="{{ old('date', $reservation->date) }}" min="{{ $today }}" required>
                 </td>
             </tr>
             <tr class="table__row">
-                <td class="reservation__data">Time</td>
+                <td class="reservation__item">Time</td>
                 <td class="reservation__data">
                     <select name="time" class="reservation__time" required>
                         <option value="" hidden>time</option>
@@ -33,7 +33,7 @@
                 </td>
             </tr>
             <tr class="table__row">
-                <td class="reservation__data">Number</td>
+                <td class="reservation__item">Number</td>
                 <td class="reservation__data">
                     <select name="number" class="number__inner" required>
                         <option value="" hidden>number of person</option>
@@ -44,10 +44,8 @@
                 </td>
             </tr>
         </table>
-        <div class="button-submit">
-            <div class="reservation__button">
-                <button class="update__btn" type="submit">変更する</button>
-            </div>
+        <div class="reservation__button">
+            <button class="update__btn" type="submit">変更する</button>
         </div>
     </form>
 </div>

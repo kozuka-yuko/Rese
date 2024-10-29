@@ -8,7 +8,7 @@
 <div class="content">
     <div class="detail-content">
         <div class="shop-name">
-            <a href="{{ route('home') }}" class="return__btn" title="戻る">&lt;</a>
+            <a href="#" onclick="history.back()" class="return__btn" title="戻る">&lt;</a>
             <span class="shop-name__inner">{{ $shop->name }}</span>
         </div>
         <div class="img">

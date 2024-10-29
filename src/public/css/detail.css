@@ -78,10 +78,6 @@
     margin-bottom: 15px;
     border-radius: 5px;
     cursor: pointer;
-}
-
-.reservation__time,
-.number__inner {
     width: 90%;
 }
 

@@ -61,11 +61,11 @@
     border-radius: 50%;
     cursor: pointer;
     margin-left: 100%;
-    padding-left: 20px;
 }
 
 .edit {
     padding: 5px 10px;
+    margin: 10px 0 0 20px;
     background-color: #212df3;
     text-decoration: none;
     border: solid 1px #FEFEFE;
@@ -83,12 +83,15 @@
     justify-content: space-around;
 }
 
+.favorite {
+    width: 50%;
+}
+
 .shop {
     border: 1px solid #b5b5b5;
     border-radius: 5px;
     background-color: #FEFEFE;
     box-shadow: 3px 3px 5px #bebebe;
-    width: 30%;
     margin: 10px;
 }
 
