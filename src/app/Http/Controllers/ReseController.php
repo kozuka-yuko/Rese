@@ -43,7 +43,8 @@ class ReseController extends Controller
             ->GenreSearch($request->genre_id)
             ->NameSearch($request->name_input)->get();
         if ($shops->isEmpty()) {
-            return view('shop', compact('areas', 'genres', 'shops'))->with('result', '該当する店舗がありませんでした');
+            session()->flash('result', '該当する店舗がありませんでした');
+            return view('shop', compact('areas', 'genres', 'shops'));
         } else {
             return view('shop', compact('areas', 'genres', 'shops'));
         }

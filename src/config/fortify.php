@@ -157,4 +157,7 @@ return [
         ]),
     ],
 
+    'redirects' => [
+        'email-verification' => '/thanks',
+    ],
 ];

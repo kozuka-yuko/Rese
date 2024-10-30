@@ -19,10 +19,8 @@ use App\Http\Controllers\AuthController;
 Route::get('/shop', [ReseController::class, 'home'])->name('home');
 Route::get('/detail/{id}', [ReseController::class, 'detail'])->name('detail');
 Route::get('/search', [ReseController::class, 'search'])->name('search');
-Route::get('/thanks', [AuthController::class, 'thanks'])->name('thanks');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/thanks/login', [AuthController::class, 'tologin'])->name('tologin');
     Route::get('/', [AuthController::class, 'index'])->name('index');
     Route::get('/mypage', [ReseController::class, 'mypage'])->name('mypage');
     Route::post('/reservation/{id}', [ReseController::class, 'reservation'])->name('reservation');
