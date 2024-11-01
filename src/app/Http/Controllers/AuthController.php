@@ -15,7 +15,7 @@ class AuthController extends Controller
     {
         $areas = Area::all();
         $genres = Genre::all();
-        $shops = Shop::select('id', 'name', 'info', 'img_url', 'area_id', 'genre_id')->get();
+        $shops = Shop::with(['area', 'genre'])->get();
 
         session()->flash('result', 'ログインしました');
         return view('shop', compact('areas', 'genres', 'shops'));

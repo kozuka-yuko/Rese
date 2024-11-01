@@ -103,6 +103,7 @@ body {
 .shop-rep__list,
 .new-create {
     text-decoration: none;
+    cursor: pointer;
 }
 
 .modal__content-btn {
