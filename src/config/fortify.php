@@ -156,8 +156,4 @@ return [
             // 'window' => 0,
         ]),
     ],
-
-    'redirects' => [
-        'email-verification' => '/thanks',
-    ],
 ];

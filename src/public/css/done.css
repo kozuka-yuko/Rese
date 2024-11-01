@@ -10,17 +10,13 @@
     background-color: #FEFEFE;
 }
 
-.form__button {
+.redirect {
     text-align: right;
     padding: 5px 20px;
     background-color: #212df3;
     border-radius: 5px;
     margin: 20px 25px;
     cursor: pointer;
-}
-
-.form__button-submit {
     color: #FEFEFE;
     border: none;
-    background-color: #212df3;
 }

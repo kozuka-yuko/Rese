@@ -5,6 +5,10 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ReseController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\VerificationController;
+use App\Http\Controllers\ShopRepController;
+use Mockery\VerificationExpectation;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,14 +39,15 @@ Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
 
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
-
-    return redirect('/');
-})->middleware(['auth', 'signed'])->name('verification.verify');
+Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
-
+    
     return back()->with('message', '確認メールを再送信しました');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::group(['middleware' => ['role:shoprep']], function() {
+    Route::get('/shop_rep/shop', [ShopRepController::class, 'repIndex'])->name('repIndex');
+    Route::get('/shop_rep/reservation_confirm', [ShopRepController::class, 'getReservation'])->name('getReservation');
+});
