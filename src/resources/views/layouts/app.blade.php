@@ -16,15 +16,40 @@
         <header class="header">
             <div class="header__heading">
                 <a href="#modal" class="modal__menu">
-                <span class="hamburger-top"></span>
-                <span class="hamburger-middle"></span>
-                <span class="hamburger-under"></span>
-                    </a>
-                    <div class="modal" id="modal">
-                        <div class="modal__inner">
-                            <a href="#" class="close">&times;</a>
+                    <span class="hamburger-top"></span>
+                    <span class="hamburger-middle"></span>
+                    <span class="hamburger-under"></span>
+                </a>
+                <div class="modal" id="modal">
+                    <div class="modal__inner">
+                        <a href="#" class="close">&times;</a>
                         <ul class="modal__content">
                             @if (Auth::check())
+                            @can('shop')
+                            <li class="modal__content--item">
+                                <a href="/shop_rep/shop" class="myshop">My Shop</a>
+                            </li>
+                            <li class="modal__content--item">
+                                <a href="/shop_rep/reservation_confirm" class="reservation-confirm">Reservation Confirm</a>
+                            </li>
+                            <li class="modal__content--item">
+                                <a href="/shop_rep/edit" class="shop-edit">Shop Edit</a>
+                            </li>
+                            @endcan
+                            @can('register')
+                            <li class="modal__content--item">
+                                <a href="/admin/management" class="management">Management</a>
+                            </li>
+                            <li class="modal__content--item">
+                                <a href="/admin/send_email" class="send-email">Send Email</a>
+                            </li>
+                            <li class="modal__content--item">
+                                <a href="/admin/shop_rep_list" class="shop-rep__list">Shop Rep List</a>
+                            </li>
+                            <li class="modal__content--item">
+                                <a href="/admin/new_rep_create" class="new-create">New Rep Create</a>
+                            </li>
+                            @endcan
                             <li class="modal__content--item">
                                 <a href="/shop" class="home">Home</a>
                             </li>
@@ -71,7 +96,6 @@
         <div class="content">
             @yield('content')
         </div>
-        @yield('modals')
     </div>
 </body>
 

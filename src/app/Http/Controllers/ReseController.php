@@ -60,7 +60,7 @@ class ReseController extends Controller
 
         Reservation::create($data);
 
-        return view('/done');
+        return view('done');
     }
 
     public function mypage()
@@ -75,14 +75,14 @@ class ReseController extends Controller
         }
         $numbers = range(1, 20);
 
-        return view('/mypage', compact('user', 'reservations', 'favorites', 'today', 'times', 'numbers'));
+        return view('mypage', compact('user', 'reservations', 'favorites', 'today', 'times', 'numbers'));
     }
 
     public function reservationDestroy(Request $request)
     {
         Reservation::find($request->id)->delete();
 
-        return redirect('/mypage')->with('result', '予約を削除しました');
+        return redirect('mypage')->with('result', '予約を削除しました');
     }
 
     public function edit($id)
@@ -95,7 +95,7 @@ class ReseController extends Controller
         }
         $numbers = range(1, 20);
 
-        return view('/edit', compact('reservation', 'today', 'times', 'numbers'));
+        return view('edit', compact('reservation', 'today', 'times', 'numbers'));
     }
 
     public function reservationUpdate(Request $request, $id)
@@ -110,7 +110,7 @@ class ReseController extends Controller
     {
         Favorite::find($request->id)->delete();
 
-        return redirect('/mypage')->with('result', 'お気に入りを削除しました');
+        return redirect('mypage')->with('result', 'お気に入りを削除しました');
     }
 
     public function favorite($id)

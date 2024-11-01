@@ -18,12 +18,12 @@ class AuthController extends Controller
         $shops = Shop::select('id', 'name', 'info', 'img_url', 'area_id', 'genre_id')->get();
 
         session()->flash('result', 'ログインしました');
-        return view('/shop', compact('areas', 'genres', 'shops'));
+        return view('shop', compact('areas', 'genres', 'shops'));
     }
 
     public function thanks()
     {
-        return view('/thanks');
+        return view('thanks');
     }
 
     public function tologin()

@@ -1,0 +1,3 @@
+@can('register')
+
+@endcan

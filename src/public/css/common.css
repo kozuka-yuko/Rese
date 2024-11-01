@@ -94,7 +94,14 @@ body {
 .home,
 .mypage,
 .registration,
-.login {
+.login,
+.myshop,
+.reservation-confirm,
+.shop-edit,
+.management,
+.send-email,
+.shop-rep__list,
+.new-create {
     text-decoration: none;
 }
 

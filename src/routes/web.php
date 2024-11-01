@@ -25,6 +25,7 @@ Route::get('/detail/{id}', [ReseController::class, 'detail'])->name('detail');
 Route::get('/search', [ReseController::class, 'search'])->name('search');
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/thanks', [AuthController::class, 'thanks'] )->name('thanks');
     Route::get('/', [AuthController::class, 'index'])->name('index');
     Route::get('/mypage', [ReseController::class, 'mypage'])->name('mypage');
     Route::post('/reservation/{id}', [ReseController::class, 'reservation'])->name('reservation');
@@ -33,6 +34,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/reservation/{id}', [ReseController::class, 'reservationUpdate'])->name('reservation.update');
     Route::delete('/favorite/delete', [ReseController::class, 'favoriteDestroy'])->name('favoriteDestroy');
     Route::post('/favorite/{id}', [ReseController::class, 'favorite'])->name('favorite');
+    Route::get('/shop_rep/shop', [ShopRepController::class, 'repIndex'])->name('repIndex');
+    Route::get('/shop_rep/reservation_confirm', [ShopRepController::class, 'getReservation'])->name('getReservation');
 });
 
 Route::get('/email/verify', function () {
@@ -43,11 +46,6 @@ Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'
 
 Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
-    
+
     return back()->with('message', '確認メールを再送信しました');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
-
-Route::group(['middleware' => ['role:shoprep']], function() {
-    Route::get('/shop_rep/shop', [ShopRepController::class, 'repIndex'])->name('repIndex');
-    Route::get('/shop_rep/reservation_confirm', [ShopRepController::class, 'getReservation'])->name('getReservation');
-});
