@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -36,6 +37,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/favorite/{id}', [ReseController::class, 'favorite'])->name('favorite');
     Route::get('/shop_rep/shop', [ShopRepController::class, 'repIndex'])->name('repIndex');
     Route::get('/shop_rep/reservation_confirm', [ShopRepController::class, 'getReservation'])->name('getReservation');
+    Route::get('/admin/management', [AdminController::class, 'adIndex'])->name('adIndex');
+    Route::get('/admin/shop_rep_list', [AdminController::class, 'shopRepList']);
 });
 
 Route::get('/email/verify', function () {

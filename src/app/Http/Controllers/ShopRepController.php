@@ -14,10 +14,10 @@ class ShopRepController extends Controller
 {
     public function repIndex()
     {
-        $userId = Auth::id();
+        $user = Auth::user();
         $areas = Area::all();
         $genres = Genre::all();
-        $shop = Shop::with(['area', 'genre'])->where('user_id', $userId)->get();
+        $shop = Shop::with(['area', 'genre'])->where('shop_id', $user->shop_id)->get();
 
         return view('/shop_rep/shop', compact('areas', 'genres', 'shop'));
     }
@@ -35,8 +35,9 @@ class ShopRepController extends Controller
         }
         $fixed_date = $date->toDateString();
 
-        $reservation = Reservation::where('date', $fixed_date)->paginate(10);
+        $user = Auth::user();
+        $reservation = Reservation::where('shop_id', $user->shop_id)->where('date', $fixed_date)->paginate(10);
 
-        return view('/shop_rep/reservation_confirm', compact('num', 'fixed_date'));
+        return view('/shop_rep/reservation_confirm', compact('num', 'fixed_date', 'reservation'));
     }
 }

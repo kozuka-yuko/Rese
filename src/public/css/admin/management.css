@@ -1,0 +1,26 @@
+.management-content {
+    padding: 40px;
+}
+
+.title {
+    text-align: center;
+    margin: 0 0 20px 0;
+    color: #4b54f5;
+}
+
+.link-btn {
+    list-style: none;
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+.link-btn__inner {
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: #FEFEFE;
+    border: none;
+    background-color: #4b54f5;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 20px;
+}
