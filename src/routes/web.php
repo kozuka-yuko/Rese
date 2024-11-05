@@ -38,7 +38,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/shop_rep/shop', [ShopRepController::class, 'repIndex'])->name('repIndex');
     Route::get('/shop_rep/reservation_confirm', [ShopRepController::class, 'getReservation'])->name('getReservation');
     Route::get('/admin/management', [AdminController::class, 'adIndex'])->name('adIndex');
-    Route::get('/admin/shop_rep_list', [AdminController::class, 'shopRepList']);
+    Route::get('/admin/shop_rep_list', [AdminController::class, 'shopRepList'])->name('shopRepList');
 });
 
 Route::get('/email/verify', function () {

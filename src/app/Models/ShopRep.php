@@ -11,6 +11,8 @@ class ShopRep extends Model
 
     protected $guarded = ['id'];
 
+    protected $table = 'shop_rep';
+
     public function shop()
     {
         return $this->belongsTo(Shop::class);

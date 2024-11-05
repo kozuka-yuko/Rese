@@ -27,27 +27,27 @@
                             @if (Auth::check())
                             @can('shop')
                             <li class="modal__content--item">
-                                <a href="/shop_rep/shop" class="myshop">My Shop</a>
+                                <a href="{{ route('repIndex') }}" class="myshop">My Shop</a>
                             </li>
                             <li class="modal__content--item">
-                                <a href="/shop_rep/reservation_confirm" class="reservation-confirm">Reservation Confirm</a>
+                                <a href="{{ route('getReservation') }}" class="reservation-confirm">Reservation Confirm</a>
                             </li>
                             <li class="modal__content--item">
-                                <a href="/shop_rep/edit" class="shop-edit">Shop Edit</a>
+                                <a href="{{ route('shopRepEdit') }}" class="shop-edit">Shop Edit</a>
                             </li>
                             @endcan
                             @can('register')
                             <li class="modal__content--item">
-                                <a href="/admin/management" class="management">Management</a>
+                                <a href="{{ route('adIndex') }}" class="management">Management</a>
                             </li>
                             <li class="modal__content--item">
-                                <a href="/admin/send_email" class="send-email">Send Email</a>
+                                <a href="{{ route('sendEmail') }}" class="send-email">Send Email</a>
                             </li>
                             <li class="modal__content--item">
-                                <a href="/admin/shop_rep_list" class="shop-rep__list">Shop Rep List</a>
+                                <a href="{{ route('shopRepList') }}" class="shop-rep__list">Shop Rep List</a>
                             </li>
                             <li class="modal__content--item">
-                                <a href="/admin/new_rep_create" class="new-create">New Rep Create</a>
+                                <a href="{{ route('newRepCreate') }}" class="new-create">New Rep Create</a>
                             </li>
                             @endcan
                             <li class="modal__content--item">
@@ -62,11 +62,11 @@
                                 </form>
                             </li>
                             <li class="modal__content--item">
-                                <a href="/mypage" class="mypage">Mypage</a>
+                                <a href="{{ route('mypage') }}" class="mypage">Mypage</a>
                             </li>
                             @else
                             <li class="modal__content--item">
-                                <a href="/shop" class="home">Home</a>
+                                <a href="{{ route('index') }}" class="home">Home</a>
                             </li>
                             <li class="modal__content--item"> <a href="/register" class="registration">Registration</a>
                             </li>
@@ -77,7 +77,15 @@
                         </ul>
                     </div>
                 </div>
-                <a href="/shop" class="header__logo">Rese</a>
+                <a href="
+                @if (auth()->check() && auth()->user()->can('register'))
+                    {{ route('adIndex') }}
+                @elseif (auth()->check() && auth()->user()->can('shop'))
+                    {{ route('repIndex') }}
+                @else
+                    {{ url('/shop') }}
+                @endcan
+                " class="header__logo">Rese</a>
             </div>
             <div class="search">
                 @yield('search')

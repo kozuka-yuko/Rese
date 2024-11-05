@@ -14,8 +14,13 @@ class AdminController extends Controller
 
     public function shopRepList()
     {
-        $shopRep = ShopRep::all();
+        $shopReps = ShopRep::all();
 
-        return view('/admin/shop_rep_list', compact('shopRep'));
+        return view('/admin/shop_rep_list', compact('shopReps'));
+    }
+
+    public function store()
+    {
+        
     }
 }
