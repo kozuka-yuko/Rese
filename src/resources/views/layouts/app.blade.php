@@ -47,7 +47,7 @@
                                 <a href="{{ route('shopRepList') }}" class="shop-rep__list">Shop Rep List</a>
                             </li>
                             <li class="modal__content--item">
-                                <a href="{{ route('newRepCreate') }}" class="new-create">New Rep Create</a>
+                                <a href="{{ route('newRepEdit') }}" class="new-create">New Rep Create</a>
                             </li>
                             @endcan
                             <li class="modal__content--item">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ShopRep;
+use App\Models\Role;
 
 class AdminController extends Controller
 {
@@ -19,8 +20,23 @@ class AdminController extends Controller
         return view('/admin/shop_rep_list', compact('shopReps'));
     }
 
-    public function store()
+    public function newRepEdit()
     {
-        
+        $role = Role::all();
+
+        return view('/admin/new_rep_create', compact('role'));
+    }
+
+    public function shopRepDestroy(Request $request)
+    {
+        ShopRep::find($request->id)->delete();
+
+        return redirect('/admin/shop_rep_list')->with('result', '削除しました');
+    }
+
+    public function shopRepConfirm()
+    {
+
+        return view('/admin/confirm', compact(''));
     }
 }

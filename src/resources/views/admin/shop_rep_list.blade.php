@@ -21,6 +21,13 @@
         <td class="rep__list--data">{{ $shopRep->shop->area }}</td>
         <td class="rep__list--data">{{ $shopRep->shop->genre }}</td>
     </tr>
+    <a href="" class="edit">変更</a>
+    <form action="{{ route('shopRepDestroy') }}" method="post" class="delete__shop-rep">
+        @method('DELETE')
+        @csrf
+        <input type="hidden" name="id" value="{{ $shopRep->id }}">
+        <button class="delete__shop-rep--button" type="submit" title="削除" onclick='return confirm("{{ $shopRep->shop->name }}を削除しますか？")'>削除</button>
+    </form>
     @endforeach
 </table>
 @endsection
