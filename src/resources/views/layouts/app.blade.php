@@ -33,7 +33,7 @@
                                 <a href="{{ route('getReservation') }}" class="reservation-confirm">Reservation Confirm</a>
                             </li>
                             <li class="modal__content--item">
-                                <a href="{{ route('shopRepEdit') }}" class="shop-edit">Shop Edit</a>
+                                <a href="" class="shop-edit">Shop Edit</a>
                             </li>
                             @endcan
                             @can('register')
@@ -41,7 +41,7 @@
                                 <a href="{{ route('adIndex') }}" class="management">Management</a>
                             </li>
                             <li class="modal__content--item">
-                                <a href="{{ route('sendEmail') }}" class="send-email">Send Email</a>
+                                <a href="" class="send-email">Send Email</a>
                             </li>
                             <li class="modal__content--item">
                                 <a href="{{ route('shopRepList') }}" class="shop-rep__list">Shop Rep List</a>

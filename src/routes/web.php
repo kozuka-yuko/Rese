@@ -26,7 +26,7 @@ Route::get('/detail/{id}', [ReseController::class, 'detail'])->name('detail');
 Route::get('/search', [ReseController::class, 'search'])->name('search');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/thanks', [AuthController::class, 'thanks'] )->name('thanks');
+    Route::get('/thanks', [AuthController::class, 'thanks'])->name('thanks');
     Route::get('/', [AuthController::class, 'index'])->name('index');
     Route::get('/mypage', [ReseController::class, 'mypage'])->name('mypage');
     Route::post('/reservation/{id}', [ReseController::class, 'reservation'])->name('reservation');
@@ -39,9 +39,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/shop_rep/reservation_confirm', [ShopRepController::class, 'getReservation'])->name('getReservation');
     Route::get('/admin/management', [AdminController::class, 'adIndex'])->name('adIndex');
     Route::get('/admin/shop_rep_list', [AdminController::class, 'shopRepList'])->name('shopRepList');
-    Route::get('/admin/new_rep_create', [AdminController::class, 'newRepEdit'])->name('newRepEdit');
     Route::delete('admin/shop_rep_list/delete', [AdminController::class, 'shopRepDestroy'])->name('shopRepDestroy');
-    Route::get('/admin/confirm', [AdminController::class, 'shopRepConfirm'])->name('shopRepConfirm');
+    Route::get('/admin/new_rep_create', [AdminController::class, 'newRepEdit'])->name('newRepEdit');
+    Route::post('/admin/confirm', [AdminController::class, 'shopRepConfirm'])->name('shopRepConfirm');
+    Route::get('/admin/confirm',[AdminController::class, 'showRepConfirm'])->name('showRepConfirm');
 });
 
 Route::get('/email/verify', function () {
