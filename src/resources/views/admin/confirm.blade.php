@@ -6,16 +6,22 @@
 
 @section('content')
 <h1 class="title">入力内容の確認</h1>
-<form action="" class="confirm__form" method="">
+<form action="/admin/confirm/create" class="confirm__form" method="post">
     @csrf
-    <label for="shop-name" class="label__inner">店舗名</label>
-    <p class="data">{{ $formInput['shop-name'] }}</p>
-    <label for="name" class="label__inner">店舗代表者氏名</label>
-    <p class="data">{{ $formInput['sho_rep_name'] }}</p>
-    <label for="phone-number" class="label__inner">連絡先</label>
-    <p class="data">{{ $formInput['phone-number'] }}</p>
+    <div class="form-data">
+        <label for="shop_name" class="label__inner">店舗名</label>
+        <span class="data">{{ $data['shop_name'] }}</span>
+    </div>
+    <div class="form-data">
+        <label for="name" class="label__inner">店舗代表者氏名</label>
+        <span class="data">{{ $data['shop_rep_name'] }}</span>
+    </div>
+    <div class="form-data">
+        <label for="phone_number" class="label__inner">連絡先</label>
+        <span class="data">{{ $data['phone_number'] }}</span>
+    </div>
     <div class="button">
-        <a href="#" onclick="history.back()" class="return__btn">訂正する</a>
+        <a href="#" onclick="history.back()" class="back__btn">訂正する</a>
         <button class="data__send--button" type="submit">登録</button>
     </div>
 </form>

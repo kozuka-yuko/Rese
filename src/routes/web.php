@@ -43,6 +43,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/admin/new_rep_create', [AdminController::class, 'newRepEdit'])->name('newRepEdit');
     Route::post('/admin/confirm', [AdminController::class, 'shopRepConfirm'])->name('shopRepConfirm');
     Route::get('/admin/confirm',[AdminController::class, 'showRepConfirm'])->name('showRepConfirm');
+    Route::post('/admin/confirm/create', [AdminController::class, 'create']);
 });
 
 Route::get('/email/verify', function () {

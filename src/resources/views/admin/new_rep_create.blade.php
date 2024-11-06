@@ -16,8 +16,8 @@
             {{ $message }}
             @enderror
         </div>
-        <label for="name" class="label__inner">店舗代表者氏名</label>
-        <input type="text" class="info" name="sho_rep_name" value="{{ old('sho_rep_name') }}" />
+        <label for="name" class="label__inner">店舗代表者</label>
+        <input type="text" class="info" name="shop_rep_name" value="{{ old('shop_rep_name') }}" />
         <div class="form__error">
             @error('shop_rep_name')
             {{ $message }}
@@ -30,7 +30,8 @@
             {{ $message }}
             @enderror
         </div>
+        <a href="#" onclick="history.back()" class="back__btn">戻る</a>
         <button class="form__confirm" type="submit">入力内容の確認</button>
+    </div>
 </form>
-</div>
 @endsection

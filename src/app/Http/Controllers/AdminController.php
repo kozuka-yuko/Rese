@@ -34,22 +34,36 @@ class AdminController extends Controller
         $data = $request->all();
         $data['role_id'] = $roleId;
 
-        $request->session()->put('form_input', $data);
+        session()->put('form_input', $data);
 
-        return redirect('/admin/confirm');
+        return redirect()->route('showRepConfirm');
     }
 
     public function showRepConfirm()
     {
-        $formInput = session('form_input');
+        $data = session()->get('form_input');
 
-        return view('/admin/confirm', compact('formInput'));
+        return view('/admin/confirm', compact('data'));
+    }
+
+    public function create()
+    {
+        $data = session()->get('form_input');
+        
+        if(!$data){
+            return redirect()->route('newRepEdit');
+        }
+
+        ShopRep::create($data);
+        session()->forget('form_input');
+
+        return redirect()->route('shopRepList')->with('result', '登録しました');
     }
 
     public function shopRepDestroy(Request $request)
     {
         ShopRep::find($request->id)->delete();
 
-        return redirect('/admin/shop_rep_list')->with('result', '削除しました');
+        return redirect()->route('shopRepList')->with('result', '削除しました');
     }
 }

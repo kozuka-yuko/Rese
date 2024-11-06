@@ -33,7 +33,7 @@ class NewRepRequest extends FormRequest
     public function messages()
     {
         return [
-            'shop_name.required' => '名前を入力してください',
+            'shop_name.required' => '店舗名を入力してください',
             'shop_rep_name.required' => '名前を入力してください',
             'shop_rep_name.max:100' => '100文字以下で入力してください',
             'phone_number.required' => '電話番号を入力してください',
