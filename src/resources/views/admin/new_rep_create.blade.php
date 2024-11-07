@@ -30,6 +30,22 @@
             {{ $message }}
             @enderror
         </div>
+        <label for="email" class="label__inner">メールアドレス</label>
+        <input type="email" class="info" name="email" value="{{ old('email') }}" />
+        <div class="form__error">
+            @error('email')
+            {{ $message }}
+            @enderror
+        </div>
+        <label for="password" class="label__inner">パスワード</label>
+        <input type="password" class="info" name="password" placeholder="8文字以上で設定してください" />
+        <div class="form__error">
+            @error('password')
+            {{ $message }}
+            @enderror
+        </div>
+        <label for="password_confirmation" class="label__inner">確認用パスワード</label>
+        <input type="password" class="info" name="password_confirmation">
         <a href="#" onclick="history.back()" class="back__btn">戻る</a>
         <button class="form__confirm" type="submit">入力内容の確認</button>
     </div>

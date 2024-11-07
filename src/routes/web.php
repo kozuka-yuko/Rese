@@ -43,7 +43,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/admin/new_rep_create', [AdminController::class, 'newRepEdit'])->name('newRepEdit');
     Route::post('/admin/confirm', [AdminController::class, 'shopRepConfirm'])->name('shopRepConfirm');
     Route::get('/admin/confirm',[AdminController::class, 'showRepConfirm'])->name('showRepConfirm');
-    Route::post('/admin/confirm/create', [AdminController::class, 'create']);
+    Route::post('/admin/confirm/create', [AdminController::class, 'create'])->name('create');
 });
 
 Route::get('/email/verify', function () {
@@ -53,7 +53,11 @@ Route::get('/email/verify', function () {
 Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::post('/email/verification-notification', function (Request $request) {
-    $request->user()->sendEmailVerificationNotification();
+    $user = $request->user() ?? $request->user('shoprep');
+    if ($user) {
+        $user->sendEmailVerificationNotification();
 
     return back()->with('message', '確認メールを再送信しました');
+    }
+    return back()->withErrors('ユーザーが見つかりませんでした');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');

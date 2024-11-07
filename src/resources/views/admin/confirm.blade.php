@@ -20,6 +20,10 @@
         <label for="phone_number" class="label__inner">連絡先</label>
         <span class="data">{{ $data['phone_number'] }}</span>
     </div>
+    <div class="form-data">
+        <label for="email" class="label__inner">メールアドレス</label>
+        <span class="data">{{ $data['email'] }}</span>
+    </div>
     <div class="button">
         <a href="#" onclick="history.back()" class="back__btn">訂正する</a>
         <button class="data__send--button" type="submit">登録</button>

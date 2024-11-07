@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ShopRep;
-use App\Models\Role;
+use App\Models\Shop;
 use App\Http\Requests\NewRepRequest;
 
 class AdminController extends Controller
@@ -54,7 +54,13 @@ class AdminController extends Controller
             return redirect()->route('newRepEdit');
         }
 
-        ShopRep::create($data);
+        $shop = Shop::create(['name' => $data['shop_name']]);
+
+        $newRep = collect($data)->only(['shop_rep_name', 'phone_number','email','password','role_id'])->toArray();
+        $newRep['shop_id'] = $shop->id;
+        $shopRep = ShopRep::create($newRep);
+        $shopRep->sendEmailVerificationNotification();
+        
         session()->forget('form_input');
 
         return redirect()->route('shopRepList')->with('result', '登録しました');

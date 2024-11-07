@@ -16,7 +16,7 @@
     @foreach ($shopReps as $shopRep)
     <tr class="table__row">
         <td class="rep__list--data">{{ $shopRep->shop->name }}</td>
-        <td class="rep__list--data">{{ $shoRep->shop_rep_name }}</td>
+        <td class="rep__list--data">{{ $shopRep->shop_rep_name }}</td>
         <td class="rep__list--data">{{ $shopRep->phone_number }}</td>
         <td class="rep__list--data">{{ $shopRep->shop->area }}</td>
         <td class="rep__list--data">{{ $shopRep->shop->genre }}</td>
