@@ -28,7 +28,7 @@ class MasterDatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => 'ユーザー',
             'email' => 'gest@sample.com',
             'password' => bcrypt('password'),
@@ -38,6 +38,8 @@ class MasterDatabaseSeeder extends Seeder
         $adminRole = Role::create(['name' => 'admin']);
 
         $shop_repRole = Role::create(['name' => 'shop_rep']);
+
+        $userRole = Role::create(['name' => 'user']);
 
 
         $registerPermission = Permission::create(['name' => 'register']);
@@ -53,5 +55,7 @@ class MasterDatabaseSeeder extends Seeder
         $admin->assignRole($adminRole);
 
         $shop_rep->assignRole($shop_repRole);
+
+        $user->assignRole($userRole);
     }
 }

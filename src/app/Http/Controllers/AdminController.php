@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ShopRep;
 use App\Models\Shop;
+use App\Models\User;
 use App\Http\Requests\NewRepRequest;
 
 class AdminController extends Controller
@@ -16,7 +16,7 @@ class AdminController extends Controller
 
     public function shopRepList()
     {
-        $shopReps = ShopRep::all();
+        $shopReps = User::find('role_id', 2);
 
         return view('/admin/shop_rep_list', compact('shopReps'));
     }
@@ -58,7 +58,7 @@ class AdminController extends Controller
 
         $newRep = collect($data)->only(['shop_rep_name', 'phone_number','email','password','role_id'])->toArray();
         $newRep['shop_id'] = $shop->id;
-        $shopRep = ShopRep::create($newRep);
+        $shopRep = User::create($newRep);
         $shopRep->sendEmailVerificationNotification();
         
         session()->forget('form_input');
@@ -68,7 +68,7 @@ class AdminController extends Controller
 
     public function shopRepDestroy(Request $request)
     {
-        ShopRep::find($request->id)->delete();
+        User::find($request->id)->delete();
 
         return redirect()->route('shopRepList')->with('result', '削除しました');
     }

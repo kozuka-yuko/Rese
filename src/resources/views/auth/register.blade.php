@@ -46,6 +46,7 @@
                 <input type="password" name="password_confirmation" placeholder="確認用パスワード" />
             </div>
         </div>
+        <input type="hidden" name="role_id" value="3">
         <div class="form__button">
             <button class="form__button-submit" type="submit">登録</button>
         </div>

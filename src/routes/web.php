@@ -53,11 +53,7 @@ Route::get('/email/verify', function () {
 Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::post('/email/verification-notification', function (Request $request) {
-    $user = $request->user() ?? $request->user('shoprep');
-    if ($user) {
-        $user->sendEmailVerificationNotification();
+    $request->user()->sendEmailVerificationNotification();
 
     return back()->with('message', '確認メールを再送信しました');
-    }
-    return back()->withErrors('ユーザーが見つかりませんでした');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');

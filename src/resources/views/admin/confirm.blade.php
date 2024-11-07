@@ -17,10 +17,6 @@
         <span class="data">{{ $data['shop_rep_name'] }}</span>
     </div>
     <div class="form-data">
-        <label for="phone_number" class="label__inner">連絡先</label>
-        <span class="data">{{ $data['phone_number'] }}</span>
-    </div>
-    <div class="form-data">
         <label for="email" class="label__inner">メールアドレス</label>
         <span class="data">{{ $data['email'] }}</span>
     </div>

@@ -23,13 +23,6 @@
             {{ $message }}
             @enderror
         </div>
-        <label for="phone-number" class="label__inner">連絡先</label>
-        <input type="tel" class="info" name="phone_number" value="{{ old('phone_number') }}" />
-        <div class="form__error">
-            @error('phone_number')
-            {{ $message }}
-            @enderror
-        </div>
         <label for="email" class="label__inner">メールアドレス</label>
         <input type="email" class="info" name="email" value="{{ old('email') }}" />
         <div class="form__error">
