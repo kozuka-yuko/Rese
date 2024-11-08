@@ -22,7 +22,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
-        'shop_id',
     ];
 
     /**
@@ -49,14 +48,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Favorite::class, 'user_id');
     }
 
-    public function role()
+    public function shops()
     {
-        return $this->belongsTo(role::class);
-    }
-
-    public function shop()
-    {
-        return $this->belongsTo(shop::class);
+        return $this->belongsToMany(Shop::class, 'shop_user','user_id', 'shop_id');
     }
 
 }

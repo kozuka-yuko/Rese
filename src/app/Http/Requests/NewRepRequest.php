@@ -26,7 +26,7 @@ class NewRepRequest extends FormRequest
         return [
             'shop_name' => 'required',
             'shop_rep_name' => 'required|max:100',
-            'email' => 'required|string|email|unique:shop_reps|max:191',
+            'email' => 'required|string|email|unique:users|max:191',
             'password' => 'required|min:8|max:191'
         ];
     }

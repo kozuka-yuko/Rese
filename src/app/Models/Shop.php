@@ -26,6 +26,11 @@ class Shop extends Model
         return $this->hasMany(Favorite::class, 'shop_id');
     }
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'shop_user', 'shop_id', 'user_id');
+    }
+
     public function scopeAreaSearch($query, $area_id)
     {
         if (!empty($area_id)) {
