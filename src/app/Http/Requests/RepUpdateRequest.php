@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class NewRepRequest extends FormRequest
+class RepUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +24,14 @@ class NewRepRequest extends FormRequest
     public function rules()
     {
         return [
-            'shop_name' => 'required',
             'shop_rep_name' => 'required|max:100',
             'email' => 'required|string|email|unique:users|max:191',
-            'password' => 'required|min:8|max:191'
         ];
     }
 
     public function messages()
     {
         return [
-            'shop_name.required' => '店舗名を入力してください',
             'shop_rep_name.required' => '代表者の名前を入力してください',
             'shop_rep_name.max:100' => '100文字以下で入力してください',
             'email.required' => 'メールアドレスを入力してください',
@@ -42,9 +39,6 @@ class NewRepRequest extends FormRequest
             'email.email' => '有効なメールアドレス形式で入力してください',
             'email.unique' => 'このメールアドレスはすでに使用されています',
             'email.max:191' => 'メールアドレスを191文字以内で入力してください',
-            'password.required' => 'パスワードを入力してください',
-            'password.min:8' => 'パスワードを8文字以上で設定してください',
-            'password.max:191' => 'パスワードを191文字以内で設定してください',
         ];
     }
 }

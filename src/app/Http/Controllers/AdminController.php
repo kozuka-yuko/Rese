@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\User;
+use App\Models\Area;
+use App\Models\Genre;
 use App\Http\Requests\NewRepRequest;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\RepUpdateRequest;
 
 class AdminController extends Controller
 {
@@ -76,5 +79,30 @@ class AdminController extends Controller
         User::find($request->id)->delete();
 
         return redirect()->route('shopRepList')->with('result', '削除しました');
+    }
+
+    public function updateEdit($id)
+    {
+        $shopRep = User::findOrFail($id);
+        $areas = Area::all();
+        $genres = Genre::all();
+
+        return view('/admin/shop_rep_update', compact('shopRep', 'areas', 'genres'));
+    }
+
+    public function updateConfirm(RepUpdateRequest $request)
+    {
+        $data = $request->all();
+
+        session()->put('form_input', $data);
+
+        return redirect()->route('showUpdateConfirm');
+    }
+
+    public function showUpdateConfirm()
+    {
+        $data = session()->get('form_input');
+
+        return view('/admin/update_confirm', compact('data'));
     }
 }

@@ -14,12 +14,12 @@
     </tr>
     @foreach ($shopReps as $shopRep)
     <tr class="table__row">
-        <td class="rep__list--data">{{ optional($shopRep->shop)->name }}</td>
+        <td class="rep__list--data">{{ optional($shopRep->shops->first())->name }}</td>
         <td class="rep__list--data">{{ optional($shopRep)->name }}</td>
-        <td class="rep__list--data">{{ optional($shopRep->shop)->area }}</td>
-        <td class="rep__list--data">{{ optional($shopRep->shop)->genre }}</td>
+        <td class="rep__list--data">{{ optional($shopRep->shops->first())->area }}</td>
+        <td class="rep__list--data">{{ optional($shopRep->shops->first())->genre }}</td>
     </tr>
-    <a href="" class="edit">変更</a>
+    <a href="{{ route('updateEdit',$shopRep->id) }}" class="edit">変更</a>
     <form action="{{ route('shopRepDestroy') }}" method="post" class="delete__shop-rep">
         @method('DELETE')
         @csrf

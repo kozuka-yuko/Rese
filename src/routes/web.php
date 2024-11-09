@@ -44,6 +44,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/admin/confirm', [AdminController::class, 'shopRepConfirm'])->name('shopRepConfirm');
     Route::get('/admin/confirm',[AdminController::class, 'showRepConfirm'])->name('showRepConfirm');
     Route::post('/admin/confirm/create', [AdminController::class, 'create'])->name('create');
+    Route::get('/admin/shop_rep_update/{id}', [AdminController::class, 'updateEdit'])->name('updateEdit');
+    Route::post('/admin/update_confirm', [AdminController::class, 'updateConfirm'])->name('updateConfirm');
+    Route::get('/admin/update_confirm', [AdminController::class, 'showUpdateConfirm'])->name('showUpdateConfirm');
 });
 
 Route::get('/email/verify', function () {
