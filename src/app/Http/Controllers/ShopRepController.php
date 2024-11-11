@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\Area;
 use App\Models\Genre;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class ShopRepController extends Controller
@@ -15,11 +16,19 @@ class ShopRepController extends Controller
     public function repIndex()
     {
         $user = Auth::user();
+        $id = $user->shops->first()->id;
+        $shop = Shop::with(['area', 'genre'])->where('id', $id)->first();
+
+        return view('/shop_rep/shop', compact('shop'));
+    }
+
+    public function shopEdit()
+    {
         $areas = Area::all();
         $genres = Genre::all();
-        $shop = Shop::with(['area', 'genre'])->where('shop_id', $user->shop_id)->get();
-
-        return view('/shop_rep/shop', compact('areas', 'genres', 'shop'));
+        $user = Auth::user();
+        $shop = Shop::with(['area', 'genre'])->where('id', $user->shop_id)->get();
+        return view('/shop_rep/edit', compact('areas', 'genres', 'shop'));
     }
 
     public function getReservation(Request $request)

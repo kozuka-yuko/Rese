@@ -36,6 +36,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/favorite/delete', [ReseController::class, 'favoriteDestroy'])->name('favoriteDestroy');
     Route::post('/favorite/{id}', [ReseController::class, 'favorite'])->name('favorite');
     Route::get('/shop_rep/shop', [ShopRepController::class, 'repIndex'])->name('repIndex');
+    Route::get('/shop_rep/edit/{id}', [ShopRepController::class, 'shopEdit'])->name('shopEdit');
     Route::get('/shop_rep/reservation_confirm', [ShopRepController::class, 'getReservation'])->name('getReservation');
     Route::get('/admin/management', [AdminController::class, 'adIndex'])->name('adIndex');
     Route::get('/admin/shop_rep_list', [AdminController::class, 'shopRepList'])->name('shopRepList');
