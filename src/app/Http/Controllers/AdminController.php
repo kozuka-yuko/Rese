@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\User;
-use App\Models\Area;
-use App\Models\Genre;
 use App\Http\Requests\NewRepRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RepUpdateRequest;
@@ -23,6 +21,21 @@ class AdminController extends Controller
         $shopReps = User::whereHas('roles', function ($query) {
             $query->where('name', 'shop_rep');
         })->with('shops')->get();
+
+        return view('/admin/shop_rep_list', compact('shopReps'));
+    }
+
+    public function repSearch(Request $request) {
+        $rep_name = $request->input('rep_name');
+        $shop_name = $request->input('shop_name');
+
+        $shopReps = User::when($rep_name, function ($query, $rep_name) {
+            return $query->RepNameSearch($rep_name);
+        })
+        ->when($shop_name, function ($query, $shop_name) {
+            return $query->ShopNameSearch($shop_name);
+        })
+        ->get();
 
         return view('/admin/shop_rep_list', compact('shopReps'));
     }
@@ -84,25 +97,40 @@ class AdminController extends Controller
     public function updateEdit($id)
     {
         $shopRep = User::findOrFail($id);
-        $areas = Area::all();
-        $genres = Genre::all();
 
-        return view('/admin/shop_rep_update', compact('shopRep', 'areas', 'genres'));
+        return view('/admin/shop_rep_update', compact('shopRep'));
     }
 
-    public function updateConfirm(RepUpdateRequest $request)
+    public function updateConfirm(RepUpdateRequest $request, $id)
     {
         $data = $request->all();
 
         session()->put('form_input', $data);
 
-        return redirect()->route('showUpdateConfirm');
+        return redirect()->route('showUpdateConfirm', compact('id'));
     }
 
-    public function showUpdateConfirm()
+    public function showUpdateConfirm($id)
+    {
+        $data = session()->get('form_input');
+        $shopRep = User::findOrFail($id);
+
+        return view('/admin/update_confirm', compact('data', 'shopRep'));
+    }
+
+    public function repUpdate($id)
     {
         $data = session()->get('form_input');
 
-        return view('/admin/update_confirm', compact('data'));
+        if (!$data) {
+            return redirect()->route('updateEdit');
+        }
+
+        $shopRep = User::findOrFail($id);
+        $shopRep->update($data);
+
+        session()->forget('form_input');
+
+        return redirect()->route('shopRepList')->with('result', '店舗代表者の情報を変更しました');
     }
 }

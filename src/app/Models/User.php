@@ -53,4 +53,21 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Shop::class, 'shop_user','user_id', 'shop_id');
     }
 
+    public function scopeRepNameSearch($query, $rep_name)
+    {
+        if (!empty($rep_name)) {
+            return $query->whereHas('roles', function ($q){
+                $q->where('name', 'shop_rep');
+            })->where('name', 'like', '%' . $rep_name . '%');
+        }
+    }
+
+    public function scopeShopNameSearch($query, $shop_name)
+    {
+        if (!empty($shop_name)) {
+            return $query->whereHas('shops', function($q) use ($shop_name) {
+                $q->where('name', 'like', '%' . $shop_name . '%');
+            });
+        }
+    }
 }

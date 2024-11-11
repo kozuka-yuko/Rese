@@ -6,7 +6,7 @@
 
 @section('content')
 <h1 class="title">入力内容の確認</h1>
-<form action="/admin/confirm/create" class="confirm__form" method="post">
+<form action="{{ route('create') }}" class="confirm__form" method="post">
     @csrf
     <div class="form-data">
         <label for="shop_name" class="label__inner">店舗名</label>

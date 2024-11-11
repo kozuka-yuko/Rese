@@ -20,5 +20,6 @@
             <p class="info__inner">{{ $shop->info }}</p>
         </div>
     </div>
+    <a href="{{ route('updateEdit', $shopRep->id) }}" class="edit">変更</a>
 </div>
 @endsection
