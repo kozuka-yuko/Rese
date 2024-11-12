@@ -37,6 +37,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/favorite/{id}', [ReseController::class, 'favorite'])->name('favorite');
     Route::get('/shop_rep/shop', [ShopRepController::class, 'repIndex'])->name('repIndex');
     Route::get('/shop_rep/edit/{id}', [ShopRepController::class, 'shopEdit'])->name('shopEdit');
+    Route::post('shop_rep/confirm_input/{id}', [ShopRepController::class, 'shopUpdateConfirm'])->name('shopUpdateConfirm');
+    Route::get('shop_rep/confirm_input/{id}', [ShopRepController::class, 'showShopUpdateConfirm'])->name('showShopUpdateConfirm');
+    Route::post('shop_rep/confirm_input/store/{id}', [ShopRepController::class, 'shopUpdate'])->name('shopUpdate');
     Route::get('/shop_rep/reservation_confirm', [ShopRepController::class, 'getReservation'])->name('getReservation');
     Route::get('/admin/management', [AdminController::class, 'adIndex'])->name('adIndex');
     Route::get('/admin/shop_rep_list', [AdminController::class, 'shopRepList'])->name('shopRepList');
