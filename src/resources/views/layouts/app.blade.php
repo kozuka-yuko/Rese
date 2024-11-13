@@ -32,9 +32,6 @@
                             <li class="modal__content--item">
                                 <a href="{{ route('getReservation') }}" class="reservation-confirm">Reservation Confirm</a>
                             </li>
-                            <li class="modal__content--item">
-                                <a href="" class="shop-edit">Shop Edit</a>
-                            </li>
                             @endcan
                             @can('register')
                             <li class="modal__content--item">

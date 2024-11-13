@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\Area;
 use App\Models\Genre;
-use App\Models\User;
+use App\Http\Requests\ShopUpdateRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -31,11 +31,10 @@ class ShopRepController extends Controller
         return view('/shop_rep/edit', compact('areas', 'genres', 'shop'));
     }
 
-    public function shopUpdateConfirm(Request $request, $id)
+    public function shopUpdateConfirm(ShopUpdateRequest $request, $id)
     {
         $shop = Shop::findOrFail($id);
-        $request->all();
-        $path = $request->file('image')->store('images', 'local');
+        $path = $request->file('image')->store('public/images');
         session([
             'form_input' => [
                 'img_url' => $path,
@@ -52,8 +51,10 @@ class ShopRepController extends Controller
     {
         $data = session()->get('form_input');
         $shop = Shop::findOrFail($id);
+        $area = Area::where('id', $data['area'])->first();
+        $genre = Genre::where('id', $data['genre'])->first();
 
-        return view('/admin/update_confirm', compact('data', 'shop'));
+        return view('/shop_rep/confirm_input', compact('data', 'shop', 'area', 'genre'));
     }
 
     public function shopUpdate(Request $request, $id)
@@ -65,9 +66,7 @@ class ShopRepController extends Controller
         }
 
         $shop = Shop::findOrFail($id);
-        $data['area_id'] = $data['area'];
-        unset($data['area']);
-        // ここ訂正　どうやったらエリアid持ってこれる？
+        
         $shop->update($data);
 
         session()->forget('form_input');
@@ -77,7 +76,12 @@ class ShopRepController extends Controller
 
     public function cancel()
     {
-        $path
+        $path = session('image');
+        session()->forget('form_input');
+        if ($path) {
+            Storage::disk('local')->delete($path);
+        }
+        return redirect()->route('shopEdit');
     }
 
     public function getReservation(Request $request)

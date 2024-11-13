@@ -7,12 +7,17 @@
 @section('content')
 <div class="edit-content">
     <h1 class="title">店舗情報編集</h1>
-    <form action="{{ route('shopUpdateConfirm') }}" class="shop__edit" method="post" enctype="multipart/form-data">
+    <form action="{{ route('shopUpdateConfirm', $shop->id) }}" class="shop__edit" method="post" enctype="multipart/form-data">
         @csrf
         <p class="shop_name">{{ $shop->name }}</p>
         <div class="image-file">
             <label for="" class="edit-label">ShopImage</label>
             <input type="file" name="image" class="image">
+        </div>
+        <div class="form__error">
+            @error('image')
+            {{ $message }}
+            @enderror
         </div>
         <div class="area">
             <label for="" class="edit-label">Area</label>
@@ -23,6 +28,11 @@
                 @endforeach
             </select>
         </div>
+        <div class="form__error">
+            @error('area')
+            {{ $message }}
+            @enderror
+        </div>
         <div class="genre">
             <label for="" class="edit-label">Genre</label>
             <select name="genre" class="genre__inner">
@@ -32,9 +42,19 @@
                 @endforeach
             </select>
         </div>
+        <div class="form__error">
+            @error('genre')
+            {{ $message }}
+            @enderror
+        </div>
         <div class="description">
-            <label for="" class="edit-label">ShopInfo</label>
+            <label for="" class="edit-label">Shop description</label>
             <textarea name="description" id="description" class="description__inner" cols="30" rows="5"></textarea>
+        </div>
+        <div class="form__error">
+            @error('description')
+            {{ $message }}
+            @enderror
         </div>
         <a href="#" onclick="history.back()" class="back__btn">戻る</a>
         <button class="upload">入力内容の確認</button>

@@ -6,19 +6,19 @@
 
 @section('content')
 <div class="confirm-content">
-    <form action="{{ route('shopUpdate') }}" class="confirm" method="post">
+    <form action="{{ route('shopUpdate', $shop->id) }}" class="confirm" method="post">
         @method('PATCH')
         @csrf
         <p class="shop_name">{{ $shop->name }}</p>
         <div class="img">
             <label for="" class="edit-label">ShopImage</label>
-            <img class="image" src="{{ Storage::url($data['image']) }}" alt="お店の画像" />
+            <img class="image" src="{{ Storage::url($data['img_url']) }}" alt="お店の画像" />
         </div>
         <div class="tag">
             <label for="" class="edit-label">Area</label>
-            <p class="area">#{{ $data['area'] }}</p>
+            <p class="area">#{{ $area->name }}</p>
             <label for="" class="edit-label">Genre</label>
-            <p class="genre">#{{ $data['genre'] }}</p>
+            <p class="genre">#{{ $genre->name }}</p>
         </div>
         <div class="description">
             <label for="" class="edit-label">ShopInfo</label>
@@ -26,7 +26,7 @@
         </div>
         <button class="submit" type="submit">登録</button>
     </form>
-    <form action="" class="cancel" method="post">
+    <form action="{{ route('cancel') }}" class="cancel" method="post">
         <button class="cancel__button" type="submit">キャンセル</button>
     </form>
 </div>
