@@ -24,7 +24,6 @@ class ShopUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'required',
             'area' => 'required',
             'genre' => 'required',
             'description' => 'required'
@@ -34,7 +33,6 @@ class ShopUpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            'image.required' => 'ファイルを選択してください',
             'area.required' => 'エリアを選択してください',
             'genre.required' => 'ジャンルを選択してください',
             'description.required' => '店舗情報を入力してください',

@@ -34,7 +34,11 @@ class ShopRepController extends Controller
     public function shopUpdateConfirm(ShopUpdateRequest $request, $id)
     {
         $shop = Shop::findOrFail($id);
-        $path = $request->file('image')->store('public/images');
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('public/images');
+        }else{
+            $path = $shop->img_url;
+        }
         session([
             'form_input' => [
                 'img_url' => $path,
@@ -66,8 +70,13 @@ class ShopRepController extends Controller
         }
 
         $shop = Shop::findOrFail($id);
+
+        $shop->img_url = $data['img_url'];
+        $shop->area_id = $data['area'];
+        $shop->genre_id = $data['genre'];
+        $shop->description = $data['description'];
         
-        $shop->update($data);
+        $shop->save();
 
         session()->forget('form_input');
 
@@ -76,12 +85,12 @@ class ShopRepController extends Controller
 
     public function cancel()
     {
-        $path = session('image');
+        $path = session('form_input.img_url');
         session()->forget('form_input');
         if ($path) {
             Storage::disk('local')->delete($path);
         }
-        return redirect()->route('shopEdit');
+        return redirect()->route('repIndex');
     }
 
     public function getReservation(Request $request)

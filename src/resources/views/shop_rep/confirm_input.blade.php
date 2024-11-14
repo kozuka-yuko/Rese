@@ -27,6 +27,7 @@
         <button class="submit" type="submit">登録</button>
     </form>
     <form action="{{ route('cancel') }}" class="cancel" method="post">
+        @csrf
         <button class="cancel__button" type="submit">キャンセル</button>
     </form>
 </div>

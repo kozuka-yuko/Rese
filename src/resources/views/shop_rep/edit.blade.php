@@ -10,8 +10,16 @@
     <form action="{{ route('shopUpdateConfirm', $shop->id) }}" class="shop__edit" method="post" enctype="multipart/form-data">
         @csrf
         <p class="shop_name">{{ $shop->name }}</p>
+        <div class="img-file">
+            <label for="" class="edit-label">Current Shop Image</label>
+            @if ($shop->img_url)
+            <img src="{{ Storage::url($shop->img_url) }}" alt="Shop Image" class="now-img">
+            @else
+            <p>画像が設定されていません</p>
+            @endif
+        </div>
         <div class="image-file">
-            <label for="" class="edit-label">ShopImage</label>
+            <label for="" class="edit-label">Select Shop Image</label>
             <input type="file" name="image" class="image">
         </div>
         <div class="form__error">
@@ -22,9 +30,10 @@
         <div class="area">
             <label for="" class="edit-label">Area</label>
             <select name="area" class="area__inner">
-                <option value="" hidden>{{ optional($shop->area)->name }}</option>
                 @foreach ($areas as $area)
-                <option value="{{ $area->id }}">{{ $area->name }}</option>
+                <option value="{{ $area->id }}" @if (old('area', $shop->area_id) == $area->id) selected @endif>
+                    {{ $area->name }}
+                </option>
                 @endforeach
             </select>
         </div>
@@ -36,9 +45,8 @@
         <div class="genre">
             <label for="" class="edit-label">Genre</label>
             <select name="genre" class="genre__inner">
-                <option value="" hidden>{{ optional($shop->genre)->name }}</option>
                 @foreach ($genres as $genre)
-                <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+                <option value="{{ $genre->id }}" @if (old('genre', $shop->genre_id) == $genre->id) selected @endif>{{ $genre->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -49,7 +57,7 @@
         </div>
         <div class="description">
             <label for="" class="edit-label">Shop description</label>
-            <textarea name="description" id="description" class="description__inner" cols="30" rows="5"></textarea>
+            <textarea name="description" id="description" class="description__inner" cols="40" rows="6">{{ old('description', $shop->description) }}</textarea>
         </div>
         <div class="form__error">
             @error('description')
