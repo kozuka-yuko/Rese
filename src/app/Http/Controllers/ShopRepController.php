@@ -36,7 +36,7 @@ class ShopRepController extends Controller
         $shop = Shop::findOrFail($id);
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('public/images');
-        }else{
+        } else {
             $path = $shop->img_url;
         }
         session([
@@ -46,7 +46,7 @@ class ShopRepController extends Controller
                 'genre' => $request->input('genre'),
                 'description' => $request->input('description')
             ]
-            ]);
+        ]);
 
         return redirect()->route('showShopUpdateConfirm', compact('id'));
     }
@@ -75,7 +75,7 @@ class ShopRepController extends Controller
         $shop->area_id = $data['area'];
         $shop->genre_id = $data['genre'];
         $shop->description = $data['description'];
-        
+
         $shop->save();
 
         session()->forget('form_input');
@@ -90,6 +90,7 @@ class ShopRepController extends Controller
         if ($path) {
             Storage::disk('local')->delete($path);
         }
+
         return redirect()->route('repIndex');
     }
 
@@ -100,15 +101,16 @@ class ShopRepController extends Controller
         if ($num == 0) {
             $date = $dt;
         } elseif ($num > 0) {
-            $date = $dt->subDays($num);
+            $date = $dt->addDays($num);
         } else {
-            $date = $dt->subDays(-$num);
+            $date = $dt->subDays(abs($num));
         }
         $fixed_date = $date->toDateString();
+        $fixedDate = \Carbon\Carbon::parse($fixed_date);
 
         $user = Auth::user();
-        $reservation = Reservation::where('shop_id', $user->shops->first()->id)->where('date', $fixed_date)->paginate(10);
+        $reservations = Reservation::where('shop_id', $user->shops->first()->id)->where('date', $fixed_date)->paginate(10);
 
-        return view('/shop_rep/reservation_confirm', compact('num', 'fixed_date', 'reservation'));
+        return view('/shop_rep/reservation_confirm', compact('num', 'dt', 'fixed_date', 'fixedDate', 'reservations'));
     }
 }
