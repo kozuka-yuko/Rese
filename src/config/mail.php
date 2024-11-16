@@ -44,6 +44,16 @@ return [
             'timeout' => null,
             'auth_mode' => null,
         ],
+        'admin_mailer' => [
+            'transport' => 'smtp',
+            'host' => env('ADMIN_MAIL_HOST'),
+            'port' => env('ADMIN_MAIL_PORT'),
+            'encryption' => env('ADMIN_MAIL_ENCRYPTION'),
+            'username' => env('ADMIN_MAIL_USERNAME'),
+            'password' => env('ADMIN_MAIL_PASSWORD'),
+            'timeout' => null,
+            'auth_mode' => null,
+        ],
 
         'ses' => [
             'transport' => 'ses',

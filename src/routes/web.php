@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ReseController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MailableController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\ShopRepController;
 use Mockery\VerificationExpectation;
@@ -54,6 +55,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/admin/update_confirm/{id}', [AdminController::class, 'updateConfirm'])->name('updateConfirm');
     Route::get('/admin/update_confirm/{id}', [AdminController::class, 'showUpdateConfirm'])->name('showUpdateConfirm');
     Route::patch('/admin/update_confirm/store/{id}', [AdminController::class, 'repUpdate'])->name('repUpdate');
+});
+
+Route::middleware(['auth', 'role:admin'])->group(function() {
+    Route::post('/emails/send_email', [MailableController::class, 'sendEmail'])->name('sendEmail');
 });
 
 Route::get('/email/verify', function () {
