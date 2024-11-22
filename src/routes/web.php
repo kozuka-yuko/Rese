@@ -49,15 +49,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('admin/shop_rep_list/delete', [AdminController::class, 'shopRepDestroy'])->name('shopRepDestroy');
     Route::get('/admin/new_rep_create', [AdminController::class, 'newRepEdit'])->name('newRepEdit');
     Route::post('/admin/confirm', [AdminController::class, 'shopRepConfirm'])->name('shopRepConfirm');
-    Route::get('/admin/confirm',[AdminController::class, 'showRepConfirm'])->name('showRepConfirm');
+    Route::get('/admin/confirm', [AdminController::class, 'showRepConfirm'])->name('showRepConfirm');
     Route::post('/admin/confirm/create', [AdminController::class, 'create'])->name('create');
     Route::get('/admin/shop_rep_update/{id}', [AdminController::class, 'updateEdit'])->name('updateEdit');
     Route::post('/admin/update_confirm/{id}', [AdminController::class, 'updateConfirm'])->name('updateConfirm');
     Route::get('/admin/update_confirm/{id}', [AdminController::class, 'showUpdateConfirm'])->name('showUpdateConfirm');
     Route::patch('/admin/update_confirm/store/{id}', [AdminController::class, 'repUpdate'])->name('repUpdate');
-});
-
-Route::middleware(['auth', 'role:admin'])->group(function() {
+    Route::get('/emails/send_email', [MailableController::class, 'emailForm'])->name('emailForm');
     Route::post('/emails/send_email', [MailableController::class, 'sendEmail'])->name('sendEmail');
 });
 

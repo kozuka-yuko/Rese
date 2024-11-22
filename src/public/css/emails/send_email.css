@@ -1,0 +1,27 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.email__form {
+    margin: 15px;
+}
+
+.group-type,
+.title,
+.textarea {
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.send-email__button {
+    display: block;
+    padding: 10px 15px;
+    margin: 0 auto;
+    border: none;
+    border-radius: 5px;
+    background-color: #212df3;
+    color: #FEFEFE;
+    cursor: pointer;
+}

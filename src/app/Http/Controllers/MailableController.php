@@ -7,8 +7,13 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\SendEmail;
 use App\Models\User;
 
-class MailableController extends Controller 
+class MailableController extends Controller
 {
+    public function emailForm()
+    {
+        return view('/emails/send_email');
+    }
+
     public function sendEmail(Request $request)
     {
         $validated = $request->validate([
@@ -19,7 +24,7 @@ class MailableController extends Controller
 
         if ($validated['groupType'] === 'general') {
             $users = User::whereNull('role')->get();
-        }elseif ($validated['groupType'] === 'shop_rep') {
+        } elseif ($validated['groupType'] === 'shop_rep') {
             $users = User::where('role', 'shop_rep')->get();
         }
 
@@ -27,9 +32,9 @@ class MailableController extends Controller
             'title' => $validated['title'],
             'body' => $validated['body'],
         ];
-        
-        foreach ($users as $user){
-        Mail::mailer('admin_mailer')->to($user->email)->queue(new SendEmail($details));
+
+        foreach ($users as $user) {
+            Mail::to($user->email)->queue(new SendEmail($details));
         }
 
         return redirect()->back()->with('result', 'メールが送信されました');
