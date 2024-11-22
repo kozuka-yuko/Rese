@@ -2,3 +2,36 @@
     display: none;
     border: none;
 }
+
+.content {
+    padding-left: 40px;
+}
+
+.table__row {
+    border-bottom: 1px solid #b2b2b2;
+    line-height: 40px;
+}
+
+.rep__list--header {
+    padding-right: 80px;
+}
+
+.edit {
+    margin-right: 40px;
+    padding: 3px 10px;
+    background-color: #FEFEFE;
+    border: 1px solid #b2b2b2;
+    color: #212df3;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.delete__shop-rep--button {
+    padding: 5px 10px;
+    background-color: #e93e1e;
+    border: none;
+    color: #FEFEFE;
+    border-radius: 5px;
+    cursor: pointer;
+}

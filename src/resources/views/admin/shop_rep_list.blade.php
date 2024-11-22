@@ -15,28 +15,34 @@
 @endsection
 
 @section('content')
-<h1 class="title">店舗代表者一覧</h1>
-<table class="rep__list">
-    <tr class="table__row">
-        <th class="rep__list--header">店舗名</th>
-        <th class="rep__list--header">代表者</th>
-        <th class="rep__list--header">エリア</th>
-        <th class="rep__list--header">ジャンル</th>
-    </tr>
-    @foreach ($shopReps as $shopRep)
-    <tr class="table__row">
-        <td class="rep__list--data">{{ optional($shopRep->shops->first())->name }}</td>
-        <td class="rep__list--data">{{ optional($shopRep)->name }}</td>
-        <td class="rep__list--data">{{ optional($shopRep->shops->first())->area }}</td>
-        <td class="rep__list--data">{{ optional($shopRep->shops->first())->genre }}</td>
-        <a href="{{ route('updateEdit', $shopRep->id) }}" class="edit">変更</a>
-        <form action="{{ route('shopRepDestroy') }}" method="post" class="delete__shop-rep">
-            @method('DELETE')
-            @csrf
-            <input type="hidden" name="id" value="{{ $shopRep->id }}">
-            <button class="delete__shop-rep--button" type="submit" title="削除" onclick='return confirm("{{ optional($shopRep)->name }}を削除しますか？")'>削除</button>
+<div class="content">
+    <h1 class="title">店舗代表者一覧</h1>
+    <table class="rep__list">
+        <tr class="table__row">
+            <th class="rep__list--header">店舗名</th>
+            <th class="rep__list--header">代表者</th>
+            <th class="rep__list--header">エリア</th>
+            <th class="rep__list--header">ジャンル</th>
         </tr>
-    </form>
-    @endforeach
-</table>
+        @foreach ($shopReps as $shopRep)
+        <tr class="table__row">
+            <td class="rep__list--data">{{ optional($shopRep->shops->first())->name }}</td>
+            <td class="rep__list--data">{{ optional($shopRep)->name }}</td>
+            <td class="rep__list--data">{{ optional($shopRep->shops->first())->area->name ?? ' ' }}</td>
+            <td class="rep__list--data">{{ optional($shopRep->shops->first())->genre->name ?? ' ' }}</td>
+            <td class="rep__list--data">
+                <a href="{{ route('updateEdit', $shopRep->id) }}" class="edit">変更</a>
+            </td>
+            <td class="rep__list--data">
+                <form action="{{ route('shopRepDestroy') }}" method="post" class="delete__shop-rep">
+                    @method('DELETE')
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $shopRep->id }}">
+                    <button class="delete__shop-rep--button" type="submit" title="削除" onclick='return confirm("{{ optional($shopRep)->name }}を削除しますか？")'>削除</button>
+            </td>
+        </tr>
+        </form>
+        @endforeach
+    </table>
+</div>
 @endsection
