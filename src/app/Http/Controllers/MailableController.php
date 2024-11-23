@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendEmailJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendEmail;
@@ -34,9 +35,9 @@ class MailableController extends Controller
         ];
 
         foreach ($users as $user) {
-            Mail::to($user->email)->queue(new SendEmail($details));
+            SendEmailJob::dispatch($details, $user->email);
         }
 
-        return redirect()->back()->with('result', 'メールが送信されました');
+        return redirect()->back()->session()->flash('メールが送信されました');
     }
 }
