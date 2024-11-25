@@ -11,6 +11,8 @@ use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Http\Requests\ReservationRequest;
+use Illuminate\Support\Facades\Crypt;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ReseController extends Controller
 {
@@ -130,4 +132,23 @@ class ReseController extends Controller
         }
         return back();
     }
+
+    public function showQrCode($id)
+    {
+        $user = Auth::user();
+        $reservation = Reservation::findOrFail($id)->where('user_id', $user->id)->first();
+        $qrData = [
+            '店舗名' => $id->name,
+            '予約者名' => $user->name,
+            '来店日' => $reservation->date,
+            '来店時間' => $reservation->time,
+            'reservation_id' => Crypt::encryptString($reservation->id),
+        ];
+
+        $jsonData = json_encode($qrData);
+        $qrCode = QrCode::size(300)->generate($jsonData);
+
+        return view('qr-code-page', compact('qrCode'));
+    }
+    
 }
