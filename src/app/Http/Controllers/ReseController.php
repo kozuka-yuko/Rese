@@ -148,7 +148,20 @@ class ReseController extends Controller
         $jsonData = json_encode($qrData);
         $qrCode = QrCode::size(300)->generate($jsonData);
 
-        return view('qr-code-page', compact('qrCode'));
+        return view('qr-code-page', compact('qrData', 'qrCode'));
     }
     
+    public function confirmVisit(Request $request)
+    {
+        try {
+            $reservationId = Crypt::decryptString($request->input('reservation_id'));
+            $reservation = Reservation::findOrFail($reservationId);
+            $reservation->status = 'ご来店';
+            $reservation->save();
+
+            return redirect()->back()->with('result', '来店確認が完了しました！');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', '来店確認が完了していません。');
+        }
+    }
 }

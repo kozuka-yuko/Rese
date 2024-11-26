@@ -44,7 +44,9 @@
                     </table>
                     <div class="update__button">
                         <a href="{{ route('edit',$reservation->id) }}" class="edit">変更</a>
+                        <a href="{{ route('showQrCode', $reservation->id) }}" class="qr-code">QRコードを表示する</a>
                     </div>
+                    <p class="qr-code__info">ご来店時に入口で店舗スタッフにQRコードを見せてください。</p>
                 </div>
                 @endforeach
             </div>

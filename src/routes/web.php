@@ -36,6 +36,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/reservation/{id}', [ReseController::class, 'reservationUpdate'])->name('reservation.update');
     Route::delete('/favorite/delete', [ReseController::class, 'favoriteDestroy'])->name('favoriteDestroy');
     Route::post('/favorite/{id}', [ReseController::class, 'favorite'])->name('favorite');
+    Route::get('/qr-code/{id}', [ReseController::class, 'showQrCode'])->name('showQrCode');
+    
     Route::get('/shop_rep/shop', [ShopRepController::class, 'repIndex'])->name('repIndex');
     Route::get('/shop_rep/edit/{id}', [ShopRepController::class, 'shopEdit'])->name('shopEdit');
     Route::post('shop_rep/confirm_input/{id}', [ShopRepController::class, 'shopUpdateConfirm'])->name('shopUpdateConfirm');
