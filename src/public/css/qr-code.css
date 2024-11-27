@@ -3,6 +3,12 @@
     margin-top: 50px;
 }
 
+.message__error {
+    text-align: left;
+    padding-left: 30px;
+    color: #f44336;
+}
+
 .form {
     margin-top: 20px;
 }

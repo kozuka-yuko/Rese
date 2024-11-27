@@ -68,7 +68,7 @@ class ReseController extends Controller
     public function mypage()
     {
         $user = Auth::user();
-        $reservations = Reservation::where('user_id', $user->id)->get();
+        $reservations = Reservation::where('user_id', $user->id)->whereDate('date', '>=', Carbon::today())->orderBy('date', 'asc')->get();
         $favorites = Favorite::where('user_id', $user->id)->with('shop')->get();
         $today = Carbon::today()->addDay()->format('Y-m-d');
         $times = [];
@@ -136,7 +136,7 @@ class ReseController extends Controller
     public function showQrCode($id)
     {
         $user = Auth::user();
-        $reservation = Reservation::findOrFail($id)->where('user_id', $user->id)->first();
+        $reservation = Reservation::where('id', $id)->where('user_id', $user->id)->firstOrFail();
         $qrData = [
             '店舗名' => $reservation->shop->name,
             '予約者名' => $user->name,
@@ -148,9 +148,9 @@ class ReseController extends Controller
         $jsonData = json_encode($qrData);
         $qrCode = QrCode::size(300)->generate($jsonData);
 
-        return view('/qr-code', compact('qrData', 'qrCode'));
+        return view('/qr-code', compact('reservation', 'qrData', 'qrCode'));
     }
-    
+
     public function confirmVisit(Request $request)
     {
         try {
