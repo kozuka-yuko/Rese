@@ -138,7 +138,7 @@ class ReseController extends Controller
         $user = Auth::user();
         $reservation = Reservation::findOrFail($id)->where('user_id', $user->id)->first();
         $qrData = [
-            '店舗名' => $id->name,
+            '店舗名' => $reservation->shop->name,
             '予約者名' => $user->name,
             '来店日' => $reservation->date,
             '来店時間' => $reservation->time,
@@ -148,7 +148,7 @@ class ReseController extends Controller
         $jsonData = json_encode($qrData);
         $qrCode = QrCode::size(300)->generate($jsonData);
 
-        return view('qr-code-page', compact('qrData', 'qrCode'));
+        return view('/qr-code', compact('qrData', 'qrCode'));
     }
     
     public function confirmVisit(Request $request)

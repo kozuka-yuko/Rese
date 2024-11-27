@@ -38,6 +38,7 @@
     34 => 'App\\Providers\\RouteServiceProvider',
     35 => 'App\\Providers\\FortifyServiceProvider',
     36 => 'Spatie\\Permission\\PermissionServiceProvider',
+    37 => 'SimpleSoftwareIO\\QrCode\\QrCodeServiceProvider',
   ),
   'eager' => 
   array (
@@ -64,6 +65,7 @@
     20 => 'App\\Providers\\RouteServiceProvider',
     21 => 'App\\Providers\\FortifyServiceProvider',
     22 => 'Spatie\\Permission\\PermissionServiceProvider',
+    23 => 'SimpleSoftwareIO\\QrCode\\QrCodeServiceProvider',
   ),
   'deferred' => 
   array (

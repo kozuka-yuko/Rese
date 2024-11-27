@@ -1,0 +1,26 @@
+.content {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.form {
+    margin-top: 20px;
+}
+
+.return__btn {
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #bebebe;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit {
+    margin-left: 30px;
+    padding: 10px;
+    border: none;
+    background-color: #212df3;
+    color: #FEFEFE;
+    border-radius: 5px;
+    cursor: pointer;
+}

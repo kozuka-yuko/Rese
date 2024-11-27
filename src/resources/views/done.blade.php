@@ -9,6 +9,6 @@
     <div class="done-form__heading">
         <h2 class="title">ご予約ありがとうございます</h2>
     </div>
-    <a href="{{ route('index') }}" class="redirect">戻る</a>
+    <a href="/shop" class="redirect">戻る</a>
 </div>
 @endsection
