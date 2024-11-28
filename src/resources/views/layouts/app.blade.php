@@ -98,9 +98,7 @@
             @endphp
             @endif
         </div>
-        <div class="content">
             @yield('content')
-        </div>
     </div>
 </body>
 

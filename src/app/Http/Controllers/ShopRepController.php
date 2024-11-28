@@ -106,7 +106,7 @@ class ShopRepController extends Controller
             $date = $dt->subDays(abs($num));
         }
         $fixed_date = $date->toDateString();
-        $fixedDate = \Carbon\Carbon::parse($fixed_date);
+        $fixedDate = $date;
 
         $user = Auth::user();
         $reservations = Reservation::where('shop_id', $user->shops->first()->id)->where('date', $fixed_date)->paginate(10);

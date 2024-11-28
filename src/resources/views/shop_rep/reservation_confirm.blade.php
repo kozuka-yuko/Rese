@@ -8,9 +8,7 @@
 <div class="content">
     <h2 class="title">予約状況</h2>
     <div class="content__heading">
-        @if($fixedDate->greaterThan($dt))
         <a href="{{ '/shop_rep/reservation_confirm/' . ($num - 1) }}" class="prev-day">&lt;</a>
-        @endif
         <span class="current-date">{{ $fixed_date }}</span>
         <a href="{{ '/shop_rep/reservation_confirm/' . ($num + 1) }}" class="next-day">&gt;</a>
     </div>

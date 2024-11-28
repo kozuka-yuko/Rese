@@ -1,0 +1,22 @@
+.content {
+    margin: 0 50px;
+}
+
+.content__heading {
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+.prev-day,
+.next-day {
+    text-decoration: none;
+}
+
+.rese_row {
+    border-bottom: 1px solid #b2b2b2;
+    line-height: 40px;
+}
+
+.rese_inner {
+    padding-right: 100px;
+}
