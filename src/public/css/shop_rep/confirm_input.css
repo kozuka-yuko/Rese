@@ -1,5 +1,9 @@
 .confirm-content {
-    padding-left: 40px;
+    padding: 0 40px 40px 40px;
+}
+
+.confirm {
+    display: inline;
 }
 
 .image {
@@ -24,7 +28,8 @@
 }
 
 .cancel__button {
-    margin-top: 20px;
+    display: inline;
+    margin-left: 20px;
     padding: 7px 20px;
     text-decoration: none;
     border: none;

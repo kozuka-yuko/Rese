@@ -12,13 +12,13 @@
             <span class="shop-name__inner">{{ $shop->name }}</span>
         </div>
         <div class="img">
-            <img class="img_url" src="{{ asset($shop->img_url) }}" alt="お店の画像" />
+            <img class="img_url" src="{{ Storage::url($shop->img_url) }}" alt="お店の画像" />
         </div>
         <div class="tag">
             #{{ $shop->area->name ?? 'エリア不明' }} #{{ $shop->genre->name ?? 'ジャンル不明' }}
         </div>
         <div class="info">
-            <p class="info__inner">{{ $shop->info }}</p>
+            <p class="info__inner">{{ $shop->description }}</p>
         </div>
     </div>
     <form action="{{ route('reservation', $shop->id) }}" method="post" class="reservation-form">
