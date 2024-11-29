@@ -8,8 +8,6 @@
 <div class="update__content">
     <form action="{{ route('updateConfirm', $shopRep->id) }}" class="update__form" method="post">
         @csrf
-        <label for="shop-name" class="label__inner">店舗名:</label>
-        <p class="shop-name__inner">{{ optional($shopRep->shops->first())->name }}</p>
         <label for="shop_rep_name" class="label__inner">店舗代表者:</label>
         <input type="text" class="info" name="name" value="{{ old('name', $shopRep->name) }}" />
         <div class="form__error">

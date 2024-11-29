@@ -39,6 +39,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/qr-code/{id}', [ReseController::class, 'showQrCode'])->name('showQrCode');
     Route::post('/qr-code/visit', [ReseController::class, 'confirmVisit'])->name('confirmVisit');
     Route::get('/shop_rep/shop', [ShopRepController::class, 'repIndex'])->name('repIndex');
+    Route::get('/shop_rep/shop_create', [ShopRepController::class, 'shopCreate'])->name('shopCreate');
+    Route::post('/shop_rep/shop_create_confirm', [ShopRepController::class, 'shopCreateConfirm'])->name('shopCreateConfirm');
+    Route::get('/shop_rep/shop_create_confirm', [ShopRepController::class, 'showShopCreateConfirm'])->name('showShopCreateConfirm');
+    
+    Route::post('/shop_create_confirm/cancel', [ShopRepController::class, 'createCancel'])->name('createCancel');
+    Route::delete('/shoprep/shop/delete/{id}', [ShopRepController::class, 'shopDestroy'])->name('shopDestroy');
     Route::get('/shop_rep/edit/{id}', [ShopRepController::class, 'shopEdit'])->name('shopEdit');
     Route::post('shop_rep/confirm_input/{id}', [ShopRepController::class, 'shopUpdateConfirm'])->name('shopUpdateConfirm');
     Route::get('shop_rep/confirm_input/{id}', [ShopRepController::class, 'showShopUpdateConfirm'])->name('showShopUpdateConfirm');

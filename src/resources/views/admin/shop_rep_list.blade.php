@@ -17,7 +17,7 @@
 @section('content')
 <div class="content">
     <div class="title-content">
-        <a href="#" onclick="history.back()" class="back__btn" title="戻る">&lt;</a>
+        <a href="{{ route('adIndex') }}" class="back__btn" title="戻る">&lt;</a>
         <h1 class="title">店舗代表者一覧</h1>
     </div>
     <table class="rep__list">

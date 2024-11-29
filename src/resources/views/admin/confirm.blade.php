@@ -10,12 +10,8 @@
     <form action="{{ route('create') }}" class="confirm__form" method="post">
         @csrf
         <div class="form-data">
-            <label for="shop_name" class="label__inner">店舗名:</label>
-            <span class="data">{{ $data['shop_name'] }}</span>
-        </div>
-        <div class="form-data">
             <label for="name" class="label__inner">店舗代表者氏名:</label>
-            <span class="data">{{ $data['shop_rep_name'] }}</span>
+            <span class="data">{{ $data['name'] }}</span>
         </div>
         <div class="form-data">
             <label for="email" class="label__inner">メールアドレス:</label>

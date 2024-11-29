@@ -69,16 +69,9 @@ class AdminController extends Controller
             return redirect()->route('newRepEdit');
         }
 
-        $shop = Shop::create(['name' => $data['shop_name']]);
-
-        $newRep = collect($data)->only(['shop_rep_name', 'email', 'password'])->toArray();
-        $newRep['name'] = $newRep['shop_rep_name'];
-        unset($newRep['shop_rep_name']);
-        $newRep['password'] = Hash::make($newRep['password']);
-        $shopRep = User::create($newRep);
+        $data['password'] = Hash::make($data['password']);
+        $shopRep = User::create($data);
         $shopRep->assignRole('shop_rep');
-        $shopId = $shop->id;
-        $shopRep->shops()->attach($shopId);
 
         $shopRep->sendEmailVerificationNotification();
 

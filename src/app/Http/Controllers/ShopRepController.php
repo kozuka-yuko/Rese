@@ -23,6 +23,64 @@ class ShopRepController extends Controller
         return view('/shop_rep/shop', compact('shop'));
     }
 
+    public function shopCreate()
+    {
+        $areas = Area::all();
+        $genres = Genre::all();
+        return view('/shop_rep/shop_create', compact('areas', 'genres'));
+    }
+
+    public function shopCreateConfirm(ShopUpdateRequest $request)
+    {
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('public/images');
+        } else {
+            $path = null;
+        }
+        session([
+            'form_input' => [
+                'name' => $request->input('name'),
+                'img_url' => $path,
+                'area' => $request->input('area'),
+                'genre' => $request->input('genre'),
+                'description' => $request->input('description')
+            ]
+        ]);
+
+        return redirect()->route('showShopCreateConfirm');
+    }
+
+    public function showShopCreateConfirm()
+    {
+        $data = session()->get('form_input');
+
+        return view('/shop_rep/shop_create_confirm', compact('data'));
+    }
+
+    public function create()
+    {
+
+        $shopRep->shops()->attach($shopId);
+    }
+
+    public function createCancel()
+    {
+        $path = session('form_input.img_url');
+        session()->forget('form_input');
+        if ($path) {
+            Storage::disk('local')->delete($path);
+        }
+
+        return redirect()->route('repIndex');
+    }
+
+    public function shopDestroy($id)
+    {
+        Shop::findOrFail($id)->delete();
+
+        return redirect()->route('repIndex')->with('result', '削除しました');
+    }
+
     public function shopEdit($id)
     {
         $areas = Area::all();

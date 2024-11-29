@@ -1,23 +1,15 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/shop_rep/edit.css') }}">
+<link rel="stylesheet" href="{{ asset('css/shop_rep/shop_create.css') }}">
 @endsection
 
 @section('content')
 <div class="edit-content">
-    <h1 class="title">店舗情報編集</h1>
-    <form action="{{ route('shopUpdateConfirm', $shop->id) }}" class="shop__edit" method="post" enctype="multipart/form-data">
+    <h1 class="title">店舗情報作成</h1>
+    <form action="{{ route('shopCreateConfirm') }}" class="shop__create" method="post" enctype="multipart/form-data">
         @csrf
         <input type="text" name="name" class="name" value="old('name', $shop->name) }}" />
-        <div class="img-file">
-            <label for="" class="edit-label">Current Shop Image:</label>
-            @if ($shop->img_url)
-            <img src="{{ Storage::url($shop->img_url) }}" alt="Shop Image" class="now-img">
-            @else
-            <p class="message">画像が設定されていません</p>
-            @endif
-        </div>
         <div class="image-file">
             <label for="" class="edit-label">Select Shop Image:</label>
             <input type="file" name="image" class="image">

@@ -10,22 +10,15 @@
     <form action="{{ route('shopRepConfirm') }}" class="new-rep__create" method="post">
         @csrf
         <div class="form__inner">
-            <label for="shop-name" class="label__inner">店舗名:</label>
-            <input type="text" class="info" name="shop_name" value="{{ old('shop_name') }}" />
-            <div class="form__error">
-                @error('shop_name')
-                {{ $message }}
-                @enderror
-            </div>
             <label for="name" class="label__inner">店舗代表者:</label>
-            <input type="text" class="info" name="shop_rep_name" value="{{ old('shop_rep_name') }}" />
+            <input type="text" class="info" name="name" value="{{ old('name') }}" placeholder="例: 山田  太郎"/>
             <div class="form__error">
-                @error('shop_rep_name')
+                @error('name')
                 {{ $message }}
                 @enderror
             </div>
             <label for="email" class="label__inner">メールアドレス:</label>
-            <input type="email" class="info" name="email" value="{{ old('email') }}" />
+            <input type="email" class="info" name="email" value="{{ old('email') }}" placeholder="test@example.ne"/>
             <div class="form__error">
                 @error('email')
                 {{ $message }}

@@ -24,6 +24,7 @@ class ShopUpdateRequest extends FormRequest
     public function rules()
     {
         return [
+            'name' => 'required|max:100',
             'area' => 'required',
             'genre' => 'required',
             'description' => 'required'
@@ -33,6 +34,8 @@ class ShopUpdateRequest extends FormRequest
     public function messages()
     {
         return [
+            'name.required' => '代表者の名前を入力してください',
+            'name.max:100' => '100文字以下で入力してください',
             'area.required' => 'エリアを選択してください',
             'genre.required' => 'ジャンルを選択してください',
             'description.required' => '店舗情報を入力してください',

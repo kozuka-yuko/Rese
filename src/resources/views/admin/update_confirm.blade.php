@@ -11,10 +11,6 @@
         @method('PATCH')
         @csrf
         <div class="form-data">
-            <label for="shop_name" class="label__inner">店舗名:</label>
-            <span class="data">{{ optional($shopRep->shops->first())->name }}</span>
-        </div>
-        <div class="form-data">
             <label for="name" class="label__inner">店舗代表者氏名:</label>
             <span class="data">{{ $data['name'] }}</span>
         </div>

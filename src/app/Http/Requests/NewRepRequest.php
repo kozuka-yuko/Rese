@@ -24,8 +24,7 @@ class NewRepRequest extends FormRequest
     public function rules()
     {
         return [
-            'shop_name' => 'required',
-            'shop_rep_name' => 'required|max:100',
+            'name' => 'required|max:100',
             'email' => 'required|string|email|unique:users|max:191',
             'password' => 'required|min:8|max:191'
         ];
@@ -34,9 +33,8 @@ class NewRepRequest extends FormRequest
     public function messages()
     {
         return [
-            'shop_name.required' => '店舗名を入力してください',
-            'shop_rep_name.required' => '代表者の名前を入力してください',
-            'shop_rep_name.max:100' => '100文字以下で入力してください',
+            'name.required' => '代表者の名前を入力してください',
+            'name.max:100' => '100文字以下で入力してください',
             'email.required' => 'メールアドレスを入力してください',
             'email.string' => 'メールアドレスを正しく入力してください',
             'email.email' => '有効なメールアドレス形式で入力してください',
