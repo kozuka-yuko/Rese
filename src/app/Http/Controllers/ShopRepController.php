@@ -17,8 +17,7 @@ class ShopRepController extends Controller
     public function repIndex()
     {
         $user = Auth::user();
-        $id = $user->shops->first()->id;
-        $shop = Shop::with(['area', 'genre'])->where('id', $id)->first();
+        $shop = $user->shops()->with(['area', 'genre'])->first();
 
         return view('/shop_rep/shop', compact('shop'));
     }
@@ -41,8 +40,8 @@ class ShopRepController extends Controller
             'form_input' => [
                 'name' => $request->input('name'),
                 'img_url' => $path,
-                'area' => $request->input('area'),
-                'genre' => $request->input('genre'),
+                'area_id' => $request->input('area'),
+                'genre_id' => $request->input('genre'),
                 'description' => $request->input('description')
             ]
         ]);
@@ -53,14 +52,28 @@ class ShopRepController extends Controller
     public function showShopCreateConfirm()
     {
         $data = session()->get('form_input');
+        $area = Area::where('id', $data['area_id'])->first();
+        $genre = Genre::where('id', $data['genre_id'])->first();
 
-        return view('/shop_rep/shop_create_confirm', compact('data'));
+        return view('/shop_rep/shop_create_confirm', compact('data', 'area', 'genre'));
     }
 
-    public function create()
+    public function newShopCreate()
     {
+        $data = session()->get('form_input');
 
-        $shopRep->shops()->attach($shopId);
+        if (!$data) {
+            return redirect()->route('shopCreate');
+        }
+        
+        $shop = Shop::create($data);
+
+        /** @var \App\Models\User $shopRep */
+        $shopRep = Auth::user();
+        session()->forget('form_input');
+        $shopRep->shops()->attach($shop->id);
+
+        return redirect()->route('repIndex')->with('result', '店舗を登録しました');
     }
 
     public function createCancel()

@@ -6,9 +6,7 @@
 
 @section('content')
 <div class="detail-content">
-    @if
-    <a href="{{ route('shopCreate') }}" class="shop_create">新規店舗作成</a>
-    @else
+    @if ($shop)
     <div class="shop__description">
         <div class="shop-name">
             <span class="shop-name__inner">{{ $shop->name }}</span>
@@ -24,7 +22,7 @@
         </div>
         <div class="edit">
             <a href="{{ route('shopEdit', $shop->id) }}" class="edit__button">変更</a>
-            <form action="{{ route('shopDestroy', $shop->id) }}" method="post" class="delete__shop-rep">
+            <form action="{{ route('shopDestroy', $shop->id) }}" method="post" class="delete__shop">
                 @method('DELETE')
                 @csrf
                 <button class="delete__shop--button" type="submit" title="削除" onclick='return confirm("{{ optional($shop)->name }}を削除しますか？")'>削除</button>
@@ -34,6 +32,8 @@
     <div class="reservation__confirm">
         <a href="{{ route('getReservation') }}" class="reservation">予約確認</a>
     </div>
+    @else
+    <a href="{{ route('shopCreate') }}" class="shop_create">新規店舗作成</a>
     @endif
 </div>
 @endsection

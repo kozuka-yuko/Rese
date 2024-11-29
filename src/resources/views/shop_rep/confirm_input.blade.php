@@ -24,6 +24,7 @@
             <label for="" class="edit-label">ShopInfo:</label>
             <p class="description__inner">{{ $data['description'] }}</p>
         </div>
+        <a href="#" onclick="history.back()" class="back__btn">戻る</a>
         <button class="submit" type="submit">登録</button>
     </form>
     <form action="{{ route('cancel') }}" class="cancel" method="post">
