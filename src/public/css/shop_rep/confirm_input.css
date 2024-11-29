@@ -1,3 +1,36 @@
+.confirm-content {
+    padding-left: 40px;
+}
+
 .image {
     width: 30%;
+}
+
+.shop_name {
+    font-size: 30px;
+}
+
+.edit-label {
+    font-size: 20px;
+}
+
+.submit {
+    padding: 10px 20px;
+    border: none;
+    background-color: #212df3;
+    color: #FEFEFE;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cancel__button {
+    margin-top: 20px;
+    padding: 7px 20px;
+    text-decoration: none;
+    border: none;
+    background-color: #f44336;
+    color: #FEFEFE;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 20px;
 }

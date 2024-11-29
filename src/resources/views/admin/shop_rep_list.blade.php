@@ -16,7 +16,10 @@
 
 @section('content')
 <div class="content">
-    <h1 class="title">店舗代表者一覧</h1>
+    <div class="title-content">
+        <a href="#" onclick="history.back()" class="back__btn" title="戻る">&lt;</a>
+        <h1 class="title">店舗代表者一覧</h1>
+    </div>
     <table class="rep__list">
         <tr class="table__row">
             <th class="rep__list--header">店舗名</th>

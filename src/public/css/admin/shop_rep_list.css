@@ -3,6 +3,23 @@
     border: none;
 }
 
+.back__btn {
+    text-decoration: none;
+    font-size: 30px;
+    padding: 3px 10px;
+    background-color: #FEFEFE;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #000;
+}
+
+.title {
+    display: inline-block;
+    margin-left: 15px;
+}
+
 .content {
     padding-left: 40px;
 }

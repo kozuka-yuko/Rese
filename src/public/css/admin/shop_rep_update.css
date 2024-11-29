@@ -10,7 +10,6 @@
 }
 
 .label__inner {
-    font-weight: bold;
     font-size: 20px;
 }
 
@@ -20,6 +19,7 @@
 }
 
 .back__btn {
+    padding: 7px 20px;
     text-decoration: none;
     border: 1px solid #b2b2b2;
     background-color: #FEFEFE;
@@ -30,6 +30,7 @@
 }
 
 .form__confirm {
+    padding: 10px 20px;
     border: none;
     background-color: #212df3;
     color: #FEFEFE;

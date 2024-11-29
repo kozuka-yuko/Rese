@@ -24,7 +24,7 @@
             {{ $message }}
             @enderror
         </div>
-        <a href="#" onclick="history.back()" class="back__btn">戻る</a>
+        <a href="{{ route('adIndex') }}" class="back__btn">戻る</a>
         <button class="form__confirm" type="submit">入力内容の確認</button>
     </form>
 </div>
