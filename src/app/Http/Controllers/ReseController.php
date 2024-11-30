@@ -11,6 +11,8 @@ use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Http\Requests\ReservationRequest;
+use App\Http\Requests\ShopReviewRequest;
+use App\Models\ShopReview;
 use Illuminate\Support\Facades\Crypt;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -162,6 +164,15 @@ class ReseController extends Controller
             return redirect()->back()->with('result', '来店確認が完了しました！');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', '来店確認が完了していません。');
+        }
+    }
+
+    public function showShopReview(ShopReviewRequest $request)
+    {
+        $exists = ShopReview::where('user_id', $request->user()->id)->where('shop_id', $request->shop()->id)->exists();
+
+        if ($exists) {
+
         }
     }
 }

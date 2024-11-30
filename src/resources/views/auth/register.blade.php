@@ -13,6 +13,7 @@
         @csrf
         <div class="form__group">
             <div class="form__input">
+                <i class="fa-solid fa-user"></i>
                 <input type="text" name="name" value="{{ old('name') }}" placeholder="Username" />
             </div>
             <div class="form__error">
@@ -23,6 +24,7 @@
         </div>
         <div class="form__group">
             <div class="form__input">
+                <i class="fa-solid fa-envelope"></i>
                 <input type="email" name="email" value="{{ old('email') }}" placeholder="Email" />
             </div>
             <div class="form__error">
@@ -33,6 +35,7 @@
         </div>
         <div class="form__group">
             <div class="form__input">
+                <i class="fa-solid fa-lock"></i>
                 <input type="password" name="password" placeholder="Password" />
             </div>
             <div class="form__error">

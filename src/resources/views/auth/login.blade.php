@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 @endsection
 
 @section('content')
@@ -13,6 +14,7 @@
         @csrf
         <div class="form__group">
             <div class="form__input-email">
+                <i class="fa-solid fa-envelope"></i>
                 <input type="email" name="email" value="{{ old('email') }}" placeholder="Email" />
             </div>
             <div class="form__error">
@@ -23,6 +25,7 @@
         </div>
         <div class="form__group">
             <div class="form__input-password">
+                <i class="fa-solid fa-lock"></i>
                 <input type="password" name="password" placeholder="Password" />
             </div>
             <div class="form__error">
