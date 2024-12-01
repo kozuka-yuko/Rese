@@ -1,0 +1,38 @@
+.form {
+    padding-left: 40px;
+}
+
+.form-rating {
+    align-items: center;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.form-rating__input {
+    display: none;
+}
+
+.form-rating__label {
+    color: #bebebe;
+    cursor: pointer;
+    font-size: 24px;
+    padding: 0 10px;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.form-rating__label:hover,
+.form-rating__label:hover ~ .form-rating__label,
+.form-rating__input:checked ~ .form-rating__label {
+    color: #c4c403;
+}
+
+.form__error {
+    height: 20px;
+    width: 100%;
+    color: #ff0000;
+    text-align: left;
+    padding-left: 20px;
+}

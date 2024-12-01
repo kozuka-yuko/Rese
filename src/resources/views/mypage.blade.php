@@ -58,7 +58,7 @@
                 <div class="favorite">
                     <div class="shop">
                         <div class="img">
-                            <img class="img_url" src="{{ asset($favorite->shop->img_url) }}" alt="お店の画像" />
+                            <img class="img_url" src="{{ Storage::url($favorite->shop->img_url) }}" alt="お店の画像" />
                         </div>
                         <div class="info">
                             <h3 class="shop__name">{{ $favorite->shop->name }}</h3>

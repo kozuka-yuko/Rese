@@ -167,12 +167,38 @@ class ReseController extends Controller
         }
     }
 
-    public function showShopReview(ShopReviewRequest $request)
+    public function showCreateReview($id)
     {
-        $exists = ShopReview::where('user_id', $request->user()->id)->where('shop_id', $request->shop()->id)->exists();
+        $exists = ShopReview::where('user_id', $request->user()->id)->where('shop_id', $request->$id)->exists();
+
+        $shop = Shop::findOrFail($shopId);
 
         if ($exists) {
-
         }
+    }
+
+    public function store(ShopReviewRequest $request)
+    {
+        $userId = Auth::id();
+        $stars = $request->input('rating');
+        $comment = $request->input('comment');
+        $shopId = $request->input('shop_id');
+        $reviewData = [
+            'user_id' => $userId,
+            'shop_id' => $shopId,
+            'stars' => $stars,
+            'comment' => $comment,
+        ];
+        ShopReview::create($reviewData);
+
+        return redirect()->route('mypage')->with('result', 'レビューを投稿しました');
+    }
+
+    public function showReviewList($id)
+    {
+        $reviews = ShopReview::where('shop_id', $id)->get();
+        $shop = Shop::findOrFail($id);
+
+        return view('/review-list', compact('reviews', 'shop'));
     }
 }
