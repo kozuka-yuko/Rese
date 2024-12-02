@@ -20,8 +20,14 @@
         <div class="info">
             <p class="info__inner">{{ $shop->description }}</p>
         </div>
-        <a href="{{ route('showReviewList', $shop->id) }}" class="review">レビューを見る</a>
-        <a href="{{ route('showCreateReview', $shop->id) }}" class="create-review">レビューを書く</a>
+        <div class="link">
+            <a href="{{ route('showReviewList', $shop->id) }}" class="review">レビューを見る</a>
+            @if ($review)
+            <p class="created-review">レビュー済みです</p>
+            @else
+            <a href="{{ route('showCreateReview', $shop->id) }}" class="create-review">レビューを書く</a>
+            @endif
+        </div>
     </div>
     <form action="{{ route('reservation', $shop->id) }}" method="post" class="reservation-form">
         @csrf

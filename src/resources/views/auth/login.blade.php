@@ -15,7 +15,7 @@
         <div class="form__group">
             <div class="form__input-email">
                 <i class="fa-solid fa-envelope"></i>
-                <input type="email" name="email" value="{{ old('email') }}" placeholder="Email" />
+                <input class="form__inner" type="email" name="email" value="{{ old('email') }}" placeholder="Email" />
             </div>
             <div class="form__error">
                 @error('email')
@@ -26,7 +26,7 @@
         <div class="form__group">
             <div class="form__input-password">
                 <i class="fa-solid fa-lock"></i>
-                <input type="password" name="password" placeholder="Password" />
+                <input class="form__inner" type="password" name="password" placeholder="Password" />
             </div>
             <div class="form__error">
                 @error('password')

@@ -28,6 +28,10 @@
     border-bottom: 1px solid #787878;
 }
 
+.form__inner {
+    margin-left: 20px;
+}
+
 .form__error {
     height: 20px;
     width: 400px;
@@ -53,4 +57,8 @@
 .form__group,
 .form__button {
     margin: 20px 25px;
+}
+
+.fa-solid {
+    color: #000000;
 }

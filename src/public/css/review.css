@@ -26,7 +26,7 @@
 .form-rating__label:hover,
 .form-rating__label:hover ~ .form-rating__label,
 .form-rating__input:checked ~ .form-rating__label {
-    color: #c4c403;
+    color: #ffeb3b;
 }
 
 .form__error {
@@ -34,5 +34,26 @@
     width: 100%;
     color: #ff0000;
     text-align: left;
-    padding-left: 20px;
+    margin-bottom: 30px;
+    padding-left: 10px;
+}
+
+.back__btn {
+    padding: 7px 20px;
+    text-decoration: none;
+    border: 1px solid #b2b2b2;
+    background-color: #FEFEFE;
+    color: #212df3;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.submit {
+    padding: 10px 20px;
+    border: none;
+    background-color: #212df3;
+    color: #FEFEFE;
+    border-radius: 5px;
+    cursor: pointer;
 }

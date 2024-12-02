@@ -28,6 +28,8 @@ class ReseController extends Controller
 
     public function detail(Request $request, $id)
     {
+        $userId = Auth::id();
+        $review = ShopReview::findOrFail($userId);
         $today = Carbon::today()->addDay()->format('Y-m-d');
         $shop = Shop::with(['area', 'genre'])->findOrFail($id);
         $times = [];
@@ -36,7 +38,7 @@ class ReseController extends Controller
         }
         $numbers = range(1, 20);
 
-        return view('detail', compact('today', 'shop', 'times', 'numbers'));
+        return view('detail', compact('review', 'today', 'shop', 'times', 'numbers'));
     }
 
     public function search(Request $request)
@@ -169,18 +171,16 @@ class ReseController extends Controller
 
     public function showCreateReview($id)
     {
-        $exists = ShopReview::where('user_id', $request->user()->id)->where('shop_id', $request->$id)->exists();
-
+        $shopId = $id;
         $shop = Shop::findOrFail($shopId);
 
-        if ($exists) {
-        }
+        return view('/review', compact('shop'));
     }
 
     public function store(ShopReviewRequest $request)
     {
         $userId = Auth::id();
-        $stars = $request->input('rating');
+        $stars = $request->input('stars');
         $comment = $request->input('comment');
         $shopId = $request->input('shop_id');
         $reviewData = [
@@ -191,7 +191,7 @@ class ReseController extends Controller
         ];
         ShopReview::create($reviewData);
 
-        return redirect()->route('mypage')->with('result', 'レビューを投稿しました');
+        return redirect()->route('detail')->with('result', 'レビューを投稿しました');
     }
 
     public function showReviewList($id)

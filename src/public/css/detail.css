@@ -38,6 +38,30 @@
     margin: 0;
 }
 
+.link {
+    margin-top: 20px;
+}
+
+.review {
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #212df3;
+    color: #FEFEFE;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.create-review {
+    text-decoration: none;
+    margin-left: 20px;
+    padding: 10px 20px;
+    border: 1px solid #b2b2b2;
+    background-color: #FEFEFE;
+    color: #212df3;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .reservation-form {
     display: flex;
     flex-direction: column;

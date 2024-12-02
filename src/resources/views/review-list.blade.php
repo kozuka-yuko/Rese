@@ -28,5 +28,6 @@
     </div>
     @endforeach
     @endif
+    <a href="#" onclick="history.back()" class="back__btn">戻る</a>
 </div>
 @endsection

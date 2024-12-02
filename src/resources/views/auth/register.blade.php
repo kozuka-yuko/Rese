@@ -15,7 +15,7 @@
         <div class="form__group">
             <div class="form__input">
                 <i class="fa-solid fa-user"></i>
-                <input type="text" name="name" value="{{ old('name') }}" placeholder="Username" />
+                <input class="form__inner" type="text" name="name" value="{{ old('name') }}" placeholder="Username" />
             </div>
             <div class="form__error">
                 @error('name')
@@ -26,7 +26,7 @@
         <div class="form__group">
             <div class="form__input">
                 <i class="fa-solid fa-envelope"></i>
-                <input type="email" name="email" value="{{ old('email') }}" placeholder="Email" />
+                <input class="form__inner" type="email" name="email" value="{{ old('email') }}" placeholder="Email" />
             </div>
             <div class="form__error">
                 @error('email')
@@ -37,7 +37,7 @@
         <div class="form__group">
             <div class="form__input">
                 <i class="fa-solid fa-lock"></i>
-                <input type="password" name="password" placeholder="Password" />
+                <input class="form__inner" type="password" name="password" placeholder="Password" />
             </div>
             <div class="form__error">
                 @error('password')
@@ -47,7 +47,7 @@
         </div>
         <div class="form__group">
             <div class="form__input">
-                <input type="password" name="password_confirmation" placeholder="確認用パスワード" />
+                <input class="form__inner" type="password" name="password_confirmation" placeholder="確認用パスワード" />
             </div>
         </div>
         <div class="form__button">
