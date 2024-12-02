@@ -8,7 +8,7 @@
 @section('content')
 <form action="{{ route('store') }}" class="form" method="post">
     @csrf
-    <h2 class="title">{{ $shop->name }}のレビュー</h2>
+    <h2 class="title">{{ $shop->name }}へのレビュー</h2>
     <p class="stars">満足度</p>
     <div class="form-rating">
         <input type="radio" class="form-rating__input" id="star5" name="stars" value="5">
@@ -35,7 +35,7 @@
         {{ $message }}
         @enderror
     </div>
-    <a href="{{ route('detail') }}" class="back__btn">戻る</a>
+    <a href="{{ route('detail', $shop->id) }}" class="back__btn">戻る</a>
     <input type="hidden" name="shop_id" value="{{ $shop->id }}">
     <button class="submit" type="submit">送信</button>
 </form>

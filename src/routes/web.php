@@ -25,6 +25,7 @@ use Mockery\VerificationExpectation;
 Route::get('/shop', [ReseController::class, 'home'])->name('home');
 Route::get('/detail/{id}', [ReseController::class, 'detail'])->name('detail');
 Route::get('/search', [ReseController::class, 'search'])->name('search');
+Route::get('/review-list/{id}', [ReseController::class, 'showReviewList'])->name('showReviewList');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/thanks', [AuthController::class, 'thanks'])->name('thanks');
@@ -40,7 +41,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/qr-code/visit', [ReseController::class, 'confirmVisit'])->name('confirmVisit');
     Route::get('/review/{id}', [ReseController::class, 'showCreateReview'])->name('showCreateReview');
     Route::post('/review/store', [ReseController::class, 'store'])->name('store');
-    Route::get('/review-list/{id}', [ReseController::class, 'showReviewList'])->name('showReviewList');
     Route::get('/shop_rep/shop', [ShopRepController::class, 'repIndex'])->name('repIndex');
     Route::get('/shop_rep/shop_create', [ShopRepController::class, 'shopCreate'])->name('shopCreate');
     Route::post('/shop_rep/shop_create_confirm', [ShopRepController::class, 'shopCreateConfirm'])->name('shopCreateConfirm');

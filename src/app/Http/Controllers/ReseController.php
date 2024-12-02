@@ -29,9 +29,9 @@ class ReseController extends Controller
     public function detail(Request $request, $id)
     {
         $userId = Auth::id();
-        $review = ShopReview::findOrFail($userId);
         $today = Carbon::today()->addDay()->format('Y-m-d');
         $shop = Shop::with(['area', 'genre'])->findOrFail($id);
+        $review = ShopReview::where('user_id', $userId)->where('shop_id', $shop->id)->first();
         $times = [];
         for ($i = 9; $i <= 19; $i++) {
             $times[] = sprintf('%02d:00', $i);
@@ -191,7 +191,7 @@ class ReseController extends Controller
         ];
         ShopReview::create($reviewData);
 
-        return redirect()->route('detail')->with('result', 'レビューを投稿しました');
+        return redirect()->route('showReviewList', $shopId)->with('result', 'レビューを投稿しました');
     }
 
     public function showReviewList($id)

@@ -39,7 +39,7 @@
 }
 
 .link {
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .review {
@@ -121,4 +121,16 @@
     cursor: pointer;
     color: #FEFEFE;
     padding: 15px;
+}
+
+.created-review {
+    display: inline;
+    margin-left: 20px;
+    padding: 7px 20px;
+    text-decoration: none;
+    border: 1px solid #b2b2b2;
+    background-color: #FEFEFE;
+    color: #212df3;
+    border-radius: 5px;
+    cursor: pointer;
 }
