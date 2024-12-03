@@ -24,9 +24,9 @@ class MailableController extends Controller
         ]);
 
         if ($validated['groupType'] === 'general') {
-            $users = User::whereNull('role')->get();
+            $users = User::doesntHave('roles')->get();
         } elseif ($validated['groupType'] === 'shop_rep') {
-            $users = User::where('role', 'shop_rep')->get();
+            $users = User::role('shop_rep')->get();
         }
 
         $details = [
@@ -38,6 +38,6 @@ class MailableController extends Controller
             SendEmailJob::dispatch($details, $user->email);
         }
 
-        return redirect()->back()->session()->flash('メールが送信されました');
+        return redirect()->back()->with('result', 'メールが送信されました');
     }
 }

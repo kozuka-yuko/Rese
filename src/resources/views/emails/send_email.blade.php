@@ -18,7 +18,7 @@
         <input class="title" type="text" name="title" placeholder="件名" required>
     </div>
     <div class="email__form">
-        <textarea class="textarea" name="textarea" placeholder="本文" cols="100" rows="20" required></textarea>
+        <textarea class="body" name="body" placeholder="本文" cols="100" rows="20" required></textarea>
     </div>
     <a href="#" onclick="history.back()" class="back__btn">戻る</a>
     <button class="send-email__button" type="submit">送信</button>

@@ -10,7 +10,7 @@
 
 .group-type,
 .title,
-.textarea {
+.body {
     padding: 15px;
     border-radius: 5px;
 }
@@ -27,7 +27,7 @@
 }
 
 .send-email__button {
-    display: block;
+    display: inline;
     padding: 10px 15px;
     margin: 0 auto;
     border: none;
