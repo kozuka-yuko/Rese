@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\SendReminderEmail;
 use Illuminate\Console\Command;
 use App\Models\Reservation;
 use App\Mail\ReminderMail;
@@ -44,7 +45,7 @@ class SendReminderEmails extends Command
         $reservations = Reservation::whereDate('date', Carbon::today())->get();
 
         foreach ($reservations as $reservation) {
-            Mail::to($reservation->user->email)->send(new ReminderMail($reservation));
+            SendReminderEmail::dispatch($reservation, $reservation->user->email);
         }
 
         return Command::SUCCESS;

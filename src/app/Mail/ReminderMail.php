@@ -18,9 +18,9 @@ class ReminderMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($reservation)
     {
-        //
+        $this->reservation = $reservation;
     }
 
     /**
@@ -31,6 +31,7 @@ class ReminderMail extends Mailable
     public function build()
     {
         return $this->view('emails.reminder')
-                    ->subject('予約のご確認 Rese');
+                    ->subject('予約のご確認 Rese')
+                    ->with(['reservation' => $this->reservation]);
     }
 }
