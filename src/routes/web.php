@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\ReseController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MailableController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\ShopRepController;
 use Mockery\VerificationExpectation;
@@ -34,7 +35,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/reservation/{id}', [ReseController::class, 'reservation'])->name('reservation');
     Route::delete('/reservation/delete', [ReseController::class, 'reservationDestroy'])->name('reservationDestroy');
     Route::get('/edit/{id}', [ReseController::class, 'edit'])->name('edit');
-    Route::patch('/reservation/{id}', [ReseController::class, 'reservationUpdate'])->name('reservation.update');
+    Route::patch('/reservation/{id}', [ReseController::class, 'reservationUpdate'])->name('reservationUpdate');
     Route::delete('/favorite/delete', [ReseController::class, 'favoriteDestroy'])->name('favoriteDestroy');
     Route::post('/favorite/{id}', [ReseController::class, 'favorite'])->name('favorite');
     Route::get('/qr-code/{id}', [ReseController::class, 'showQrCode'])->name('showQrCode');
@@ -47,17 +48,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/shop_rep/shop_create_confirm', [ShopRepController::class, 'showShopCreateConfirm'])->name('showShopCreateConfirm');
     Route::post('/shop_rep/shop_create_confirm/create', [ShopRepController::class, 'newShopCreate'])->name('newShopCreate');
     Route::post('/shop_create_confirm/cancel', [ShopRepController::class, 'createCancel'])->name('createCancel');
-    Route::delete('/shoprep/shop/delete/{id}', [ShopRepController::class, 'shopDestroy'])->name('shopDestroy');
+    Route::delete('/shop_rep/shop/delete/{id}', [ShopRepController::class, 'shopDestroy'])->name('shopDestroy');
     Route::get('/shop_rep/edit/{id}', [ShopRepController::class, 'shopEdit'])->name('shopEdit');
-    Route::post('shop_rep/confirm_input/{id}', [ShopRepController::class, 'shopUpdateConfirm'])->name('shopUpdateConfirm');
-    Route::get('shop_rep/confirm_input/{id}', [ShopRepController::class, 'showShopUpdateConfirm'])->name('showShopUpdateConfirm');
-    Route::patch('shop_rep/confirm_input/update/{id}', [ShopRepController::class, 'shopUpdate'])->name('shopUpdate');
+    Route::post('/shop_rep/confirm_input/{id}', [ShopRepController::class, 'shopUpdateConfirm'])->name('shopUpdateConfirm');
+    Route::get('/shop_rep/confirm_input/{id}', [ShopRepController::class, 'showShopUpdateConfirm'])->name('showShopUpdateConfirm');
+    Route::patch('/shop_rep/confirm_input/update/{id}', [ShopRepController::class, 'shopUpdate'])->name('shopUpdate');
     Route::post('/cancel', [ShopRepController::class, 'cancel'])->name('cancel');
     Route::get('/shop_rep/reservation_confirm/{num?}', [ShopRepController::class, 'getReservation'])->name('getReservation');
     Route::get('/admin/management', [AdminController::class, 'adIndex'])->name('adIndex');
     Route::get('/admin/shop_rep_list', [AdminController::class, 'shopRepList'])->name('shopRepList');
     Route::get('/admin/shop_rep_list/search', [AdminController::class, 'repSearch'])->name('repSearch');
-    Route::delete('admin/shop_rep_list/delete', [AdminController::class, 'shopRepDestroy'])->name('shopRepDestroy');
+    Route::delete('/admin/shop_rep_list/delete', [AdminController::class, 'shopRepDestroy'])->name('shopRepDestroy');
     Route::get('/admin/new_rep_create', [AdminController::class, 'newRepEdit'])->name('newRepEdit');
     Route::post('/admin/confirm', [AdminController::class, 'shopRepConfirm'])->name('shopRepConfirm');
     Route::get('/admin/confirm', [AdminController::class, 'showRepConfirm'])->name('showRepConfirm');
@@ -68,6 +69,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/admin/update_confirm/store/{id}', [AdminController::class, 'repUpdate'])->name('repUpdate');
     Route::get('/emails/send_email', [MailableController::class, 'emailForm'])->name('emailForm');
     Route::post('/emails/send_email', [MailableController::class, 'sendEmail'])->name('sendEmail');
+    Route::get('/payment', [PaymentController::class, 'showPayment'])->name('showPayment');
 });
 
 Route::get('/email/verify', function () {
