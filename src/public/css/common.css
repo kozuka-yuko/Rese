@@ -3,10 +3,20 @@ body {
     background-color: #f4f4f4;
 }
 
+.app {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
-    padding: 25px 40px;
+    padding: 25px 60px;
+}
+
+.header__heading {
+    display: flex;
+    align-items: center;
 }
 
 .header__logo {
@@ -18,30 +28,40 @@ body {
     text-decoration: none;
 }
 
-.hamburger-top {
-    width: 20px;
-    height: 2px;
-    color: #FEFEFE;
-}
-
-.hamburger-midle {
-    width: 40px;
-    height: 2px;
-    color: #FEFEFE;
-}
-
-.hamburger-under {
-    width: 10px;
-    height: 2px;
-    color: #FEFEFE;
-}
-
 .modal__menu {
-    padding: 10px 20px;
+    width: 40px;
+    height: 40px;
     background-color: #212df3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 7px 10px;
     cursor: pointer;
     border: none;
     border-radius: 5px;
+    box-shadow: 3px 3px 5px #bebebe;
+}
+
+.hamburger-top {
+    width: 10px;
+    height: 1px;
+    background-color: #FEFEFE;
+    border-radius: 3px;
+}
+
+.hamburger-middle {
+    width: 20px;
+    height: 0.5px;
+    background-color: #FEFEFE;
+    border-radius: 3px;
+}
+
+.hamburger-under {
+    width: 5px;
+    height: 1px;
+    background-color: #FEFEFE;
+    border-radius: 3px;
 }
 
 .modal {

@@ -16,9 +16,9 @@
         <header class="header">
             <div class="header__heading">
                 <a href="#modal" class="modal__menu">
-                    <span class="hamburger-top"></span>
-                    <span class="hamburger-middle"></span>
-                    <span class="hamburger-under"></span>
+                    <div class="hamburger-top"></div>
+                    <div class="hamburger-middle"></div>
+                    <div class="hamburger-under"></div>
                 </a>
                 <div class="modal" id="modal">
                     <div class="modal__inner">
