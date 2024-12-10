@@ -2,11 +2,12 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/shop.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 @endsection
 
 @section('search')
 <form class="search-form" action="{{ route('search') }}" method="get">
-    <div class="search">
+    <div class="search__content">
         <select name="area_id" class="area">
             <option value="" hidden>All area</option>
             @foreach ($areas as $area)
@@ -19,6 +20,7 @@
             <option value="{{ $genre->id }}">{{ $genre->name }}</option>
             @endforeach
         </select>
+        <i class="fa-solid fa-magnifying-glass"></i>
         <input type="text" class="search-form__input" name="name_input" placeholder="Search..." value="{{ old('name_input') }}" />
     </div>
 </form>

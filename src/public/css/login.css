@@ -28,6 +28,12 @@
     border-bottom: 1px solid #787878;
 }
 
+.form__input-email,
+.form__input-password {
+    display: flex;
+    align-items: center;
+}
+
 .form__inner {
     margin-left: 20px;
 }

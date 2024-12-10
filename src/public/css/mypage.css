@@ -25,6 +25,7 @@
     font-weight: bold;
     font-size: 20px;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .reservation {
@@ -33,7 +34,7 @@
     background-color: #212df3;
     box-shadow: 3px 3px 5px #bebebe;
     width: 80%;
-    margin: 40px;
+    margin: 15px 40px 40px 0;
     padding: 0 15px 30px;
     line-height: 210%;
     color: #FEFEFE;
@@ -63,9 +64,14 @@
     margin-left: 100%;
 }
 
-.edit {
+.update__button {
+    margin-top: 30px;
+}
+
+.edit,
+.qr-code {
+    margin-right: 20px;
     padding: 5px 10px;
-    margin: 10px 0 0 20px;
     background-color: #212df3;
     text-decoration: none;
     border: 1px solid #FEFEFE;
@@ -74,13 +80,13 @@
     cursor: pointer;
 }
 
-.qr-code {
+.payment {
+    margin-left: 50px;
     padding: 5px 10px;
-    margin: 10px 0 0 30px;
-    background-color: #212df3;
+    background-color: #FEFEFE;
     text-decoration: none;
     border: 1px solid #FEFEFE;
-    color: #FEFEFE;
+    color: #212df3;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -91,7 +97,7 @@
 
 .favorite__status {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .favorite {
@@ -123,7 +129,8 @@
 
 .button {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .detail {

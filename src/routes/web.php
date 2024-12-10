@@ -69,7 +69,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/admin/update_confirm/store/{id}', [AdminController::class, 'repUpdate'])->name('repUpdate');
     Route::get('/emails/send_email', [MailableController::class, 'emailForm'])->name('emailForm');
     Route::post('/emails/send_email', [MailableController::class, 'sendEmail'])->name('sendEmail');
-    Route::get('/payment', [PaymentController::class, 'showPayment'])->name('showPayment');
+    Route::get('/payment/{id}', [PaymentController::class, 'showPayment'])->name('showPayment');
 });
 
 Route::get('/email/verify', function () {

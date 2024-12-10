@@ -1,21 +1,33 @@
-.search-form {
+.search__content {
+    display: flex;
+    align-items: center;
     border: 1px solid #b5b5b5;
     border-radius: 5px;
     background-color: #FEFEFE;
     box-shadow: 3px 3px 5px #bebebe;
-    padding: 10px;
+    padding: 5px;
 }
 
 .area,
 .genre,
 .search-form__input {
     border: none;
+    padding: 10px;
+}
+
+.area,
+.genre {
+    border-right: 1px solid #e4e4e4;
+}
+
+.fa-solid {
+    color: #e4e4e4;
+    margin-left: 10px;
 }
 
 .shop__content {
     display: flex;
     flex-wrap: wrap;
-    padding: 0 30px;
     justify-content: center;
 }
 
