@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
 use App\Models\Shop;
+use App\Http\Requests\PaymentRequest;
 
 class PaymentController extends Controller
 {
@@ -16,7 +17,7 @@ class PaymentController extends Controller
         return view('/payment', compact('shop'));
     }
 
-    public function createCheckoutSession(Request $request)
+    public function createCheckoutSession(PaymentRequest $request)
     {
         Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
         $checkoutSession = Session::create([
@@ -37,5 +38,15 @@ class PaymentController extends Controller
             ]);
 
             return response()->json(['id' => $checkoutSession->id]);
+    }
+
+    public function paymentSuccess()
+    {
+        return view('/success');
+    }
+
+    public function paymentCancel()
+    {
+        return view('/cancel');
     }
 }

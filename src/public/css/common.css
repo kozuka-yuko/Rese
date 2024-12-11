@@ -130,6 +130,8 @@ body {
 .modal__content-btn {
     border: none;
     background-color: #FEFEFE;
+    cursor: pointer;
+    padding-bottom: 15px;
 }
 
 .modal__content--item {

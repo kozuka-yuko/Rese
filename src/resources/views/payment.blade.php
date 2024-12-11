@@ -9,6 +9,11 @@
     <form action="" class="payment">
         <input type="hidden" id="shop_id" class="payment__inner" value="{{ $shop->id }}">
         <input type="number" id="amount" class="payment__inner" placeholder="金額を入力してください">
+        <div class="form__error">
+            @error('amount')
+            {{ $message }}
+            @enderror
+        </div>
         <button class="checkout-button">決済をする</button>
         <a href="{{ route('mypage') }}" class="return__btn" title="戻る">戻る</a>
     </form>

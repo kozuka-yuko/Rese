@@ -1,0 +1,29 @@
+.payment__inner {
+    padding: 10px 20px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+}
+
+.checkout-button {
+    color: #FEFEFE;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #212df3;
+    cursor: pointer;
+}
+
+.return__btn {
+    padding: 7px 20px;
+    text-decoration: none;
+    border: 1px solid #b2b2b2;
+    background-color: #FEFEFE;
+    color: #212df3;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 30px;
+}
+
+.header {
+    padding: 25px 0;
+}
