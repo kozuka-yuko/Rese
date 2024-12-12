@@ -14,13 +14,12 @@
             {{ $message }}
             @enderror
         </div>
-        <button class="checkout-button">決済をする</button>
+        <button id="checkout-button" class="checkout-button">決済をする</button>
         <a href="{{ route('mypage') }}" class="return__btn" title="戻る">戻る</a>
     </form>
 
     <script>
-        const stripe = Stripe('{{ env('
-            STRIPE_PUBLIC_KEY ') }}');
+        const stripe = Stripe('{{ env('STRIPE_PUBLIC_KEY ') }}');
 
         document.getElementById('checkout-button').addEventListener('click', async () => {
             const shopId = document.getElementById('shop_id').value;
@@ -30,7 +29,7 @@
                 alert('金額を入力してください');
                 return;
             }
-            const response = await fetch('/create-checkout-session', {
+            const response = await fetch('/checkout', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

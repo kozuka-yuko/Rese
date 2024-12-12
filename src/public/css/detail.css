@@ -3,6 +3,11 @@
     justify-content: space-between;
 }
 
+.shop-name {
+    display: flex;
+    align-items: center;
+}
+
 .return__btn {
     padding: 10px 20px;
     background-color: #FEFEFE;
@@ -22,6 +27,7 @@
 .shop-name__inner {
     font-size: 40px;
     font-weight: bold;
+    padding-left: 20px;
 }
 
 .img_url {
@@ -88,7 +94,7 @@
 .reservation__date {
     border: none;
     background-color: #FEFEFE;
-    padding: 10px 10px;
+    padding: 10px;
     margin-bottom: 15px;
     border-radius: 5px;
 }

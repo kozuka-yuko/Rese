@@ -2,6 +2,11 @@
     padding-left: 40px;
 }
 
+.title {
+    border-bottom: 2px dashed #b2b2b2;
+    padding-bottom: 10px;
+}
+
 .stars .fa-solid {
     color: #ffeb3b;
 }
@@ -15,6 +20,10 @@
     padding: 0 10px;
 }
 
+.comment__inner {
+    margin: 40px;
+}
+
 .back__btn {
     padding: 7px 20px;
     text-decoration: none;
@@ -23,5 +32,4 @@
     color: #212df3;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 40px;
 }

@@ -1,49 +1,51 @@
-.close__update {
-    position: absolute;
-    top: 20px;
-    right: 18%;
-    font-size: 20px;
-    color: #FEFEFE;
-    border: solid 2px;
-    border-radius: 50%;
-    text-decoration: none;
-    cursor: pointer;
-}
-
 .reservation-form {
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: space-between;
     width: 70%;
-    height: 100vh;
+    height: 83vh;
     border: none;
     background-color: #4b54f5;
     border-radius: 5px;
     margin: 0 auto;
+    padding-top: 20px;
 }
 
-.reservation__date,
-.reservation__time,
-.number__inner {
-    margin-left: 20px;
-}
-
-.reservation__item,
-.reservation__data:first-of-type {
+.close__update {
+    position: absolute;
+    top: 13px;
+    right: 2%;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
     color: #FEFEFE;
-    padding-left: 20px;
+    border: solid 2px #FEFEFE;
+    border-radius: 50%;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
 }
 
-.reservation__item:first-of-type,
-.reservation__data:first-of-type {
-    margin-top: 30px;
+.reservation__table {
+    padding: 20PX 30px;
+}
+
+.reservation__item {
+    color: #FEFEFE;
+    padding: 20px 30px;
+}
+
+.reservation__data {
+    color: #FEFEFE;
+    padding: 10px;
+    font-size: 20px;
 }
 
 .reservation__date {
     border: none;
     background-color: #FEFEFE;
-    padding: 10px 10px;
-    margin-bottom: 15px;
+    padding: 10px;
     border-radius: 5px;
 }
 
@@ -51,8 +53,7 @@
 .number__inner {
     border: none;
     background-color: #FEFEFE;
-    padding: 10px 10px;
-    margin-bottom: 15px;
+    padding: 10px;
     border-radius: 5px;
     cursor: pointer;
 }

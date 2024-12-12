@@ -14,8 +14,9 @@
 }
 
 .return__btn {
-    display: inline-block;
     text-decoration: none;
+    color: #212df3;
+    background-color: #FEFEFE;
     padding: 5px 10px;
     border: 1px solid #bebebe;
     border-radius: 5px;
@@ -24,7 +25,7 @@
 
 .submit {
     display: inline-block;
-    margin-left: 30px;
+    margin-top: 20px;
     padding: 10px;
     border: none;
     background-color: #212df3;

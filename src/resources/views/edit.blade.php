@@ -6,10 +6,10 @@
 
 @section('content')
 <div class="update">
-    <a href="{{ route('mypage') }}" class="close__update" title="閉じる">&times;</a>
     <form action="{{ route('reservationUpdate', $reservation->id) }}" method="post" class="reservation-form">
         @method('PATCH')
         @csrf
+        <a href="{{ route('mypage') }}" class="close__update" title="閉じる">&times;</a>
         <table class="reservation__table">
             <tr class="table__row">
                 <td class="reservation__item">Shop</td>
@@ -49,3 +49,4 @@
         </div>
     </form>
 </div>
+@endsection
