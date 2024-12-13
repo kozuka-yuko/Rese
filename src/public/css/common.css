@@ -4,14 +4,13 @@ body {
 }
 
 .app {
-    max-width: 1200px;
     margin: 0 auto;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
-    padding: 25px 60px;
+    padding: 25px 80px;
     align-items: center;
 }
 

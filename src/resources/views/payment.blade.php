@@ -6,22 +6,25 @@
 
 @section('content')
 <div class="content">
-    <form action="" class="payment">
-        <input type="hidden" id="shop_id" class="payment__inner" value="{{ $shop->id }}">
-        <input type="number" id="amount" class="payment__inner" placeholder="金額を入力してください">
+    <form action="" class="payment" method="post">
+        @csrf
+        <input type="hidden" id="shop_id" name="shop_id" class="payment__inner" value="{{ $shop->id }}">
+        <input type="number" name="amount" id="amount" class="payment__inner" placeholder="金額を入力してください">
         <div class="form__error">
             @error('amount')
             {{ $message }}
             @enderror
         </div>
-        <button id="checkout-button" class="checkout-button">決済をする</button>
+        <button type="button" id="checkout-button" class="checkout-button">決済をする</button>
         <a href="{{ route('mypage') }}" class="return__btn" title="戻る">戻る</a>
     </form>
 
+    <script src="https://js.stripe.com/v3/"></script>
     <script>
-        const stripe = Stripe('{{ env('STRIPE_PUBLIC_KEY ') }}');
+        const stripe = Stripe('{{ env('STRIPE_PUBLIC_KEY') }}');
 
-        document.getElementById('checkout-button').addEventListener('click', async () => {
+        document.getElementById('checkout-button').addEventListener('click', async (e) => {
+            e.preventDefault();
             const shopId = document.getElementById('shop_id').value;
             const amount = document.getElementById('amount').value;
 
@@ -38,7 +41,7 @@
                 body: JSON.stringify({
                     shop_id: shopId,
                     amount: amount
-                }),
+                })
             });
 
             const session = await response.json();

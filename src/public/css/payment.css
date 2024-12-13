@@ -1,3 +1,7 @@
+.content {
+    padding: 60px;
+}
+
 .payment__inner {
     padding: 10px 20px;
     margin-bottom: 30px;
@@ -22,8 +26,4 @@
     border-radius: 5px;
     cursor: pointer;
     margin-left: 30px;
-}
-
-.header {
-    padding: 25px 0;
 }

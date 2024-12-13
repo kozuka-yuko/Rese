@@ -7,6 +7,7 @@ use Stripe\Stripe;
 use Stripe\Checkout\Session;
 use App\Models\Shop;
 use App\Http\Requests\PaymentRequest;
+use App\Models\Payment;
 
 class PaymentController extends Controller
 {
@@ -34,7 +35,7 @@ class PaymentController extends Controller
                     'quantity' => 1,
                     ]],
                     'mode' => 'payment',
-                    'success_url' => url('/success'),
+                    'success_url' => url('/success?session_id={CHECKOUT_SESSION_ID}'),
                     'cancel_url' => url('/cancel'),
                 ]);
                 
@@ -47,12 +48,18 @@ class PaymentController extends Controller
 
     public function paymentSuccess(Request $request)
     {
+        $request->validate([
+            'session_id' => 'required|string',
+        ]);
+
         try {
             Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
-            $session = Session::retrieve($request->get('session_id'));
+            $session = Session::retrieve($request->query('session_id'));
+
             if ($session->payment_status === 'paid') {
                 Payment::create([
                     'user_id' => auth()->id(),
+                    'shop_id' => $request->query('shop_id'),
                     'amount' => $session->amount_total / 100,
                     'status' => 'success',
                     'transaction_id' => $session->payment_intent,
@@ -64,7 +71,7 @@ class PaymentController extends Controller
             return redirect('/mypage')->with('error','支払いに失敗しました');
         } catch (\Exception $e) {
             \Log::error('Error during payment success prosessing:' . $e->getMessage());
-            return redirect('mypage')->with('error', '決済処理中にエラーが発生しました');
+            return redirect('/mypage')->with('error', '決済処理中にエラーが発生しました');
         }
     }
 
