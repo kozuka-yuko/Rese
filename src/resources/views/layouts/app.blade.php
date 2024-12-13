@@ -97,6 +97,15 @@
             session()->forget('result');
             @endphp
             @endif
+
+            @if (session('error'))
+            <div class="message__inner--error">
+                {{ session('error') }}
+            </div>
+            @php
+            session()->forget('error');
+            @endphp
+            @endif
         </div>
             @yield('content')
     </div>

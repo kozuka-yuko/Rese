@@ -144,3 +144,10 @@ body {
     color: #ce8213;
     font-size: 20px;
 }
+
+.message__inner--error {
+    height: 20px;
+    width: 400px;
+    color: #ff0000;
+    text-align: left;
+}
