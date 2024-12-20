@@ -16,7 +16,7 @@
             @enderror
         </div>
         <button type="button" id="checkout-button" class="checkout-button">決済をする</button>
-        <a href="{{ route('mypage') }}" class="return__btn" title="戻る">戻る</a>
+        <a href="{{ route('mypage') }}" class="return__btn">戻る</a>
     </form>
 
     <script src="https://js.stripe.com/v3/"></script>

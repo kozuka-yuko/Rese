@@ -20,6 +20,8 @@ class PaymentController extends Controller
 
     public function createCheckoutSession(PaymentRequest $request)
     {
+        session(['shop_id' => $request->shop_id]);
+
         try{
             Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
             $checkoutSession = Session::create([
@@ -30,13 +32,13 @@ class PaymentController extends Controller
                         'product_data' => [
                             'name' => '店舗ID: ' . $request->shop_id,
                         ],
-                        'unit_amount' => $request->amount * 100,
+                        'unit_amount' => $request->amount,
                     ],
                     'quantity' => 1,
                     ]],
                     'mode' => 'payment',
-                    'success_url' => url('/success?session_id={CHECKOUT_SESSION_ID}'),
-                    'cancel_url' => url('/cancel'),
+                    'success_url' => route('payment.success', ['session_id' => '{CHECKOUT_SESSION_ID}']),
+                    'cancel_url' => route('payment.cancel'),
                 ]);
                 
                 return response()->json(['id' => $checkoutSession->id]);
@@ -55,6 +57,11 @@ class PaymentController extends Controller
         try {
             Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
             $session = Session::retrieve($request->query('session_id'));
+
+            $shop_id = session('shop_id');
+            if (!$shop_id) {
+                throw new \Exception('shop_id is missing.');
+            }
 
             if ($session->payment_status === 'paid') {
                 Payment::create([
