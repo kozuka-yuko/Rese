@@ -8,6 +8,8 @@ use Stripe\Checkout\Session;
 use App\Models\Shop;
 use App\Http\Requests\PaymentRequest;
 use App\Models\Payment;
+use Stripe\Exception\ApiErrorException;
+use Illuminate\Support\Facades\Log;
 
 class PaymentController extends Controller
 {
@@ -37,13 +39,13 @@ class PaymentController extends Controller
                     'quantity' => 1,
                     ]],
                     'mode' => 'payment',
-                    'success_url' => route('payment.success', ['session_id' => '{CHECKOUT_SESSION_ID}']),
-                    'cancel_url' => route('payment.cancel'),
+                    'success_url' => route('paymentSuccess', ['session_id' => '{CHECKOUT_SESSION_ID}']),
+                    'cancel_url' => route('paymentCancel'),
                 ]);
                 
                 return response()->json(['id' => $checkoutSession->id]);
             } catch (ApiErrorException $e) {
-                \Log::error('Stripe API Error:' . $e->getMessage());
+                Log::error('Stripe API Error:' . $e->getMessage());
                 return response()->json(['error' => '決済処理に失敗しました。後ほど再試行してください。'], 500);
             }
     }
@@ -67,7 +69,7 @@ class PaymentController extends Controller
                 Payment::create([
                     'user_id' => auth()->id(),
                     'shop_id' => $request->query('shop_id'),
-                    'amount' => $session->amount_total / 100,
+                    'amount' => $session->amount_total,
                     'status' => 'success',
                     'transaction_id' => $session->payment_intent,
                     'payment_method' => 'Stripe',
@@ -77,7 +79,7 @@ class PaymentController extends Controller
             }
             return redirect('/mypage')->with('error','支払いに失敗しました');
         } catch (\Exception $e) {
-            \Log::error('Error during payment success prosessing:' . $e->getMessage());
+            Log::error('Error during payment success prosessing:' . $e->getMessage());
             return redirect('/mypage')->with('error', '決済処理中にエラーが発生しました');
         }
     }

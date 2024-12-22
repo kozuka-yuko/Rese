@@ -15,13 +15,14 @@
             {{ $message }}
             @enderror
         </div>
-        <button type="button" id="checkout-button" class="checkout-button">決済をする</button>
+        <button type="submit" id="checkout-button" class="checkout-button">決済をする</button>
         <a href="{{ route('mypage') }}" class="return__btn">戻る</a>
     </form>
 
     <script src="https://js.stripe.com/v3/"></script>
+
     <script>
-        const stripe = Stripe('{{ env('STRIPE_PUBLIC_KEY') }}');
+        const stripe = Stripe('{{ config('services.stripe.public_key') }}');
 
         document.getElementById('checkout-button').addEventListener('click', async (e) => {
             e.preventDefault();
