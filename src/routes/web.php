@@ -70,6 +70,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/emails/send_email', [MailableController::class, 'emailForm'])->name('emailForm');
     Route::post('/emails/send_email', [MailableController::class, 'sendEmail'])->name('sendEmail');
     Route::get('/payment/{id}', [PaymentController::class, 'showPayment'])->name('showPayment');
+    Route::get('/checkout', [PaymentController::class, 'createCheckoutSession'])->name('createCheckoutSession');
     Route::post('/checkout', [PaymentController::class, 'createCheckoutSession'])->name('createCheckoutSession');
     Route::get('/success', [PaymentController::class, 'paymentSuccess'])->name('paymentSuccess');
     Route::get('/cancel', [PaymentController::class, 'paymentCancel'])->name('paymentCancel');
