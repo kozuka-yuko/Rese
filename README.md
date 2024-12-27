@@ -50,7 +50,7 @@ larevel-fortify、laravel-permission、Stripe、Javascript
 
 クローンを作りたいディレクトリ下で以下のコマンドを実行。
 
-`$ git clone git@github.com:coachtech-material/laravel-docker-template.git`
+`$ git clone git@github.com:kozuka-yuko/Rese.git`
 
 リポジトリ名の変更。
 
@@ -63,7 +63,6 @@ GitHubで、上記コマンドで指定した「新しいリポジトリ名」�
 
 URLはQuik setup～内の四角が二つ重なったアイコンから取得する。
 
-(https://coachtech-lms-bucket.s3.ap-northeast-1.amazonaws.com/curriculum/07_part/01_chapter/img/remote-url.png)
 下記コマンドの実行。
 ```
 $ cd contact-form
@@ -132,6 +131,44 @@ DB_PORT=3306
 ```
 上記はdocker-compose.ymlで作成したデータベース名、ユーザー名、パスワードを記述している。
 （mysqlのenvironent部分）
-docker-compose.ymlで設定したphpmyadminにデータベース（laravel_db）が存在しているか確認ができたら完了。
-(http://localhost:8080/) で確認。
+docker-compose.ymlで設定したphpmyadminにデータベース（laravel_db）が存在しているか確認。
+http://localhost:8080/ で確認。
 
+'$ php artisan key:generate'
+
+データベースにダミーデータが存在するので以下のコマンドを実行することで表示される。
+
+PHPコンテナ内
+'''
+$ php artisan migrate
+$ php artisan db:seed
+'''
+
+
+＊メール認証＊
+.envファイルの MAIL_FORM_ADRESS= をnullではなく任意のメールアドレスにしてください。
+＜MailHogについて＞
+
+
+・キューの実行
+　大量のデータ処理やメール送信など時間のかかる重たい処理をバックグラウンドで非同期で行うために以下のコマンドを実行してください。
+ 
+ PHPコンテナ内
+ '$ php artisan queue:work'
+（停止はCtrl+C）
+
+ ・スケジューラー実行
+ 　リマインドメールを送信できるようにするために実行してください。
+
+  PHPコンテナ内（キューを実行しているので同じターミナル内でコマンドを打てないため新しいターミナルを開いて実行してください）
+  '$ php artisan schedule:work'
+  （停止はCtrl+C）
+
+  ・Stripe決済の実行
+  　Stripe決済を使用するために実行してください。
+
+   PHPコンテナ内（さらに新しいターミナルを開いて実行してください）
+   '$ php artisan serve'
+   （停止はCtrl+C）
+
+   
