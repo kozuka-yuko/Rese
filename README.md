@@ -131,15 +131,15 @@ docker-compose.ymlで設定したphpmyadminにデータベース（laravel_db）
 http://localhost:8080/ で確認。
 
 7.アプリケーションを実行できるようにキーを作成する
-'$ php artisan key:generate'
+`$ php artisan key:generate`
 
 データベースにダミーデータが存在するので以下のコマンドを実行することで表示される。
 
 PHPコンテナ内
-'''
+```
 $ php artisan migrate
 $ php artisan db:seed
-'''
+```
 
 
 ＊メール認証＊
@@ -151,21 +151,21 @@ $ php artisan db:seed
 　大量のデータ処理やメール送信など時間のかかる重たい処理をバックグラウンドで非同期で行うために以下のコマンドを実行してください。
  
  PHPコンテナ内
- '$ php artisan queue:work'
+ `$ php artisan queue:work`
 （停止はCtrl+C）
 
  ・スケジューラー実行
  　リマインドメールを送信できるようにするために実行してください。
 
   PHPコンテナ内（キューを実行しているので同じターミナル内でコマンドを打てないため新しいターミナルを開いて実行してください）
-  '$ php artisan schedule:work'
+  `$ php artisan schedule:work`
   （停止はCtrl+C）
 
   ・Stripe決済の実行
   　Stripe決済を使用するために実行してください。
 
    PHPコンテナ内（さらに新しいターミナルを開いて実行してください）
-   '$ php artisan serve'
+   `$ php artisan serve`
    （停止はCtrl+C）
 
 
