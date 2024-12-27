@@ -8,16 +8,17 @@
 また、ユーザー、管理者、店舗代表者の３つの権限を用意しました。
 
 ![アプリのトップ画面](./docs/top_screen.png)
+  
 
 ## 作成した目的
 外部の飲食店予約サービス手数料を取られるので自社で予約サービスを持つため。
-
+  
 ## アプリケーションのURL
-
+<br>  
 
 ## 機能一覧
 ＊ユーザー＊　会員登録、ログイン/ログアウト、お気に入り追加/削除、予約の追加/変更/削除、レビュー機能、  
-             店舗検索（ジャンル/エリア/店舗名の部分一致）、リマインドメール送信、QRコードで予約確認/来店に更新、決済機能（Stripe）
+    店舗検索（ジャンル/エリア/店舗名の部分一致）、リマインドメール送信、QRコードで予約確認/来店に更新、決済機能（Stripe）
 
 ＊管理者＊　店舗代表者作成/更新/削除、代表者検索、お知らせメール送信
 
@@ -41,73 +42,84 @@ larevel-fortify、laravel-permission、Stripe、Javascript
 ![ER図](./docs/er.drawio.png)
 
 # 環境構築
-1.リポジトリの設定
-  開発環境をGitHubからクローン。
+<dl>
+<dt>1.リポジトリの設定</dt>
+<dd>開発環境をGitHubからクローン。</dd>
 
-  クローンを作りたいディレクトリ下で以下のコマンドを実行。
+<dd>クローンを作りたいディレクトリ下で以下のコマンドを実行。</dd>
 
-  `$ git clone git@github.com:kozuka-yuko/Rese.git`
+`$ git clone git@github.com:kozuka-yuko/Rese.git`
 
-  リポジトリ名の変更。
+<dd>リポジトリ名の変更。</dd>
 
-  `$ mv laravel-docker-template 新しいリポジトリ名`
+`$ mv laravel-docker-template 新しいリポジトリ名`
 
-2.個人のリモートリポジトリURLを変更
-  GitHubで、上記コマンドで指定した「新しいリポジトリ名」で変更先のリモートリポジトリをpublicで作成。
+<dt>2.個人のリモートリポジトリURLを変更</dt>
+<dd>GitHubで、上記コマンドで指定した「新しいリポジトリ名」で変更先のリモートリポジトリをpublicで作成。</dd>
 
-  ローカルリポジトリから紐づけ先を変更するために、GitHubで新しいリポジトリ名で作成したリポジトリのURLを取得する。
+<dd>ローカルリポジトリから紐づけ先を変更するために、GitHubで新しいリポジトリ名で作成したリポジトリのURLを取得する。</dd>
 
-  URLはQuik setup～内の四角が二つ重なったアイコンから取得する。
+<dd>URLはQuik setup～内の四角が二つ重なったアイコンから取得する。</dd>
 
-  下記コマンドの実行。
+<dd>下記コマンドの実行。</dd>  
+
   ```
   $ cd contact-form
   $ git remote set-url origin 作成したリポジトリのURL
   $ git remote -v
   ```
-  ３つ目のコマンドを実行した時に変更先のURLが表示されれば成功。
 
-3.現在のローカルリポジトリのデータをリモートリポジトリに反映させる
+<dd>３つ目のコマンドを実行した時に変更先のURLが表示されれば成功。</dd>
 
-  下記コマンドの実行。
+<dt>3.現在のローカルリポジトリのデータをリモートリポジトリに反映させる</dt>
+
+  <dd>下記コマンドの実行。</dd>
+  
   ```
   $ git add .
   $ git commit -m "リモートリポジトリの変更"
   $ git push origin main
   ```
-  GitHubのページを見てdockerフォルダやsrcフォルダが反映されていれば成功。
 
-  エラーが発生する場合は
+  <dd>GitHubのページを見てdockerフォルダやsrcフォルダが反映されていれば成功。</dd>
+
+  <dd>エラーが発生する場合は</dd>
 
   `$ sudo chmod -R 777 *`
 
-  コマンドを実行後、もう一度コマンドを実行し直してみる。
+  <dd>コマンドを実行後、もう一度コマンドを実行し直してみる。</dd>
 
-4.Dockerの設定
-  下記コマンドの実行。
+<dt>4.Dockerの設定</dt>
+  <dd>下記コマンドの実行。</dd>
+  
   ```
   $ docker-compose up -d --build`
   $ code .
   ```
-  Dockerにコンテナができているか確認。
 
-5.laravelのパッケージのインストール
-  共有元が作成したcomposer.jsonファイルやcomposer.lockファイルを元に必要なパッケージをインストールする。
+  <dd>Dockerにコンテナができているか確認。</dd>
 
-  PHPコンテナ内にログインする  
+<dt>5.laravelのパッケージのインストール</dt>
+<dd>共有元が作成したcomposer.jsonファイルやcomposer.lockファイルを元に必要なパッケージをインストールする。</dd>
+
+<dd>PHPコンテナ内にログインする </dd>  
+
   `$ docker-compose exec php bash`
 
-  下記コマンドでcomposer.jsonに記載されたパッケージのリストをインストール。
+<dd>下記コマンドでcomposer.jsonに記載されたパッケージのリストをインストール。</dd>
 
   `$ composer install`
 
-6.「.envファイル」の作成
-  データベースに接続するために .envファイルを作成。PHPコンテナ内で以下のコマンドを実行。
+<dt>6.「.envファイル」の作成</dt>
+  <dd>データベースに接続するために .envファイルを作成。PHPコンテナ内で以下のコマンドを実行。</dd> 
+  
   ```
   $ cp .env.example .env
   $ exit
   ```
-  作成できたらVSCodeから .envファイルの11行目以降を以下のように修正。
+  
+  <dd>作成できたらVSCodeから .envファイルの11行目以降を以下のように修正。</dd>
+  
   ```
   // 前略
 
@@ -124,51 +136,61 @@ larevel-fortify、laravel-permission、Stripe、Javascript
 
   // 後略
   ```
-  上記はdocker-compose.ymlで作成したデータベース名、ユーザー名、パスワードを記述している。
-  （mysqlのenvironent部分）
-  docker-compose.ymlで設定したphpmyadminにデータベース（laravel_db）が存在しているか確認。
-  http://localhost:8080/ で確認。
 
-7.アプリケーションを実行できるようにキーを作成する  
+<dd>上記はdocker-compose.ymlで作成したデータベース名、ユーザー名、パスワードを記述している。</dd>
+<dd>（mysqlのenvironent部分）</dd>
+<dd>docker-compose.ymlで設定したphpmyadminにデータベース（laravel_db）が存在しているか確認。</dd>
+<dd>http://localhost:8080/ で確認。</dd>
+
+<dt>7.アプリケーションを実行できるようにキーを作成する</dt>  
+
   `$ php artisan key:generate`
 
-  データベースにダミーデータが存在するので以下のコマンドを実行することで表示される。
+<dd>データベースにダミーデータが存在するので以下のコマンドを実行することで表示される。</dd>
 
-  PHPコンテナ内  
+  <dd>PHPコンテナ内 </dd>  
+  
   ```
   $ php artisan migrate
   $ php artisan db:seed
   ```
 
+</dl>
 
-＊メール認証＊  
+## メール認証 
   .envファイルの MAIL_FORM_ADRESS= をnullではなく任意のメールアドレスにしてください。  
   ＜MailHogについて＞
 
-
-  ・キューの実行  
-　  大量のデータ処理やメール送信など時間のかかる重たい処理をバックグラウンドで非同期で行うために以下のコマンドを実行してください。  
+<dl>
+  <dt>・キューの実行  </dt>
+　  <dd>大量のデータ処理やメール送信など時間のかかる重たい処理をバックグラウンドで非同期で行うために以下のコマンドを実行してください。</dd>  
  
-   PHPコンテナ内  
+   <dd>PHPコンテナ内</dd>
+   
    `$ php artisan queue:work`  
-  （停止はCtrl+C）
+  
+  <dd>（停止はCtrl+C）</dd>
 
- ・スケジューラー実行  
- 　  リマインドメールを送信できるようにするために実行してください。  
+ <dt>・スケジューラー実行</dt>  
+ <dd>リマインドメールを送信できるようにするために実行してください。</dd>  
 
-    PHPコンテナ内（キューを実行しているので同じターミナル内でコマンドを打てないため新しいターミナルを開いて実行してください）  
-    `$ php artisan schedule:work`  
-    （停止はCtrl+C）  
+<dd>PHPコンテナ内（キューを実行しているので同じターミナル内でコマンドを打てないため新しいターミナルを開いて実行してください)</dd>
+    
+`$ php artisan schedule:work`  
+    
+<dd>(停止はCtrl+C)</dd>
 
-  ・Stripe決済の実行  
-  　Stripe決済を使用するために実行してください。  
+<dt>・Stripe決済の実行</dt>  
+<dd>Stripe決済を使用するために実行してください。</dd>  
 
-     PHPコンテナ内（さらに新しいターミナルを開いて実行してください）  
-     `$ php artisan serve`  
-     （停止はCtrl+C）  
+<dd>PHPコンテナ内（さらに新しいターミナルを開いて実行してください）</dd>
+     
+`$ php artisan serve`  
+     
+<dd>(停止はCtrl+C)</dd>
+</dl>   
 
-
-   ##アカウントの種類  
+   ## アカウントの種類  
    1.管理者　　　　email: admin@sample.com  
    2.店舗代表者　　email: shop_rep@sample.com  
    3.ユーザー　　　email: gest@sample.com  
