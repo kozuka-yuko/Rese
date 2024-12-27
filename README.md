@@ -130,6 +130,7 @@ DB_PORT=3306
 docker-compose.ymlで設定したphpmyadminにデータベース（laravel_db）が存在しているか確認。
 http://localhost:8080/ で確認。
 
+7.アプリケーションを実行できるようにキーを作成する
 '$ php artisan key:generate'
 
 データベースにダミーデータが存在するので以下のコマンドを実行することで表示される。
@@ -167,4 +168,11 @@ $ php artisan db:seed
    '$ php artisan serve'
    （停止はCtrl+C）
 
+
+   ##アカウントの種類
+   1.管理者　　　　email: admin@sample.com
+   2.店舗代表者　　email: shop_rep@sample.com
+   3.ユーザー　　　email: gest@sample.com
+   
+   ※パスワードは全て”password”でログインできます。
    
