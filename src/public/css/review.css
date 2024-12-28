@@ -1,5 +1,9 @@
 .form {
-    padding-left: 40px;
+    padding-left: 80px;
+}
+
+.stars {
+    font-size: 20px;
 }
 
 .form-rating {

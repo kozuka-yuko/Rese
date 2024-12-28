@@ -1,5 +1,5 @@
 .content {
-    padding: 0 40px;
+    padding: 0 80px;
 }
 
 .mypage__content {
@@ -17,8 +17,8 @@
 .reservation__content {
     display: flex;
     flex-direction: column;
-    height: 100%;
     width: 50%;
+    margin-bottom: 100px;
 }
 
 .title {
@@ -91,6 +91,11 @@
     cursor: pointer;
 }
 
+.review__title {
+    border-bottom: 1px dashed #000000;
+    margin-bottom: 40px;
+}
+
 .favorite__content {
     width: 50%;
 }
@@ -125,6 +130,7 @@
 
 .shop__name {
     font-weight: bold;
+    display: inline;
 }
 
 .button {
@@ -145,6 +151,17 @@
     border-radius: 5px;
     cursor: pointer;
     color: #FEFEFE;
+}
+
+.create-review {
+    text-decoration: none;
+    margin-left: 20px;
+    padding: 10px 20px;
+    border: 1px solid #b2b2b2;
+    background-color: #FEFEFE;
+    color: #212df3;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .favorite-form {

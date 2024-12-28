@@ -12,44 +12,55 @@
         </h2>
     </div>
     <div class="mypage__content">
-        <div class="reservation__content">
-            <div class="title">予約状況</div>
-            <div class="reservation__status">
-                @foreach ($reservations as $reservation)
-                <div class="reservation">
-                    <p class="title__num">予約{{ $loop->iteration }}</p>
-                    <form action="{{ route('reservationDestroy') }}" method="post" class="delete-reservation">
-                        @method('DELETE')
-                        @csrf
-                        <input type="hidden" name="id" value="{{ $reservation->id }}">
-                        <button class="delete-reservation__button-submit" type="submit" title="削除" onclick='return confirm("{{ $reservation->shop->name }}の予約を削除しますか？")'>&times;</button>
-                    </form>
-                    <table class="reservation__table">
-                        <tr class="table__row">
-                            <td class="reservation__data">Shop</td>
-                            <td class="reservation__data">{{ $reservation->shop->name }}</td>
-                        </tr>
-                        <tr class="table__row">
-                            <td class="reservation__data">Date</td>
-                            <td class="reservation__data">{{ $reservation->date }}</td>
-                        </tr>
-                        <tr class="table__row">
-                            <td class="reservation__data">Time</td>
-                            <td class="reservation__data">{{ $reservation->time }}</td>
-                        </tr>
-                        <tr class="table__row">
-                            <td class="reservation__data">Number</td>
-                            <td class="reservation__data">{{ $reservation->number }}人</td>
-                        </tr>
-                    </table>
-                    <div class="update__button">
-                        <a href="{{ route('edit',$reservation->id) }}" class="edit">変更</a>
-                        <a href="{{ route('showQrCode', $reservation->id) }}" class="qr-code">QRコードを表示する</a>
-                        <a href="{{ route('showPayment', $reservation->shop->id) }}" class="payment">お支払い</a>
+        <div>
+            <div class="reservation__content">
+                <div class="title">予約状況</div>
+                <div class="reservation__status">
+                    @foreach ($reservations as $reservation)
+                    <div class="reservation">
+                        <p class="title__num">予約{{ $loop->iteration }}</p>
+                        <form action="{{ route('reservationDestroy') }}" method="post" class="delete-reservation">
+                            @method('DELETE')
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $reservation->id }}">
+                            <button class="delete-reservation__button-submit" type="submit" title="削除" onclick='return confirm("{{ $reservation->shop->name }}の予約を削除しますか？")'>&times;</button>
+                        </form>
+                        <table class="reservation__table">
+                            <tr class="table__row">
+                                <td class="reservation__data">Shop</td>
+                                <td class="reservation__data">{{ $reservation->shop->name }}</td>
+                            </tr>
+                            <tr class="table__row">
+                                <td class="reservation__data">Date</td>
+                                <td class="reservation__data">{{ $reservation->date }}</td>
+                            </tr>
+                            <tr class="table__row">
+                                <td class="reservation__data">Time</td>
+                                <td class="reservation__data">{{ $reservation->time }}</td>
+                            </tr>
+                            <tr class="table__row">
+                                <td class="reservation__data">Number</td>
+                                <td class="reservation__data">{{ $reservation->number }}人</td>
+                            </tr>
+                        </table>
+                        <div class="update__button">
+                            <a href="{{ route('edit',$reservation->id) }}" class="edit">変更</a>
+                            <a href="{{ route('showQrCode', $reservation->id) }}" class="qr-code">QRコードを表示する</a>
+                            <a href="{{ route('showPayment', $reservation->shop->id) }}" class="payment">お支払い</a>
+                        </div>
+                        <p class="qr-code__info">※ご来店時に入口で店舗スタッフにQRコードを見せてください。</p>
                     </div>
-                    <p class="qr-code__info">※ご来店時に入口で店舗スタッフにQRコードを見せてください。</p>
+                    @endforeach
                 </div>
+            </div>
+            <div class="review">
+                @if ($shops && $shops->isNotEmpty())
+                <h3 class="review__title">♪ 行ったお店のレビューをしよう ♪</h3>
+                @foreach ($shops as $shop)
+                <p class="shop__name">{{ $shop->name }}</p>
+                <a href="{{ route('showCreateReview', $shop->id) }}" class="create-review">レビューを書く</a>
                 @endforeach
+                @endif
             </div>
         </div>
         <div class="favorite__content">

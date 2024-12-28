@@ -31,6 +31,16 @@ class Shop extends Model
         return $this->belongsToMany(User::class, 'shop_user', 'shop_id', 'user_id');
     }
 
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+
+    public function shop_reviews()
+    {
+        return $this->hasMany(ShopReview::class);
+    }
+
     public function scopeAreaSearch($query, $area_id)
     {
         if (!empty($area_id)) {

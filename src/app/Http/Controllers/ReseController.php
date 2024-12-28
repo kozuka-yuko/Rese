@@ -31,14 +31,13 @@ class ReseController extends Controller
         $userId = Auth::id();
         $today = Carbon::today()->addDay()->format('Y-m-d');
         $shop = Shop::with(['area', 'genre'])->findOrFail($id);
-        $review = ShopReview::where('user_id', $userId)->where('shop_id', $shop->id)->first();
         $times = [];
         for ($i = 9; $i <= 19; $i++) {
             $times[] = sprintf('%02d:00', $i);
         }
         $numbers = range(1, 20);
 
-        return view('detail', compact('review', 'today', 'shop', 'times', 'numbers'));
+        return view('detail', compact('today', 'shop', 'times', 'numbers'));
     }
 
     public function search(Request $request)
@@ -73,6 +72,9 @@ class ReseController extends Controller
     {
         $user = Auth::user();
         $reservations = Reservation::where('user_id', $user->id)->whereDate('date', '>=', Carbon::today())->orderBy('date', 'asc')->get();
+        $shops = Shop::whereHas('reservations', function ($query) {
+            $query->where('status', 'ご来店');
+        })->whereDoesntHave('shop_reviews')->get();
         $favorites = Favorite::where('user_id', $user->id)->with('shop')->get();
         $today = Carbon::today()->addDay()->format('Y-m-d');
         $times = [];
@@ -81,7 +83,7 @@ class ReseController extends Controller
         }
         $numbers = range(1, 20);
 
-        return view('mypage', compact('user', 'reservations', 'favorites', 'today', 'times', 'numbers'));
+        return view('mypage', compact('user', 'reservations', 'shops', 'favorites', 'today', 'times', 'numbers'));
     }
 
     public function reservationDestroy(Request $request)
