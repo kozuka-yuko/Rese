@@ -23,3 +23,9 @@
     color: #FEFEFE;
     text-decoration: none;
 }
+
+@media screen and (max-width:768px) {
+    .thanks__content {
+        width: 60%;
+    }
+}

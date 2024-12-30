@@ -1,16 +1,22 @@
 .form {
-    padding-left: 80px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.title {
+    margin-bottom: 40px;
 }
 
 .stars {
     font-size: 20px;
+    padding-right: 250px;
 }
 
 .form-rating {
     align-items: center;
     display: flex;
     flex-direction: row-reverse;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 .form-rating__input {
@@ -41,6 +47,12 @@
     padding-left: 10px;
 }
 
+.comment__inner {
+    margin: 5px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
 .back__btn {
     padding: 7px 20px;
     text-decoration: none;
@@ -49,7 +61,7 @@
     color: #212df3;
     border-radius: 5px;
     cursor: pointer;
-    margin-right: 20px;
+    margin-right: 80px;
 }
 
 .submit {

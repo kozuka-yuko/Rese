@@ -21,3 +21,9 @@
     border: none;
     text-decoration: none;
 }
+
+@media screen and (max-width:768px) {
+    .done__content {
+        width: 60%;
+    }
+}

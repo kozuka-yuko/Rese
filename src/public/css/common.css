@@ -10,7 +10,7 @@ body {
 .header {
     display: flex;
     justify-content: space-between;
-    padding: 25px 80px;
+    padding: 25px 60px;
     align-items: center;
 }
 
@@ -150,4 +150,10 @@ body {
     color: #ff0000;
     text-align: left;
     padding-left: 30px;
+}
+
+@media screen and (max-width:768px) {
+    .header {
+        padding: 25px 50px;
+    }
 }

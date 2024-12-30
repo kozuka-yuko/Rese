@@ -6,13 +6,17 @@
     text-align: center;
     margin: 0 0 20px 0;
     color: #4b54f5;
-    margin-bottom: 20px;
+}
+
+.link {
+    padding: 30px 0;
 }
 
 .link-btn {
     list-style: none;
     margin-bottom: 80px;
     text-align: center;
+    font-size: 20px;
 }
 
 .link-btn__inner {

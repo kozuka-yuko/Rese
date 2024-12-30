@@ -16,6 +16,7 @@
 .title {
     color: #FEFEFE;
     padding: 20px;
+    margin-bottom: 30px;
 }
 
 .form__group {
@@ -26,11 +27,16 @@
     color: #a1a1a1;
     padding: 10px;
     text-decoration: none;
-    border-bottom: 1px solid #787878;
+    display: flex;
+    align-items: center;
 }
 
 .form__inner {
-    margin-left: 20px;
+    margin-left: 15px;
+    border: none;
+    border-bottom: 1px solid #000000;
+    font-size: 20px;
+    width: 90%;
 }
 
 .form__error {
@@ -48,11 +54,12 @@
 
 .form__button-submit {
     color: #FEFEFE;
-    padding: 10px 20px;
+    padding: 10px 25px;
     text-decoration: none;
     border-radius: 5px;
     border: none;
     background-color: #212df3;
+    font-size: 18px;
 }
 
 .form__group,
@@ -62,4 +69,11 @@
 
 .fa-solid {
     color: #000000;
+    font-size: 30px;
+}
+
+@media screen and (max-width:768px) {
+    .register__content {
+        width: 60%;
+    }
 }

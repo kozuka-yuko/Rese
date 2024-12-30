@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 40px;
+    padding: 0 80px;
 }
 
 .header {
@@ -28,7 +29,6 @@
 
 .detail-content {
     width: 50%;
-    margin-left: 40px;
 }
 
 .shop-name__inner {
@@ -43,6 +43,7 @@
 
 .tag {
     padding: 30px 0;
+    font-weight: bold;
 }
 
 .info__inner {
@@ -66,12 +67,11 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 40%;
+    width: 45%;
     height: 100vh;
     border: none;
     background-color: #4b54f5;
     border-radius: 5px;
-    margin: 10px 40px 40px 60px;
 }
 
 .reservation__header--inner {
@@ -133,4 +133,11 @@
     color: #212df3;
     border-radius: 5px;
     cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .reservation-form {
+        margin-bottom: 0;
+        height: unset;
+    }
 }

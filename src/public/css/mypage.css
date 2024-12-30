@@ -1,5 +1,5 @@
 .content {
-    padding: 0 80px;
+    padding: 0 60px;
 }
 
 .mypage__content {
@@ -17,7 +17,6 @@
 .reservation__content {
     display: flex;
     flex-direction: column;
-    width: 50%;
     margin-bottom: 100px;
 }
 
@@ -33,7 +32,7 @@
     border-radius: 5px;
     background-color: #212df3;
     box-shadow: 3px 3px 5px #bebebe;
-    width: 80%;
+    width: 100%;
     margin: 15px 40px 40px 0;
     padding: 0 15px 30px;
     line-height: 210%;
@@ -51,7 +50,7 @@
 
 .delete-reservation {
     display: inline-block;
-    width: 75%;
+    width: 80%;
 }
 
 .delete-reservation__button-submit {
@@ -81,7 +80,7 @@
 }
 
 .payment {
-    margin-left: 50px;
+    margin-left: 40px;
     padding: 5px 10px;
     background-color: #FEFEFE;
     text-decoration: none;
@@ -94,10 +93,22 @@
 .review__title {
     border-bottom: 1px dashed #000000;
     margin-bottom: 40px;
+    font-size: 20px;
+}
+
+.review__inner {
+    margin: 0 25px 25px;
+}
+
+.shop__name__inner {
+    font-weight: bold;
+    display: inline-block;
+    width: 60px;
 }
 
 .favorite__content {
     width: 50%;
+    padding-right: 20px;
 }
 
 .favorite__status {
@@ -125,7 +136,8 @@
 
 .info {
     width: 100%;
-    margin: 20px 10px;
+    padding: 20px;
+    padding-bottom: unset;
 }
 
 .shop__name {
@@ -141,7 +153,6 @@
 
 .detail {
     padding: 20px 0;
-    margin-left: 10px;
 }
 
 .detail__button {
@@ -202,4 +213,63 @@
     left: 0;
     transform: rotate(45deg);
     transform-origin: 100% 100%;
+}
+
+@media screen and (max-width:768px) {
+    .content {
+        padding: 0 50px;
+    }
+
+    .content__header--inner {
+        margin: unset;
+    }
+
+    .mypage__content {
+        display: unset;
+        justify-content: unset;
+    }
+
+
+    .reservation {
+        width: 80%;
+    }
+
+    .reservation__content {
+        margin-bottom: unset;
+        width: unset;
+    }
+
+    .delete-reservation__button-submit {
+        margin-left: 400px;
+    }
+
+    .edit,
+    .qr-code {
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+
+    .payment {
+        display: inline-block;
+    }
+
+    .qr-code__info {
+        margin-bottom: unset;
+    }
+
+    .review {
+        padding: 20px 0 40px;
+    }
+
+    .review__title {
+        margin-right: 35px;
+    }
+
+    .detail {
+        margin-left: 3px;
+    }
+
+    .favorite__content {
+        width: unset;
+    }
 }

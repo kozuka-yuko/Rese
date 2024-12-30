@@ -9,7 +9,7 @@
 <form action="{{ route('store') }}" class="form" method="post">
     @csrf
     <h2 class="title">{{ $shop->name }}へのレビュー</h2>
-    <p class="stars">満足度</p>
+    <p class="stars">☆満足度☆</p>
     <div class="form-rating">
         <input type="radio" class="form-rating__input" id="star5" name="stars" value="5">
         <label for="star5" class="form-rating__label"><i class="fa-solid fa-star"></i></label>
@@ -28,7 +28,7 @@
         @enderror
     </div>
     <div class="comment">
-        <textarea class="comment__inner" name="comment" id="comment" cols="50" rows="8">{{ old('comment') }}</textarea>
+        <textarea class="comment__inner" name="comment" id="comment" cols="50" rows="10">{{ old('comment') }}</textarea>
     </div>
     <div class="form__error">
         @error('comment')

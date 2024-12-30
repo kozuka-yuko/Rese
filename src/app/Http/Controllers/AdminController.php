@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\User;
+use App\Models\Area;
+use App\Models\Genre;
 use App\Http\Requests\NewRepRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RepUpdateRequest;
@@ -18,14 +20,17 @@ class AdminController extends Controller
 
     public function shopRepList()
     {
+        $areas = Area::all();
+        $genres = Genre::all();
         $shopReps = User::whereHas('roles', function ($query) {
             $query->where('name', 'shop_rep');
         })->with('shops')->get();
 
-        return view('/admin/shop_rep_list', compact('shopReps'));
+        return view('/admin/shop_rep_list', compact('areas', 'genres', 'shopReps'));
     }
 
-    public function repSearch(Request $request) {
+    public function repSearch(Request $request) 
+    {
         $rep_name = $request->input('rep_name');
         $shop_name = $request->input('shop_name');
 

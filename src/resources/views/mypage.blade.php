@@ -57,8 +57,10 @@
                 @if ($shops && $shops->isNotEmpty())
                 <h3 class="review__title">♪ 行ったお店のレビューをしよう ♪</h3>
                 @foreach ($shops as $shop)
-                <p class="shop__name">{{ $shop->name }}</p>
-                <a href="{{ route('showCreateReview', $shop->id) }}" class="create-review">レビューを書く</a>
+                <div class="review__inner">
+                    <p class="shop__name__inner">{{ $shop->name }}</p>
+                    <a href="{{ route('showCreateReview', $shop->id) }}" class="create-review">レビューを書く</a>
+                </div>
                 @endforeach
                 @endif
             </div>

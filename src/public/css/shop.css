@@ -15,6 +15,10 @@
     padding: 10px;
 }
 
+.search-form__input {
+    width: 412px;
+}
+
 .area,
 .genre {
     border-right: 1px solid #e4e4e4;
@@ -36,8 +40,9 @@
     border-radius: 5px;
     background-color: #FEFEFE;
     box-shadow: 3px 3px 5px #bebebe;
-    width: 20%;
-    margin: 20px;
+    width: 22%;
+    margin: 10px;
+    padding-bottom: 20px;
 }
 
 .img_url {
@@ -48,7 +53,11 @@
 
 .info {
     width: 100%;
-    margin: 20px 10px;
+    margin-left: 20px;
+}
+
+.tag {
+    font-weight: bold;
 }
 
 .shop__name {
@@ -62,7 +71,7 @@
 
 .detail {
     padding: 20px 0;
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
 .detail__button {
@@ -76,7 +85,7 @@
 
 .favorite-form {
     padding: 10px 0;
-    margin: 0 15px;
+    margin-right: 15px;
 }
 
 .favorite__btn {
@@ -121,4 +130,15 @@
 .btn-favorite-inactive .heart::before,
 .btn-favorite-inactive .heart::after {
     background-color: #e4e4e4;
+}
+
+@media screen and (max-width:768px) {
+    .shop {
+        width: 28%;
+        margin: 7px;
+    }
+
+    .search-form__input {
+        width: 200px;
+    }
 }
