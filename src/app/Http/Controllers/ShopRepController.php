@@ -113,8 +113,8 @@ class ShopRepController extends Controller
         session([
             'form_input' => [
                 'img_url' => $path,
-                'area' => $request->input('area'),
-                'genre' => $request->input('genre'),
+                'area_id' => $request->input('area'),
+                'genre_id' => $request->input('genre'),
                 'description' => $request->input('description')
             ]
         ]);
@@ -126,8 +126,8 @@ class ShopRepController extends Controller
     {
         $data = session()->get('form_input');
         $shop = Shop::findOrFail($id);
-        $area = Area::where('id', $data['area'])->first();
-        $genre = Genre::where('id', $data['genre'])->first();
+        $area = Area::where('id', $data['area_id'])->first();
+        $genre = Genre::where('id', $data['genre_id'])->first();
 
         return view('/shop_rep/confirm_input', compact('data', 'shop', 'area', 'genre'));
     }
@@ -143,8 +143,8 @@ class ShopRepController extends Controller
         $shop = Shop::findOrFail($id);
 
         $shop->img_url = $data['img_url'];
-        $shop->area_id = $data['area'];
-        $shop->genre_id = $data['genre'];
+        $shop->area_id = $data['area_id'];
+        $shop->genre_id = $data['genre_id'];
         $shop->description = $data['description'];
 
         $shop->save();

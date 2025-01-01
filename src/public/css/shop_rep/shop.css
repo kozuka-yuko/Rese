@@ -1,6 +1,16 @@
 .detail-content {
+    text-align: center;
+    margin: 0 auto;
     width: 50%;
-    margin: 0 40px 40px 40px;
+}
+
+.shop_create {
+    text-decoration: none;
+    background-color: #4b54f5;
+    border-radius: 5px;
+    color: #FEFEFE;
+    padding: 10px 20px;
+    cursor: pointer;
 }
 
 .shop__description {
@@ -10,16 +20,16 @@
 }
 
 .shop-name__inner {
-    font-size: 40px;
+    font-size: 30px;
     font-weight: bold;
 }
 
 .img_url {
-    width: 70%;
+    width: 80%;
 }
 
 .tag {
-    padding: 30px 0;
+    padding: 20px 0;
     font-weight: bold;
 }
 
@@ -29,7 +39,7 @@
 }
 
 .edit {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .edit__button {
@@ -38,7 +48,7 @@
     background-color: #4b54f5;
     border-radius: 5px;
     color: #FEFEFE;
-    padding: 5px 10px;
+    padding: 10px 20px;
     cursor: pointer;
 }
 
@@ -48,7 +58,7 @@
 
 .delete__shop--button {
     margin-left: 20px;
-    padding: 7px 10px;
+    padding: 11px 20px;
     background-color: #e93e1e;
     border: none;
     color: #FEFEFE;
@@ -57,7 +67,7 @@
 }
 
 .reservation__confirm {
-    margin-top: 50px;
+    margin: 80px 0 50px;
 }
 
 .reservation {
@@ -66,6 +76,12 @@
     background-color: #4b54f5;
     border-radius: 5px;
     color: #FEFEFE;
-    padding: 5px 10px;
+    padding: 10px 20px;
     cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .detail-content {
+        width: 60%;
+    }
 }

@@ -1,5 +1,16 @@
 .edit-content {
-    padding: 0 40px 40px 40px;
+    padding: 0 60px 40px;
+}
+
+.edit-label {
+    font-size: 20px;
+}
+
+.name,
+.area__inner,
+.genre__inner {
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 .form__error {
@@ -9,12 +20,18 @@
     text-align: left;
 }
 
+.description__inner {
+    border-radius: 5px;
+    padding: 10px;
+}
+
 .shop_name {
     font-size: 25px;
 }
 
-.edit-label {
-    font-size: 20px;
+.now-img {
+    margin: 20px;
+    width: 80%;
 }
 
 .area__inner,

@@ -1,0 +1,48 @@
+.edit-content {
+    margin: 0 60px 60px;
+}
+
+.edit-label {
+    font-size: 20px;
+}
+
+.name,
+.area__inner,
+.genre__inner {
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.image {
+    font-size: 18px;
+}
+
+.form__error {
+    height: 25px;
+    color: #ff0000;
+}
+
+.description__inner {
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.back__btn {
+    padding: 7px 20px;
+    text-decoration: none;
+    border: 1px solid #b2b2b2;
+    background-color: #FEFEFE;
+    color: #212df3;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 60px;
+}
+
+.upload {
+    padding: 10px 20px;
+    border: none;
+    background-color: #212df3;
+    color: #FEFEFE;
+    border-radius: 5px;
+    cursor: pointer;
+}

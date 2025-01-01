@@ -59,7 +59,7 @@ class PaymentController extends Controller
         try {
             Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
             $session = Session::retrieve($request->query('session_id'));
-
+            dd($session);
             $shop_id = session('shop_id');
             if (!$shop_id) {
                 throw new \Exception('shop_id is missing.');

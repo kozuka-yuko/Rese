@@ -39,7 +39,7 @@
     border: none;
     border-bottom: 1px solid #000000;
     width: 100%;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .form__error {
@@ -77,5 +77,6 @@
 @media screen and (max-width:768px) {
     .login__content {
         width: 60%;
+        margin-top: 60px;
     }
 }

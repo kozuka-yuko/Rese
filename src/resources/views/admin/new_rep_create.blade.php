@@ -34,7 +34,7 @@
             <label for="password_confirmation" class="label__inner">確認用パスワード:</label>
             <input type="password" class="info" name="password_confirmation">
             <div class="button">
-                <a href="#" onclick="history.back()" class="back__btn">戻る</a>
+                <a href="{{ route('adIndex') }}" class="back__btn">戻る</a>
                 <button class="form__confirm" type="submit">入力内容の確認</button>
             </div>
         </div>

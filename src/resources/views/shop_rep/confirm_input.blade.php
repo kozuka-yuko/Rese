@@ -9,6 +9,7 @@
     <form action="{{ route('shopUpdate', $shop->id) }}" class="confirm" method="post">
         @method('PATCH')
         @csrf
+        <label for="" class="edit-label">Shop Name:</label>
         <p class="shop_name">{{ $shop->name }}</p>
         <div class="img">
             <label for="" class="edit-label">ShopImage:</label>
@@ -17,6 +18,8 @@
         <div class="tag">
             <label for="" class="edit-label">Area:</label>
             <p class="area">#{{ $area->name }}</p>
+        </div>
+        <div class="tag">
             <label for="" class="edit-label">Genre:</label>
             <p class="genre">#{{ $genre->name }}</p>
         </div>

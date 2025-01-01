@@ -6,6 +6,9 @@
 
 @section('content')
 <div class="content">
+    <h3 class="content__inner">
+        {{ $shop->name }} へのお支払い
+    </h3>
     <form action="" class="payment" method="post">
         @csrf
         <input type="hidden" id="shop_id" name="shop_id" class="payment__inner" value="{{ $shop->id }}">

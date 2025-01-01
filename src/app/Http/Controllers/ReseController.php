@@ -72,8 +72,9 @@ class ReseController extends Controller
     {
         $user = Auth::user();
         $reservations = Reservation::where('user_id', $user->id)->whereDate('date', '>=', Carbon::today())->orderBy('date', 'asc')->get();
-        $shops = Shop::whereHas('reservations', function ($query) {
-            $query->where('status', 'ご来店');
+        $shops = Shop::whereHas('reservations', function ($query) use ($user) {
+            $query->where('status', 'ご来店')
+            ->where('user_id', $user->id);
         })->whereDoesntHave('shop_reviews')->get();
         $favorites = Favorite::where('user_id', $user->id)->with('shop')->get();
         $today = Carbon::today()->addDay()->format('Y-m-d');

@@ -9,7 +9,13 @@
     <h1 class="title">店舗情報編集</h1>
     <form action="{{ route('shopUpdateConfirm', $shop->id) }}" class="shop__edit" method="post" enctype="multipart/form-data">
         @csrf
+        <label for="" class="edit-label">Shop Name:</label>
         <input type="text" name="name" class="name" value="{{ old('name', $shop->name) }}" />
+        <div class="form__error">
+            @error('name')
+            {{ $message }}
+            @enderror
+        </div>
         <div class="img-file">
             <label for="" class="edit-label">Current Shop Image:</label>
             @if ($shop->img_url)

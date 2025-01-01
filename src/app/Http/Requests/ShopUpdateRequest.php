@@ -34,7 +34,7 @@ class ShopUpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => '代表者の名前を入力してください',
+            'name.required' => '店舗の名前を入力してください',
             'name.max:100' => '100文字以下で入力してください',
             'area.required' => 'エリアを選択してください',
             'genre.required' => 'ジャンルを選択してください',

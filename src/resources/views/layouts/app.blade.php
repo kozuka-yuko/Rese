@@ -58,9 +58,14 @@
                                     </button>
                                 </form>
                             </li>
+                            @cannot('shop')
+                            @cannot('register')
                             <li class="modal__content--item">
                                 <a href="{{ route('mypage') }}" class="mypage">Mypage</a>
                             </li>
+                            @endcannot
+                            @endcannot
+
                             @else
                             <li class="modal__content--item">
                                 <a href="{{ route('index') }}" class="home">Home</a>

@@ -6,7 +6,10 @@
 
 @section('content')
 <div class="content">
-    <h2 class="title">予約状況</h2>
+    <div class="title">
+        <a href="{{ route('repIndex') }}" class="return__btn" title="戻る">&lt;</a>
+        <h2 class="title__inner">予約状況</h2>
+    </div>
     <div class="content__heading">
         <a href="{{ '/shop_rep/reservation_confirm/' . ($num - 1) }}" class="prev-day">&lt;</a>
         <span class="current-date">{{ $fixed_date }}</span>

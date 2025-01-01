@@ -35,7 +35,7 @@
     margin-left: 15px;
     border: none;
     border-bottom: 1px solid #000000;
-    font-size: 20px;
+    font-size: 18px;
     width: 90%;
 }
 
@@ -75,5 +75,6 @@
 @media screen and (max-width:768px) {
     .register__content {
         width: 60%;
+        margin-top: 60px;
     }
 }
