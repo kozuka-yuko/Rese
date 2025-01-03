@@ -37,7 +37,6 @@ larevel-fortify、laravel-permission、Stripe、Javascript
 ![スプレッドシートのテーブル設計図](./docs/table-4.png)
 ![スプレッドシートのテーブル設計図](./docs/table-5.png)
 ![スプレッドシートのテーブル設計図](./docs/table-6.png)
-![スプレッドシートのテーブル設計図](./docs/table-7.png)
 ## ER図
 ![ER図](./docs/er.drawio.png)
 
@@ -159,7 +158,21 @@ larevel-fortify、laravel-permission、Stripe、Javascript
 
 ## メール認証 
   .envファイルの MAIL_FORM_ADRESS= をnullではなく任意のメールアドレスにしてください。  
-  ＜MailHogについて＞
+  ＜MailHogについて＞  
+MAIL_MAILER=smtp  　　　　　　　　　　　//メールの送信方法を指定  
+MAIL_HOST=smtp.example.com　　　　　　 //使用するSMTPサーバのホスト名  　　
+MAIL_PORT=587　　　　　　　　　　　　　 //使用するポート番号  
+　　　　　　　　　　　　　　　　　　　　　　　587:TLS（STARTTLS）ポート  
+　　　　　　　　　　　　　　　　　　　       465:SSLポート(暗号化が必要な場合)  
+MAIL_USERNAME=your_email@example.com　//メール送信用のアカウント名  
+                                        通常はメールアドレスです。  
+MAIL_PASSWORD=your_email_password　　 //メールアカウントのパスワードです。  
+                                       セキュリティのため、実際のパスワードではなく、  
+                                       専用のアプリケーションパスワードや API トークンを使用することが推奨されます。  
+MAIL_ENCRYPTION=tls　　　　　　　　　　 //メール送信時の暗号化方法です。tls（推奨）や ssl を使用します。  
+MAIL_FROM_ADDRESS=no-reply@example.com //メール送信者のメールアドレスです。  
+MAIL_FROM_NAME="${APP_NAME}"           //メール送信者の名前です。  
+                                         "${APP_NAME}" でアプリケーション名を動的に取得できます。  
 
 <dl>
   <dt>・キューの実行  </dt>
@@ -180,14 +193,12 @@ larevel-fortify、laravel-permission、Stripe、Javascript
     
 <dd>(停止はCtrl+C)</dd>
 
-<dt>・Stripe決済の実行</dt>  
-<dd>Stripe決済を使用するために実行してください。</dd>  
+<dt>・Stripe決済の本番環境への移行</dt>  
+<dd>1.Stripe決済を使用するためにStripeのホームページにアクセスしアカウントの作成・登録を行ってください。</dd>  
+<dd>Stripeのダッシュボードから「アカウントの有効化」を行い、ビジネス情報や銀行口座を登録してください。</dd>　　
 
-<dd>PHPコンテナ内（さらに新しいターミナルを開いて実行してください）</dd>
-     
-`$ php artisan serve`  
-     
-<dd>(停止はCtrl+C)</dd>
+<dd>2.審査完了後に本番用の公開鍵と秘密鍵が発行されます。</dd>
+
 </dl>   
 
    ## アカウントの種類  
