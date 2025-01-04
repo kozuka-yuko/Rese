@@ -4,6 +4,10 @@
     width: 50%;
 }
 
+.new-shop {
+    margin-top: 80px;
+}
+
 .shop_create {
     text-decoration: none;
     background-color: #4b54f5;
@@ -11,6 +15,7 @@
     color: #FEFEFE;
     padding: 10px 20px;
     cursor: pointer;
+    font-size: 20px;
 }
 
 .shop__description {
@@ -67,7 +72,7 @@
 }
 
 .reservation__confirm {
-    margin: 80px 0 50px;
+    margin: 60px 0 50px;
 }
 
 .reservation {

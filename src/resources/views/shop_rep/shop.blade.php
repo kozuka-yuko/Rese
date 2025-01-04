@@ -33,7 +33,9 @@
         <a href="{{ route('getReservation') }}" class="reservation">予約確認</a>
     </div>
     @else
-    <a href="{{ route('shopCreate') }}" class="shop_create">新規店舗作成</a>
+    <div class="new-shop">
+        <a href="{{ route('shopCreate') }}" class="shop_create">新規店舗作成</a>
+    </div>
     @endif
 </div>
 @endsection

@@ -23,6 +23,7 @@
         <ul>
             <li>予約日時 : {{ Carbon\Carbon::parse($reservation->date)->format('Y年m月d日 ') }} {{($reservation->time)}}</li>
             <li>場所 : {{ $reservation->shop->name }}</li>
+            <li>人数 : {{ $reservation->number }}人</li>
         </ul><br>
 
         <p>ご予約の５分前にはお越しくださいますようお願い申し上げます。</p>
