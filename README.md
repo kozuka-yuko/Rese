@@ -92,7 +92,7 @@ larevel-fortify、laravel-permission、Stripe、Javascript
   <dd>下記コマンドの実行。</dd>
   
   ```
-  $ docker-compose up -d --build`
+  $ docker-compose up -d --build
   $ code .
   ```
 
@@ -158,33 +158,81 @@ larevel-fortify、laravel-permission、Stripe、Javascript
 
 ## メール認証 
   .envファイルの MAIL_FORM_ADRESS= をnullではなく任意のメールアドレスにしてください。  
-  ＜MailHogについて＞  
-MAIL_MAILER=smtp  　　　　　　　　　　　//メールの送信方法を指定  
-MAIL_HOST=smtp.example.com　　　　　　 //使用するSMTPサーバのホスト名  　　
-MAIL_PORT=587　　　　　　　　　　　　　 //使用するポート番号  
-　　　　　　　　　　　　　　　　　　　　　　　587:TLS（STARTTLS）ポート  
-　　　　　　　　　　　　　　　　　　　       465:SSLポート(暗号化が必要な場合)  
-MAIL_USERNAME=your_email@example.com　//メール送信用のアカウント名  
-                                        通常はメールアドレスです。  
-MAIL_PASSWORD=your_email_password　　 //メールアカウントのパスワードです。  
-                                       セキュリティのため、実際のパスワードではなく、  
-                                       専用のアプリケーションパスワードや API トークンを使用することが推奨されます。  
-MAIL_ENCRYPTION=tls　　　　　　　　　　 //メール送信時の暗号化方法です。tls（推奨）や ssl を使用します。  
-MAIL_FROM_ADDRESS=no-reply@example.com //メール送信者のメールアドレスです。  
-MAIL_FROM_NAME="${APP_NAME}"           //メール送信者の名前です。  
-                                         "${APP_NAME}" でアプリケーション名を動的に取得できます。  
+  
+<dd>MAIL_MAILER=smtp</dd>
+<dd>//メールの送信方法を指定</dd>　　
+<dd>MAIL_HOST=smtp.example.com</dd>
+<dd>//使用するSMTPサーバのホスト名</dd>　　
+<dd>MAIL_PORT=587</dd>
+<dd>//使用するポート番号</dd>
+<dd>587:TLS（STARTTLS）ポート</dd>                         
+<dd>465:SSLポート(暗号化が必要な場合)</dd>　　                            
+<dd>MAIL_USERNAME=your_email@example.com</dd>
+<dd>//メール送信用のアカウント名。通常はメールアドレスです。</dd>　　　　  
+<dd>MAIL_PASSWORD=your_email_password</dd>
+<dd>//メールアカウントのパスワードです。セキュリティのため、実際のパスワードではなく、専用のアプリケーションパスワードや API トークンを使用することが推奨されます。</dd>　　                                      
+<dd>MAIL_ENCRYPTION=tls</dd>
+<dd>//メール送信時の暗号化方法です。tls（推奨）や ssl を使用します。</dd>　　  
+<dd>MAIL_FROM_ADDRESS=no-reply@example.com</dd>
+<dd>//メール送信者のメールアドレスです。</dd>　　
+<dd>MAIL_FROM_NAME="${APP_NAME}"</dd>
+<dd>//メール送信者の名前です。"${APP_NAME}" でアプリケーション名を動的に取得できます。</dd>   
+
+
+<dl>                                                               
+<dt>＜MailHogについて＞</dt>
+<dd>MailHogでメール送信を試す場合は現在の.envファイルで（一度本番環境である env.productionに切り替えている場合は、開発環境である env.development に切り替えて試してください。） localhost:8025 でブラウザを開き動作確認を行ってください。</dd>　　
+
+
+<dt>＜Stripe決済の本番環境への移行＞</dt>  
+<dd>1.Stripe決済を使用するためにStripeのホームページにアクセスしアカウントの作成・登録を行ってください。</dd>  
+<dd>Stripeのダッシュボードから「アカウントの有効化」を行い、ビジネス情報や銀行口座を登録してください。</dd>　　
+
+<dd>2.審査完了後に本番用の公開鍵と秘密鍵が発行されます。</dd>
+<dd>Stripeのダッシュボードにpublishable key と secret key が表示されます。</dd>
+<dd>env.productionファイルを開き、STRIPE_SECRET_KEY と STRIPE_PUBLIC_KEY それぞれに記述してください。</dd>
+<dd>sk_live_ や pk_live_ から始まるキーです。</dd>
+
+<dd>3.本番環境に公開後、実際に本物のカード情報を使って少額決済を行い、正常に動作するか確認してください。</dd>
+<dd></dd>
+<dd></dd>　　
+
+
+<dt>＜環境の切り替え＞</dt>
+<dd>※ 本番環境への切り替えは env.productionファイルへの必要事項の記述を終えてから行ってください。</dd>
+<dd>※ permissionエラー（権限エラー）が出た場合は権限を与えてください。</dd>
+
+`$ chmod 600 .env`
+
+<dd>本番環境</dd>
+
+```
+$ rm .env
+$ cp env.production .env
+```
+
+<dd>開発環境に戻す</dd>
+
+```
+$ rm .env
+$ cp env.development .env
+```
+
+</dl>　　
+
 
 <dl>
-  <dt>・キューの実行  </dt>
+  <dt>＜キューの実行＞</dt>
 　  <dd>大量のデータ処理やメール送信など時間のかかる重たい処理をバックグラウンドで非同期で行うために以下のコマンドを実行してください。</dd>  
  
    <dd>PHPコンテナ内</dd>
    
    `$ php artisan queue:work`  
   
-  <dd>（停止はCtrl+C）</dd>
+  <dd>（停止はCtrl+C）</dd>　　
 
- <dt>・スケジューラー実行</dt>  
+
+ <dt>＜スケジューラー実行＞</dt>  
  <dd>リマインドメールを送信できるようにするために実行してください。</dd>  
 
 <dd>PHPコンテナ内（キューを実行しているので同じターミナル内でコマンドを打てないため新しいターミナルを開いて実行してください)</dd>
@@ -193,11 +241,6 @@ MAIL_FROM_NAME="${APP_NAME}"           //メール送信者の名前です。
     
 <dd>(停止はCtrl+C)</dd>
 
-<dt>・Stripe決済の本番環境への移行</dt>  
-<dd>1.Stripe決済を使用するためにStripeのホームページにアクセスしアカウントの作成・登録を行ってください。</dd>  
-<dd>Stripeのダッシュボードから「アカウントの有効化」を行い、ビジネス情報や銀行口座を登録してください。</dd>　　
-
-<dd>2.審査完了後に本番用の公開鍵と秘密鍵が発行されます。</dd>
 
 </dl>   
 
@@ -207,4 +250,5 @@ MAIL_FROM_NAME="${APP_NAME}"           //メール送信者の名前です。
    3.ユーザー　　　email: gest@sample.com  
    
    ※パスワードは全て”password”でログインできます。
+   <dd>現在上記3つのダミーデータが用意してあります。</dd>
    
