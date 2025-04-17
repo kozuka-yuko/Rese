@@ -107,7 +107,7 @@ class ReseController extends Controller
         return view('edit', compact('reservation', 'today', 'times', 'numbers'));
     }
 
-    public function reservationUpdate(Request $request, $id)
+    public function reservationUpdate(ReservationRequest $request, $id)
     {
         $reservation = Reservation::findOrFail($id);
         $reservation->update($request->all());

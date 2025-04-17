@@ -21,6 +21,7 @@ class CreateShopsTable extends Migration
             $table->foreignId('area_id')->nullable()->constrained();
             $table->foreignId('genre_id')->nullable()->constrained();
             $table->timestamps();
+            $table->timestamp('deleted_at');
         });
     }
 
