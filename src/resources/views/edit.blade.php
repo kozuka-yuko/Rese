@@ -18,46 +18,46 @@
             <tr class="table__row">
                 <td class="reservation__item">Date</td>
                 <td class="reservation__data">
-                    <input type="date" name="date" class="reservation__date" value="{{ old('date', $reservation->date) }}" min="{{ $today }}" >
+                    <input type="date" name="date" class="reservation__date" value="{{  $reservation->date }}" min="{{ $today }}">
                 </td>
             </tr>
-            <div class="form__error">
+            <tr class="form__error">
                 @error('date')
                 {{ $message }}
                 @enderror
-            </div>
+            </tr>
             <tr class="table__row">
                 <td class="reservation__item">Time</td>
                 <td class="reservation__data">
-                    <select name="time" class="reservation__time" >
-                        <option value="" hidden>time</option>
+                    <select name="time" class="reservation__time">
+                        <option value="" hidden>{{ $reservation->time }}</option>
                         @foreach ($times as $time)
                         <option value="{{ $time }}">{{ $time }}</option>
                         @endforeach
                     </select>
                 </td>
             </tr>
-            <div class="form__error">
+            <tr class="form__error">
                 @error('time')
                 {{ $message }}
                 @enderror
-            </div>
+            </tr>
             <tr class="table__row">
                 <td class="reservation__item">Number</td>
                 <td class="reservation__data">
-                    <select name="number" class="number__inner" >
-                        <option value="" hidden>number of person</option>
+                    <select name="number" class="number__inner">
+                        <option value="" hidden>{{ $reservation->number }}</option>
                         @foreach ($numbers as $number)
                         <option value="{{ $number }}">{{ $number }}人</option>
                         @endforeach
                     </select>
                 </td>
             </tr>
-            <div class="form__error">
+            <tr class="form__error">
                 @error('number')
                 {{ $message }}
                 @enderror
-            </div>
+            </tr>
         </table>
         <div class="reservation__button">
             <button class="update__btn" type="submit">変更する</button>

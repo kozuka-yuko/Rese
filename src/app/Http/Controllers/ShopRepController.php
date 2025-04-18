@@ -102,7 +102,7 @@ class ShopRepController extends Controller
         return view('/shop_rep/edit', compact('areas', 'genres', 'shop'));
     }
 
-    public function shopUpdateConfirm(ShopUpdateRequest $request, $id)
+    public function shopUpdateConfirm(Request $request, $id)
     {
         $shop = Shop::findOrFail($id);
         if ($request->hasFile('image')) {

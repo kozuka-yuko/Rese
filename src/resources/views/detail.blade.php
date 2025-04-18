@@ -31,7 +31,7 @@
                 <h2 class="reservation__header--inner">予約</h2>
             </div>
             <div class="date">
-                <input type="date" name="date" class="reservation__date" min="{{ $today }}">
+                <input type="date" name="date" class="reservation__date" min="{{ $today }}" value="{{ old('date') }}">
             </div>
             <div class="form__error">
                 @error('date')
@@ -42,7 +42,7 @@
                 <select name="time" class="reservation__time">
                     <option value="" hidden>time</option>
                     @foreach ($times as $time)
-                    <option value="{{ $time }}">{{ $time }}</option>
+                    <option value="{{ $time }}" {{ old('time') == $time ? 'selected' : '' }}>{{ $time }}</option>
                     @endforeach
                 </select>
             </div>
@@ -55,7 +55,7 @@
                 <select name="number" class="number__inner">
                     <option value="" hidden>number of person</option>
                     @foreach ($numbers as $number)
-                    <option value="{{ $number }}">{{ $number }}人</option>
+                    <option value="{{ $number }}" {{ old('number') == $number ? 'selected' : '' }}>{{ $number }}人</option>
                     @endforeach
                 </select>
             </div>

@@ -48,14 +48,7 @@ class MasterDatabaseSeeder extends Seeder
         $admin->assignRole($adminRole);
         $shop_rep->assignRole($shop_repRole);
 
-
-        $shop = Shop::create([
-            'name' => 'Neko cafe たま',
-            'description' => 'かわいい猫たちとおいしいカフェメニューがお待ちしています♪',
-            'img_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/italian.jpg',
-            'area_id' => '1',
-            'genre_id' => '4',
-        ]);
-        $shop->users()->attach($shop_rep->id);
+        $shop = Shop::inRandomOrder()->first();
+        $shop_rep->shops()->attach($shop->id);
     }
 }
