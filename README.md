@@ -11,7 +11,7 @@
   
 
 ## 作成した目的
-外部の飲食店予約サービス手数料を取られるので自社で予約サービスを持つため。
+外部の飲食店予約サービスは手数料を取られるので、自社で予約サービスを持つため。
   
 ## アプリケーションのURL
 <br>  
@@ -60,10 +60,9 @@ larevel-fortify、laravel-permission、Stripe、Javascript
 
 <dd>URLはQuik setup～内の四角が二つ重なったアイコンから取得する。</dd>
 
-<dd>下記コマンドの実行。</dd>  
+<dd>開発のために新規作成したディレクトリに移動し、下記コマンドの実行。</dd>  
 
   ```
-  $ cd contact-form
   $ git remote set-url origin 作成したリポジトリのURL
   $ git remote -v
   ```
@@ -155,6 +154,12 @@ larevel-fortify、laravel-permission、Stripe、Javascript
   ```
 
 </dl>
+
+## 画像をstrageに保存し、シンボリックを貼る
+<dd>店舗画像をstrage配下に保存するようにしているためシンボリックリンクを貼ってください。</dd>
+<dd>PHPコンテナ内で、下記コマンドを実行してください。</dd>
+
+`$ php artisan storage:link`
 
 ## メール認証 
   .envファイルの MAIL_FORM_ADRESS= をnullではなく任意のメールアドレスにしてください。  
