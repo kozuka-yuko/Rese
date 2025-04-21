@@ -67,7 +67,7 @@ larevel-fortify、laravel-permission、Stripe、Javascript
   $ git remote -v
   ```
 
-<dd>３つ目のコマンドを実行した時に変更先のURLが表示されれば成功。</dd>
+<dd>2つ目のコマンドを実行した時に変更先のURLが表示されれば成功。</dd>
 
 <dt>3.現在のローカルリポジトリのデータをリモートリポジトリに反映させる</dt>
 
