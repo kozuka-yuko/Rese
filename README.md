@@ -69,25 +69,7 @@ larevel-fortify、laravel-permission、Stripe、Javascript
 
 <dd>2つ目のコマンドを実行した時に変更先のURLが表示されれば成功。</dd>
 
-<dt>3.現在のローカルリポジトリのデータをリモートリポジトリに反映させる</dt>
-
-  <dd>下記コマンドの実行。</dd>
-  
-  ```
-  $ git add .
-  $ git commit -m "リモートリポジトリの変更"
-  $ git push origin main
-  ```
-
-  <dd>GitHubのページを見てdockerフォルダやsrcフォルダが反映されていれば成功。</dd>
-
-  <dd>エラーが発生する場合は</dd>
-
-  `$ sudo chmod -R 777 *`
-
-  <dd>コマンドを実行後、もう一度コマンドを実行し直してみる。</dd>
-
-<dt>4.Dockerの設定</dt>
+<dt>3.Dockerの設定</dt>
   <dd>下記コマンドの実行。</dd>
   
   ```
@@ -97,7 +79,7 @@ larevel-fortify、laravel-permission、Stripe、Javascript
 
   <dd>Dockerにコンテナができているか確認。</dd>
 
-<dt>5.laravelのパッケージのインストール</dt>
+<dt>4.laravelのパッケージのインストール</dt>
 <dd>共有元が作成したcomposer.jsonファイルやcomposer.lockファイルを元に必要なパッケージをインストールする。</dd>
 
 <dd>PHPコンテナ内にログインする </dd>  
@@ -108,7 +90,7 @@ larevel-fortify、laravel-permission、Stripe、Javascript
 
   `$ composer install`
 
-<dt>6.「.envファイル」の作成</dt>
+<dt>5.「.envファイル」の作成</dt>
   <dd>データベースに接続するために .envファイルを作成。PHPコンテナ内で以下のコマンドを実行。</dd> 
   
   ```
@@ -153,6 +135,9 @@ larevel-fortify、laravel-permission、Stripe、Javascript
   $ php artisan db:seed
   ```
 
+<dd>ブラウザでエラーが発生する場合は下記コマンドを実行後、再読み込みする</dd>
+
+  `$ sudo chmod -R 777 *`
 </dl>
 
 ## 画像をstrageに保存し、シンボリックを貼る
