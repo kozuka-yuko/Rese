@@ -51,7 +51,7 @@ larevel-fortify、laravel-permission、Stripe、Javascript
 
 <dd>リポジトリ名の変更。</dd>
 
-`$ mv laravel-docker-template 新しいリポジトリ名`
+`$ mv Rese 新しいリポジトリ名`
 
 <dt>2.個人のリモートリポジトリURLを変更</dt>
 <dd>GitHubで、上記コマンドで指定した「新しいリポジトリ名」で変更先のリモートリポジトリをpublicで作成。</dd>
