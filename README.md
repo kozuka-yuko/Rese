@@ -174,6 +174,15 @@ larevel-fortify、laravel-permission、Stripe、Javascript
 <dd>MailHogでメール送信を試す場合は現在の.envファイルで（一度本番環境である env.productionに切り替えている場合は、開発環境である env.development に切り替えて試してください。） localhost:8025 でブラウザを開き動作確認を行ってください。</dd>　　
 
 
+<dt>＜Stripe決済テスト環境での実行＞</dt>
+<dd>1.Stripe決済を使用するためにStripeのホームページにアクセスしアカウントの作成・登録を行ってください。</dd>
+<dd>2.「アカウントが有効になりました」というダッシュボードが表示されればOKです。</dd>
+<dd>3.画面右上にあるスライドボタンを操作し、テスト環境にしておきます。</dd>
+<dd>画面右上にアクセスキー表示されるので、.envファイルに記述します。</dd>
+<dd>STRIPE_PUBLIC_KEY=表示されたアクセスキー</dd>
+<dd>STRIPE_SECRET_KEY=表示されたアクセスキー</dd>
+
+
 <dt>＜Stripe決済の本番環境への移行＞</dt>  
 <dd>1.Stripe決済を使用するためにStripeのホームページにアクセスしアカウントの作成・登録を行ってください。</dd>  
 <dd>Stripeのダッシュボードから「アカウントの有効化」を行い、ビジネス情報や銀行口座を登録してください。</dd>　　
