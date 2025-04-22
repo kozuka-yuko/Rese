@@ -135,6 +135,12 @@
     cursor: pointer;
 }
 
+.preview {
+    padding-left: 50px;
+    color: #FEFEFE;
+    font-weight: lighter;
+}
+
 @media screen and (max-width:768px) {
     .reservation-form {
         margin-bottom: 0;

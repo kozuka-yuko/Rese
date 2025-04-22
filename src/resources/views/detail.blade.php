@@ -65,6 +65,11 @@
                 @enderror
             </div>
         </div>
+        <div class="preview">
+            <p id="preview__date"></p>
+            <p id="preview__time"></p>
+            <p id="preview__number"></p>
+        </div>
         <div class="button-submit">
             <div class="reservation__button">
                 <button class="reservation__btn" type="submit">予約する</button>
@@ -72,4 +77,30 @@
         </div>
     </form>
 </div>
+
+<script>
+    const dateInput = document.querySelector('input[name="date"]');
+    const timeSelect = document.querySelector('select[name="time"]');
+    const numberSelect = document.querySelector('select[name="number"]');
+
+    const previewDate = document.getElementById('preview__date');
+    const previewTime = document.getElementById('preview__time');
+    const previewNumber = document.getElementById('preview__number');
+
+    function updatePreview() {
+        const date = dateInput.value;
+        const time = timeSelect.value;
+        const number = numberSelect.value;
+
+        previewDate.textContent = date ? `日付 : ${date}` : '';
+        previewTime.textContent = time ? `時間 : ${time}` : '';
+        previewNumber.textContent = number ? `人数 : ${number}人` : '';
+    }
+
+        dateInput.addEventListener('input', updatePreview);
+        timeSelect.addEventListener('change', updatePreview);
+        numberSelect.addEventListener('change', updatePreview);
+
+        window.addEventListener('DOMContentLoaded', updatePreview);
+</script>
 @endsection
