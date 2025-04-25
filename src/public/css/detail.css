@@ -147,3 +147,47 @@
         height: unset;
     }
 }
+
+@media screen and (max-width:480px) {
+    .content {
+        padding: 0 20px;
+        display: unset;
+        margin-bottom: unset;
+    }
+
+    .detail-content {
+        width: unset;
+        padding: 0 20px;
+    }
+
+    .return__btn {
+        padding: 3px 10px;
+    }
+
+    .shop-name__inner {
+        font-size: 23px;
+    }
+
+    .tag {
+        padding: 25px 0;
+    }
+
+    .link {
+        margin-top: unset;
+        margin: 35px 0;
+    }
+
+    .reservation-form {
+        width: unset;
+        height: unset;
+        margin-bottom: unset;
+        margin: 0 20px 35px;
+    }
+
+    .reservation__header--inner {
+        font-size: 22px;
+        font-weight: unset;
+    }
+
+
+}

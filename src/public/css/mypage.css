@@ -215,18 +215,18 @@
     transform-origin: 100% 100%;
 }
 
+
 @media screen and (max-width:768px) {
     .content {
         padding: 0 50px;
     }
-
+    
     .content__header--inner {
         margin: unset;
     }
-
+    
     .mypage__content {
         display: unset;
-        justify-content: unset;
     }
 
 
@@ -238,7 +238,7 @@
         margin-bottom: unset;
         width: unset;
     }
-
+    
     .delete-reservation__button-submit {
         margin-left: 400px;
     }
@@ -252,15 +252,15 @@
     .payment {
         display: inline-block;
     }
-
+    
     .qr-code__info {
         margin-bottom: unset;
     }
-
+    
     .review {
         padding: 20px 0 40px;
     }
-
+    
     .review__title {
         margin-right: 35px;
     }
@@ -268,8 +268,40 @@
     .detail {
         margin-left: 3px;
     }
-
+    
     .favorite__content {
+        width: unset;
+    }
+}
+
+@media screen and (max-width:480px) {
+    .content__header--inner {
+        font-size: 25px;
+        margin: unset;
+    }
+
+    .delete-reservation {
+        width: 50%;
+    }
+
+    .delete-reservation__button-submit {
+        margin-left: 200px;
+    }
+
+    .edit,
+    .qr-code {
+        margin-right: 34px;
+    }
+
+    .payment {
+        margin-left: unset;
+    }
+
+    .info {
+        padding: 20px 35px;
+    }
+
+    .favorite {
         width: unset;
     }
 }

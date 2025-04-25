@@ -22,8 +22,20 @@
     text-decoration: none;
 }
 
+
 @media screen and (max-width:768px) {
     .done__content {
         width: 60%;
+    }
+}
+
+@media screen and (max-width:480px) {
+    .done__content {
+        width: 85%;
+        margin: 180px auto;
+    }
+    
+    .title {
+        font-size: 20px;
     }
 }

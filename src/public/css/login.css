@@ -74,9 +74,30 @@
     font-size: 25px;
 }
 
+
 @media screen and (max-width:768px) {
     .login__content {
         width: 60%;
         margin-top: 60px;
+    }
+}
+
+@media screen and (max-width:480px) {
+    .login__content {
+        width: 85%;
+        margin-top: 40%;
+    }
+
+    .title {
+        padding: 15px;
+    }
+
+    .form__group,
+    .form__button {
+        margin: 25px 35px;
+    }
+
+    .form__button {
+        padding: 0px 0px 20px;
     }
 }

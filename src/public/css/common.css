@@ -157,3 +157,54 @@ body {
         padding: 25px 50px;
     }
 }
+
+@media screen and (max-width:480px) {
+    .header {
+        display: unset;
+        padding: 0 20px;
+    }
+
+    .modal__menu {
+        width: 25px;
+        height: 25px;
+        box-shadow: 1px 1px 3px #bebebe;
+        margin-left: 10px;
+    }
+
+    .hamburger-top {
+        width: 5px;
+        height: 0.5px;
+    }
+
+    .hamburger-middle {
+        width: 8px;
+        height: 0.3px;
+    }
+
+    .hamburger-under {
+        width: 3px;
+        height: 0.5px;
+    }
+
+    .header__logo {
+        font-size: 25px;
+    }
+
+    .close {
+        margin: 20px 30px;
+    }
+
+    .modal__content {
+        font-size: 17px;
+        margin-top: 60%;
+    }
+
+    .modal__content-btn {
+        font-size: 17px;
+        padding-bottom: unset;
+    }
+
+    .message__inner {
+        padding: 0 15px 5px;
+    }
+}

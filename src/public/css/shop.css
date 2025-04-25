@@ -132,13 +132,82 @@
     background-color: #e4e4e4;
 }
 
+
 @media screen and (max-width:768px) {
     .shop {
         width: 28%;
         margin: 7px;
     }
-
+    
     .search-form__input {
         width: 200px;
+    }
+}
+
+@media screen and (max-width:480px) {
+    .search__content {
+        box-shadow: 1px 1px 3px;
+        padding: 3px;
+        margin: 10px;
+    }
+    
+    .aria,
+    .genre,
+    .search-form__input {
+        padding: 5px;
+    }
+    
+    .shop__content {
+        justify-content: unset;
+    }
+
+    .shop {
+        width: 46%;
+        height: 230px;
+        margin: 0 0 10px 10px;
+    }
+
+    .info {
+        margin-left: 10px;
+    }
+
+    .shop__name {
+        font-weight: unset;
+        font-size: 10px;
+    }
+
+    .tag {
+        font-weight: unset;
+        font-size: 8px;
+    }
+
+    .detail {
+        margin-left: 5pt;
+        padding: 8px 0;
+    }
+
+    .detail__button {
+        font-size: 8px;
+        padding: 3px 7px;
+    }
+
+    .favorite-form {
+        margin-right: 0;
+        padding: unset;
+    }
+
+    .heart::before {
+        left: 12px;
+    }
+
+    .heart {
+        width: 25px;
+        height: 5px;
+    }
+    
+    .heart::before,
+    .heart::after {
+        width: 12px;
+        height: 20px;
     }
 }
