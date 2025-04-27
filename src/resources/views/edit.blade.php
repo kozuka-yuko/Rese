@@ -18,44 +18,45 @@
             <tr class="table__row">
                 <td class="reservation__item">Date</td>
                 <td class="reservation__data">
-                    <input type="date" name="date" class="reservation__date" value="{{  $reservation->date }}" min="{{ $today }}">
+                    <input type="date" name="date" class="reservation__date" value="{{ old('date',$reservation->date) }}" min="{{ $today }}">
                 </td>
             </tr>
             <tr class="form__error">
                 @error('date')
-                {{ $message }}
+                <td colspan="2" class="error-message">{{ $message }}</td>
                 @enderror
             </tr>
             <tr class="table__row">
                 <td class="reservation__item">Time</td>
                 <td class="reservation__data">
                     <select name="time" class="reservation__time">
-                        <option value="" hidden>{{ $reservation->time }}</option>
+                        <option value="" hidden>{{ old('time', $reservation->time) }}</option>
                         @foreach ($times as $time)
-                        <option value="{{ $time }}">{{ $time }}</option>
+                        <option value="{{ $time }}" {{ old('time', $reservation->time) == $time ? 'selected': '' }}>{{ $time }}</option>
                         @endforeach
                     </select>
                 </td>
             </tr>
             <tr class="form__error">
                 @error('time')
-                {{ $message }}
-                @enderror
+                <td colspan="2" class="error-message">{{ $message }}
+                <td>
+                    @enderror
             </tr>
             <tr class="table__row">
                 <td class="reservation__item">Number</td>
                 <td class="reservation__data">
                     <select name="number" class="number__inner">
-                        <option value="" hidden>{{ $reservation->number }}</option>
+                        <option value="" hidden>{{ old('number',$reservation->number) }}</option>
                         @foreach ($numbers as $number)
-                        <option value="{{ $number }}">{{ $number }}人</option>
+                        <option value="{{ $number }}" {{ old('number', $reservation->number) == $number ? 'selected' : '' }}>{{ $number }}人</option>
                         @endforeach
                     </select>
                 </td>
             </tr>
             <tr class="form__error">
                 @error('number')
-                {{ $message }}
+                <td colspan="2" class="error-message">{{ $message }}</td>
                 @enderror
             </tr>
         </table>

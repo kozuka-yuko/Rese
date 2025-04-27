@@ -68,7 +68,7 @@
 
                             @else
                             <li class="modal__content--item">
-                                <a href="{{ route('index') }}" class="home">Home</a>
+                                <a href="{{ route('home') }}" class="home">Home</a>
                             </li>
                             <li class="modal__content--item"> <a href="/register" class="registration">Registration</a>
                             </li>

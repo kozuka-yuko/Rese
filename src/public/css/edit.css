@@ -74,3 +74,27 @@
     color: #FEFEFE;
     padding: 15px;
 }
+
+.error-message {
+    height: 20px;
+    width: 100%;
+    color: #ff0000;
+    text-align: left;
+    padding-left: 20px;
+}
+
+@media screen and (max-width:480px) {
+    .update {
+        margin-top: 150px;
+    }
+
+    .reservation-form {
+        width: unset;
+        height: unset;
+        margin: 10px 20px;
+    }
+
+    .reservation__button {
+        margin-top: 20px;
+    }
+}

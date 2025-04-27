@@ -145,16 +145,25 @@
 }
 
 @media screen and (max-width:480px) {
+    .search-form {
+        width: 95%;
+    }
+
     .search__content {
         box-shadow: 1px 1px 3px;
         padding: 3px;
         margin: 10px;
     }
     
-    .aria,
+    .area,
     .genre,
     .search-form__input {
-        padding: 5px;
+        padding: 3px;
+        font-size: 10px;
+    }
+
+    .search-form__input {
+        width: 220px;
     }
     
     .shop__content {
@@ -182,7 +191,7 @@
     }
 
     .detail {
-        margin-left: 5pt;
+        margin-left: 10px;
         padding: 8px 0;
     }
 

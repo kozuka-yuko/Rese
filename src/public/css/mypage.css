@@ -280,6 +280,10 @@
         margin: unset;
     }
 
+    .reservation {
+        width: 100%;
+    }
+
     .delete-reservation {
         width: 50%;
     }
