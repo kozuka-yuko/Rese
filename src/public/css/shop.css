@@ -182,12 +182,15 @@
 
     .shop__name {
         font-weight: unset;
-        font-size: 10px;
+        font-size: 15px;
+        margin-bottom: unset;
+        margin-top: 5px;
     }
 
     .tag {
         font-weight: unset;
-        font-size: 8px;
+        font-size: 12px;
+        margin-bottom: unset;
     }
 
     .detail {

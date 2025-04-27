@@ -6,7 +6,7 @@
 
 @section('search')
 <form class="search-form" action="{{ route('repSearch') }}" method="get">
-    <div class="search">
+    <div class="search__inner">
         <input type="text" class="search-form__input" name="rep_name" placeholder="SHopRepSearch" value="{{ old('rep_name') }}" />
         <input type="text" class="search-form__input" name="shop_name" placeholder="ShopSearch" value="{{ old('shop_name') }}" />
         <button class="search-form__submit" type="submit"></button>

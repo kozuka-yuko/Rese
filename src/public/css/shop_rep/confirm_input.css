@@ -59,3 +59,9 @@
     cursor: pointer;
     margin-right: 20px;
 }
+
+@media screen and (max-width:480px) {
+    .confirm-content {
+        padding: 0 30px 40px;
+    }
+}

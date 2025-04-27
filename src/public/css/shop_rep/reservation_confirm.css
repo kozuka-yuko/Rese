@@ -34,12 +34,22 @@
     text-decoration: none;
 }
 
-.rese_row {
+.rese__row {
     border-bottom: 1px solid #b2b2b2;
     line-height: 40px;
     text-align: center;
 }
 
-.rese_inner {
+.rese__inner {
     padding-right: 100px;
+}
+
+@media screen and (max-width:480px) {
+    .content {
+        margin: 0 10px;
+    }
+
+    .rese__inner {
+        padding-right: 64px;
+    }
 }

@@ -62,3 +62,13 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+@media screen and (max-width:480px) {
+    .edit-content {
+        padding: 0 30px 18px;
+    }
+
+    .title {
+        margin-top: unset;
+    }
+}
