@@ -15,8 +15,12 @@ class HelloTest extends TestCase
      */
     public function test_example()
     {
-        $response = $this->get('/');
+        $response = $this->get('/shop');
 
         $response->assertStatus(200);
+
+        $response = $this->get('/no_route');
+
+        $response->assertStatus(404);
     }
 }
