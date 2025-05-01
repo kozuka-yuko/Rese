@@ -28,6 +28,7 @@
         <div class="area">
             <label for="" class="edit-label">Area:</label>
             <select name="area" class="area__inner">
+                <option value="" hidden>選択</option>
                 @foreach ($areas as $area)
                 <option value="{{ $area->id }}" @if (old('area')==$area->id) selected @endif>
                     {{ $area->name }}
@@ -43,6 +44,7 @@
         <div class="genre">
             <label for="" class="edit-label">Genre:</label>
             <select name="genre" class="genre__inner">
+                <option value="" hidden>選択</option>
                 @foreach ($genres as $genre)
                 <option value="{{ $genre->id }}" @if (old('genre')==$genre->id) selected @endif>{{ $genre->name }}</option>
                 @endforeach

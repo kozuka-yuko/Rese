@@ -20,7 +20,7 @@
     <div class="email__form">
         <textarea class="body" name="body" placeholder="本文" cols="100" rows="20" required></textarea>
     </div>
-    <a href="#" onclick="history.back()" class="back__btn">戻る</a>
+    <a href="{{ route('adIndex') }}" class="back__btn">戻る</a>
     <button class="send-email__button" type="submit">送信</button>
 </form>
 @endsection

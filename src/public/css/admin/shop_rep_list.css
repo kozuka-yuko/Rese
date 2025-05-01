@@ -85,6 +85,10 @@
         padding: 15px;
     }
 
+    .search-form {
+        margin: 0 10px;
+    }
+
     .back__btn {
         padding: 0 12px;
     }

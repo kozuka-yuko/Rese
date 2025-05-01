@@ -34,3 +34,9 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+@media screen and (max-width:480px) {
+    .content {
+        margin-top: 40%;
+    }
+}
