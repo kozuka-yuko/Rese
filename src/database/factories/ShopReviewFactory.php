@@ -3,13 +3,14 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Favorite;
+use App\Models\ShopReview;
 use App\Models\User;
 use App\Models\Shop;
 
-class FavoriteFactory extends Factory
+
+class ShopReviewFactory extends Factory
 {
-    protected $model = Favorite::class;
+    protected $model = ShopReview::class;
     /**
      * Define the model's default state.
      *
@@ -20,6 +21,8 @@ class FavoriteFactory extends Factory
         return [
             'user_id' => User::factory(),
             'shop_id' => Shop::factory(),
+            'stars' => $this->faker->numberBetween(1, 5),
+            'comment' => $this->faker->sentence(),
         ];
     }
 }

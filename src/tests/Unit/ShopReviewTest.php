@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 use App\Models\User;
 use App\Models\ShopReview;
 use App\Models\Shop;
@@ -16,15 +16,30 @@ class ShopReviewTest extends TestCase
      *
      * @return void
      */
+    
     /** @test */
-    public function shopReview_can_have_users()
+    public function shopReview_can_have_user()
     {
         $user = User::factory()->create();
         $shop = Shop::factory()->create();
-        $shopReview = ShopReview::factory()->create(
-            [
-                'user_id' => $user->id,
-                'shop_id' => $shop->id,
-            ]);
+        $shopReview = ShopReview::factory()->create([
+            'user_id' => $user->id,
+            'shop_id' => $shop->id,
+        ]);
+
+        $this->assertEquals($user->id, $shopReview->user->id);
+    }
+
+    /** @test */
+    public function shopReview_can_have_shop()
+    {
+        $user = User::factory()->create();
+        $shop = Shop::factory()->create();
+        $shopReview = ShopReview::factory()->create([
+            'user_id' => $user->id,
+            'shop_id' => $shop->id,
+        ]);
+
+        $this->assertEquals($shop->id, $shopReview->shop->id);
     }
 }

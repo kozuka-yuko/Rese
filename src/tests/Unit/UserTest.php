@@ -6,7 +6,6 @@ use Tests\TestCase;
 use App\Models\User;
 use App\Models\Favorite;
 use App\Models\Shop;
-use Spatie\Permission\Models\Role;
 use Database\Factories\RoleFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

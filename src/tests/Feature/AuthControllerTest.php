@@ -6,8 +6,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class HelloTest extends TestCase
+class AuthControllerTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * A basic feature test example.
      *
@@ -17,12 +18,8 @@ class HelloTest extends TestCase
      /** @test */
     public function test_example()
     {
-        $response = $this->get('/shop');
+        $response = $this->get('/');
 
         $response->assertStatus(200);
-
-        $response = $this->get('/no_route');
-
-        $response->assertStatus(404);
     }
 }

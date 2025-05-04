@@ -15,7 +15,7 @@ class AdminController extends Controller
 {
     public function adIndex()
     {
-        return view('/admin/management');
+        return view('admin.management');
     }
 
     public function shopRepList()
@@ -26,7 +26,7 @@ class AdminController extends Controller
             $query->where('name', 'shop_rep');
         })->with('shops')->get();
 
-        return view('/admin/shop_rep_list', compact('areas', 'genres', 'shopReps'));
+        return view('admin.shop_rep_list', compact('areas', 'genres', 'shopReps'));
     }
 
     public function repSearch(Request $request) 
