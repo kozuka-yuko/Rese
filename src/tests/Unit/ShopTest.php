@@ -10,10 +10,12 @@ use App\Models\Favorite;
 use App\Models\User;
 use App\Models\Reservation;
 use App\Models\ShopReview;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 
 class ShopTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * A basic unit test example.
      *

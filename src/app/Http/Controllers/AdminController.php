@@ -42,12 +42,12 @@ class AdminController extends Controller
         })
         ->get();
 
-        return view('/admin/shop_rep_list', compact('shopReps'));
+        return view('admin.shop_rep_list', compact('shopReps'));
     }
 
     public function newRepEdit()
     {
-        return view('/admin/new_rep_create');
+        return view('admin.new_rep_create');
     }
 
     public function shopRepConfirm(NewRepRequest $request)
@@ -63,7 +63,7 @@ class AdminController extends Controller
     {
         $data = session()->get('form_input');
 
-        return view('/admin/confirm', compact('data'));
+        return view('admin.confirm', compact('data'));
     }
 
     public function create()
@@ -96,7 +96,7 @@ class AdminController extends Controller
     {
         $shopRep = User::findOrFail($id);
 
-        return view('/admin/shop_rep_update', compact('shopRep'));
+        return view('admin.shop_rep_update', compact('shopRep'));
     }
 
     public function updateConfirm(RepUpdateRequest $request, $id)
@@ -113,7 +113,7 @@ class AdminController extends Controller
         $data = session()->get('form_input');
         $shopRep = User::findOrFail($id);
 
-        return view('/admin/update_confirm', compact('data', 'shopRep'));
+        return view('admin.update_confirm', compact('data', 'shopRep'));
     }
 
     public function repUpdate($id)

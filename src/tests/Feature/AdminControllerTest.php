@@ -22,13 +22,13 @@ class AdminControllerTest extends TestCase
     /** @test */
     public function get_ad_index()
     {
-        $role = RoleFactory::new()->create(['name' => 'admin']);
+        $adminRole = RoleFactory::new()->create(['name' => 'admin']);
         
-        /** @var \App\Models\User $user */
-        $user = User::factory()->create();
-        $user->assignRole($role);
+        /** @var \App\Models\User $admin */
+        $admin = User::factory()->create();
+        $admin->assignRole($adminRole);
 
-        $response = $this->actingAs($user)->get('/admin/management');
+        $response = $this->actingAs($admin)->get('/admin/management');
         $response->assertStatus(200);
         
         $response->assertViewIs('admin.management');
@@ -61,21 +61,99 @@ class AdminControllerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_search_shop_rep_by_keyword()
+    public function it_can_search_shop_rep_by_rep_name()
     {
+        $adminRole = RoleFactory::new()->create(['name' => 'admin']);
         $role = RoleFactory::new()->create(['name' => 'shop_rep']);
+
+        /** @var \App\Models\User $admin */
+        $admin = User::factory()->create();
+        $admin->assignRole($adminRole);
 
         $user = User::factory()->create(['name' => 'Taro Tanaka']);
         $user->assignRole($role);
         $shop = Shop::factory()->create(['name' => 'tama cafe']);
         $user->shops()->attach($shop->id);
 
-        $results = User::repNameSearch('Taro')->get();
+        $this->actingAs($admin);
 
-        $this->assertTrue($results->contains($user));
+        $response = $this->get('/admin/shop_rep_list/search?rep_name=Taro&shop_name=');
 
-        $results = User::shopNameSearch('tama')->get();
+        $response->assertStatus(200);
+        $response->assertViewIs('admin.shop_rep_list');
+        $response->assertViewHas('shopReps', function ($shopReps) use ($user) {
+            return $shopReps->contains($user);
+        });
+    }
 
-        $this->assertTrue($results->contains($user));
+    /** @test */
+    public function it_can_search_shop_rep_by_shop_name()
+    {
+        $adminRole = RoleFactory::new()->create(['name' => 'admin']);
+        $role = RoleFactory::new()->create(['name' => 'shop_rep']);
+
+        /** @var \App\Models\User $admin */
+        $admin = User::factory()->create();
+        $admin->assignRole($adminRole);
+
+        $user = User::factory()->create(['name' => 'Taro Tanaka']);
+        $user->assignRole($role);
+        $shop = Shop::factory()->create(['name' => 'tama cafe']);
+        $user->shops()->attach($shop->id);
+
+        $this->actingAs($admin);
+
+        $response = $this->get('/admin/shop_rep_list/search?rep_name=&shop_name=tama');
+
+        $response->assertStatus(200);
+        $response->assertViewIs('admin.shop_rep_list');
+        $response->assertViewHas('shopReps', function ($shopReps) use ($user) {
+            return $shopReps->contains($user);
+        });
+    }
+
+    /** @test */
+    public function it_can_search_shop_rep_by_rep_name_and_shop_name()
+    {
+        $adminRole = RoleFactory::new()->create(['name' => 'admin']);
+        $role = RoleFactory::new()->create(['name' => 'shop_rep']);
+
+        /** @var \App\Models\User $admin */
+        $admin = User::factory()->create();
+        $admin->assignRole($adminRole);
+
+        $user = User::factory()->create(['name' => 'Taro Tanaka']);
+        $user->assignRole($role);
+        $shop = Shop::factory()->create(['name' => 'tama cafe']);
+        $user->shops()->attach($shop->id);
+
+        $this->actingAs($admin);
+
+        $response = $this->get('/admin/shop_rep_list/search?rep_name=Taro&shop_name=tama');
+
+        $response->assertStatus(200);
+        $response->assertViewIs('admin.shop_rep_list');
+        $response->assertViewHas('shopReps', function ($shopReps) use ($user) {
+            return $shopReps->contains($user);
+        });
+    }
+
+    /** @test */
+    public function get_new_rep_create_form()
+    {
+        $adminRole = RoleFactory::new()->create(['name' => 'admin']);
+
+        /** @var \App\Models\User $admin */
+        $admin = User::factory()->create();
+        $admin->assignRole($adminRole);
+
+        $this->actingAs($admin);
+
+        $response = $this->get('/admin/new_rep_create');
+        $response->assertStatus(200);
+        $response->assertViewIs('admin.new_rep_create');
+
+        $response = $this->get('/no_route');
+        $response->assertStatus(404);
     }
 }

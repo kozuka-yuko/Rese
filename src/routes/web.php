@@ -42,39 +42,47 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/qr-code/visit', [ReseController::class, 'confirmVisit'])->name('confirmVisit');
     Route::get('/review/{id}', [ReseController::class, 'showCreateReview'])->name('showCreateReview');
     Route::post('/review/store', [ReseController::class, 'store'])->name('store');
-    Route::get('/shop_rep/shop', [ShopRepController::class, 'repIndex'])->name('repIndex');
-    Route::get('/shop_rep/shop_create', [ShopRepController::class, 'shopCreate'])->name('shopCreate');
-    Route::post('/shop_rep/shop_create_confirm', [ShopRepController::class, 'shopCreateConfirm'])->name('shopCreateConfirm');
-    Route::get('/shop_rep/shop_create_confirm', [ShopRepController::class, 'showShopCreateConfirm'])->name('showShopCreateConfirm');
-    Route::post('/shop_rep/shop_create_confirm/create', [ShopRepController::class, 'newShopCreate'])->name('newShopCreate');
-    Route::post('/shop_create_confirm/cancel', [ShopRepController::class, 'createCancel'])->name('createCancel');
-    Route::delete('/shop_rep/shop/delete/{id}', [ShopRepController::class, 'shopDestroy'])->name('shopDestroy');
-    Route::get('/shop_rep/edit/{id}', [ShopRepController::class, 'shopEdit'])->name('shopEdit');
-    Route::post('/shop_rep/confirm_input/{id}', [ShopRepController::class, 'shopUpdateConfirm'])->name('shopUpdateConfirm');
-    Route::get('/shop_rep/confirm_input/{id}', [ShopRepController::class, 'showShopUpdateConfirm'])->name('showShopUpdateConfirm');
-    Route::patch('/shop_rep/confirm_input/update/{id}', [ShopRepController::class, 'shopUpdate'])->name('shopUpdate');
-    Route::post('/cancel', [ShopRepController::class, 'cancel'])->name('cancel');
-    Route::get('/shop_rep/reservation_confirm/{num?}', [ShopRepController::class, 'getReservation'])->name('getReservation');
-    Route::get('/admin/management', [AdminController::class, 'adIndex'])->name('adIndex');
-    Route::get('/admin/shop_rep_list', [AdminController::class, 'shopRepList'])->name('shopRepList');
-    Route::get('/admin/shop_rep_list/search', [AdminController::class, 'repSearch'])->name('repSearch');
-    Route::delete('/admin/shop_rep_list/delete', [AdminController::class, 'shopRepDestroy'])->name('shopRepDestroy');
-    Route::get('/admin/new_rep_create', [AdminController::class, 'newRepEdit'])->name('newRepEdit');
-    Route::post('/admin/confirm', [AdminController::class, 'shopRepConfirm'])->name('shopRepConfirm');
-    Route::get('/admin/confirm', [AdminController::class, 'showRepConfirm'])->name('showRepConfirm');
-    Route::post('/admin/confirm/create', [AdminController::class, 'create'])->name('create');
-    Route::get('/admin/shop_rep_update/{id}', [AdminController::class, 'updateEdit'])->name('updateEdit');
-    Route::post('/admin/update_confirm/{id}', [AdminController::class, 'updateConfirm'])->name('updateConfirm');
-    Route::get('/admin/update_confirm/{id}', [AdminController::class, 'showUpdateConfirm'])->name('showUpdateConfirm');
-    Route::patch('/admin/update_confirm/store/{id}', [AdminController::class, 'repUpdate'])->name('repUpdate');
-    Route::get('/emails/send_email', [MailableController::class, 'emailForm'])->name('emailForm');
-    Route::post('/emails/send_email', [MailableController::class, 'sendEmail'])->name('sendEmail');
     Route::get('/payment/{id}', [PaymentController::class, 'showPayment'])->name('showPayment');
     Route::get('/checkout', [PaymentController::class, 'createCheckoutSession'])->name('createCheckoutSession');
     Route::post('/checkout', [PaymentController::class, 'createCheckoutSession'])->name('createCheckoutSession');
     Route::get('/success', [PaymentController::class, 'paymentSuccess'])->name('paymentSuccess');
     Route::get('/cancel', [PaymentController::class, 'paymentCancel'])->name('paymentCancel');
 });
+
+Route::middleware(['auth', 'verified', 'role:shop_rep'])->group(
+    function () {
+        Route::get('/shop_rep/shop', [ShopRepController::class, 'repIndex'])->name('repIndex');
+        Route::get('/shop_rep/shop_create', [ShopRepController::class, 'shopCreate'])->name('shopCreate');
+        Route::post('/shop_rep/shop_create_confirm', [ShopRepController::class, 'shopCreateConfirm'])->name('shopCreateConfirm');
+        Route::get('/shop_rep/shop_create_confirm', [ShopRepController::class, 'showShopCreateConfirm'])->name('showShopCreateConfirm');
+        Route::post('/shop_rep/shop_create_confirm/create', [ShopRepController::class, 'newShopCreate'])->name('newShopCreate');
+        Route::post('/shop_create_confirm/cancel', [ShopRepController::class, 'createCancel'])->name('createCancel');
+        Route::delete('/shop_rep/shop/delete/{id}', [ShopRepController::class, 'shopDestroy'])->name('shopDestroy');
+        Route::get('/shop_rep/edit/{id}', [ShopRepController::class, 'shopEdit'])->name('shopEdit');
+        Route::post('/shop_rep/confirm_input/{id}', [ShopRepController::class, 'shopUpdateConfirm'])->name('shopUpdateConfirm');
+        Route::get('/shop_rep/confirm_input/{id}', [ShopRepController::class, 'showShopUpdateConfirm'])->name('showShopUpdateConfirm');
+        Route::patch('/shop_rep/confirm_input/update/{id}', [ShopRepController::class, 'shopUpdate'])->name('shopUpdate');
+        Route::post('/cancel', [ShopRepController::class, 'cancel'])->name('cancel');
+        Route::get('/shop_rep/reservation_confirm/{num?}', [ShopRepController::class, 'getReservation'])->name('getReservation');
+});
+
+Route::middleware(['auth', 'verified', 'role:admin'])->group(
+    function () {
+        Route::get('/admin/management', [AdminController::class, 'adIndex'])->name('adIndex');
+        Route::get('/admin/shop_rep_list', [AdminController::class, 'shopRepList'])->name('shopRepList');
+        Route::get('/admin/shop_rep_list/search', [AdminController::class, 'repSearch'])->name('repSearch');
+        Route::delete('/admin/shop_rep_list/delete', [AdminController::class, 'shopRepDestroy'])->name('shopRepDestroy');
+        Route::get('/admin/new_rep_create', [AdminController::class, 'newRepEdit'])->name('newRepEdit');
+        Route::post('/admin/confirm', [AdminController::class, 'shopRepConfirm'])->name('shopRepConfirm');
+        Route::get('/admin/confirm', [AdminController::class, 'showRepConfirm'])->name('showRepConfirm');
+        Route::post('/admin/confirm/create', [AdminController::class, 'create'])->name('create');
+        Route::get('/admin/shop_rep_update/{id}', [AdminController::class, 'updateEdit'])->name('updateEdit');
+        Route::post('/admin/update_confirm/{id}', [AdminController::class, 'updateConfirm'])->name('updateConfirm');
+        Route::get('/admin/update_confirm/{id}', [AdminController::class, 'showUpdateConfirm'])->name('showUpdateConfirm');
+        Route::patch('/admin/update_confirm/store/{id}', [AdminController::class, 'repUpdate'])->name('repUpdate');
+        Route::get('/emails/send_email', [MailableController::class, 'emailForm'])->name('emailForm');
+        Route::post('/emails/send_email', [MailableController::class, 'sendEmail'])->name('sendEmail');
+}); 
 
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
