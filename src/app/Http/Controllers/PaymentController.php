@@ -17,7 +17,7 @@ class PaymentController extends Controller
     {
         $shop = Shop::findOrFail($id);
         
-        return view('/payment', compact('shop'));
+        return view('payment', compact('shop'));
     }
 
     public function createCheckoutSession(PaymentRequest $request)
@@ -50,11 +50,11 @@ class PaymentController extends Controller
 
     public function paymentSuccess()
     {
-        return view('/success');
+        return view('success');
     }
 
     public function paymentCancel()
     {
-        return view('/cancel');
+        return view('cancel');
     }
 }

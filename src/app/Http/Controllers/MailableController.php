@@ -12,7 +12,7 @@ class MailableController extends Controller
 {
     public function emailForm()
     {
-        return view('/emails/send_email');
+        return view('emails.send_email');
     }
 
     public function sendEmail(Request $request)
