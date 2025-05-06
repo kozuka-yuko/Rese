@@ -155,7 +155,7 @@ class ReseController extends Controller
         $jsonData = json_encode($qrData);
         $qrCode = QrCode::size(300)->generate($jsonData);
 
-        return view('/qr-code', compact('reservation', 'qrData', 'qrCode'));
+        return view('qr-code', compact('reservation', 'qrData', 'qrCode'));
     }
 
     public function confirmVisit(Request $request)
@@ -177,7 +177,7 @@ class ReseController extends Controller
         $shopId = $id;
         $shop = Shop::findOrFail($shopId);
 
-        return view('/review', compact('shop'));
+        return view('review', compact('shop'));
     }
 
     public function store(ShopReviewRequest $request)
@@ -202,6 +202,6 @@ class ReseController extends Controller
         $reviews = ShopReview::where('shop_id', $id)->get();
         $shop = Shop::findOrFail($id);
 
-        return view('/review-list', compact('reviews', 'shop'));
+        return view('review-list', compact('reviews', 'shop'));
     }
 }
