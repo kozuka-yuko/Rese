@@ -134,4 +134,184 @@ class ReseControllerTest extends TestCase
         $response->assertViewIs('mypage');
         $response->assertSee($shop->name);
     }
+
+    /** @test */
+    public function reservation_can_be_deleted()
+    {
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $reservation = Reservation::factory()->create();
+
+        $response = $this->delete('/reservation/delete', [
+            'id' => $reservation->id,
+        ]);
+
+        $this->assertDatabaseMissing('reservations', [
+            'id' => $reservation->id,
+        ]);
+
+        $response->assertRedirect('mypage');
+        $response->assertSessionHas('result', '予約を削除しました');
+    }
+
+    /** @test */
+    public function displays_edit_view_with_data()
+    {
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $reservation = Reservation::factory()->create();
+
+        $response = $this->get("/edit/{$reservation->id}");
+
+        $response->assertStatus(200);
+        $response->assertViewIs('edit');
+        $response->assertViewHasAll([
+            'reservation',
+            'today',
+            'times',
+            'numbers'
+        ]);
+    }
+
+    /** @test */
+    public function edit_with_invalid_returns_404()
+    {
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $response = $this->get("/edit/999");
+        $response->assertStatus(404);
+    }
+
+    /** @test */
+    public function reservation_can_be_updated()
+    {
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $reservation = Reservation::factory()->create([
+            'user_id' => $user->id,
+            'number' => 2,
+        ]);
+
+        $updateData = [
+            'number' => 4,
+            'date' => now()->addDays(2)->format('Y-m-d'),
+            'time' => '14:00:00',
+        ];
+
+        $response = $this->patch("/reservation/{$reservation->id}", $updateData);
+
+        $response->assertRedirect(route('mypage'));
+        $response->assertSessionHas('result', '予約を変更しました');
+
+        $this->assertDatabaseHas('reservations', [
+            'id' => $reservation->id,
+            'user_id' => $user->id,
+            'shop_id' => $reservation->shop_id,
+            'date' => $updateData['date'],
+            'time' => $updateData['time'],
+            'number' => $updateData['number'],
+            'status' => $reservation->status,
+        ]);
+    }
+
+    /** @test */
+    public function reservation_update_fails_when_data_is_missing()
+    {
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $reservation = Reservation::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->patch("/reservation/{$reservation->id}", [
+            'number' => '',
+            'date' => '',
+            'time' => '',
+        ]);
+
+        $response->assertSessionHasErrors(['number', 'date', 'time']);
+    }
+
+    /** @test */
+    public function favorite_can_be_deleted()
+    {
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $favorite = Favorite::factory()->create([
+            'user_id' => $user->id
+        ]);
+
+        $response = $this->delete('/favorite/delete', ['id' => $favorite->id,
+    ]);
+
+    $this->assertDatabaseMissing('favorites', ['id' => $favorite->id,
+]);
+
+    $response->assertRedirect('mypage');
+    $response->assertSessionHas('result', 'お気に入りを削除しました');
+    }
+
+    /** @test */
+    public function show_qr_code_generates_qr_code_for_valid_reservation()
+    {
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $shop = Shop::factory()->create();
+        $reservation = Reservation::factory()->create([
+            'user_id' => $user->id,
+            'shop_id' =>$shop->id,
+            'date' => '2025-05-10',
+            'time' => '14:00:00',
+            'number' => 4,
+        ]);
+
+        $response = $this->get("/qrcode/{$reservation->id}");
+
+        $response->assertStatus(200);
+        $response->assertViewIs('qr-code');
+        $response->assertViewHas('qrData');
+        $response->assertViewHas('qrCode');
+
+        $qrData = [
+            '店舗名' => $shop->name,
+            '予約者名' => $user->name,
+            '来店日' => '2025-05-09',
+            '来店時間' => '14:00:00',
+            'reservation_id' => Crypt::encryptString($reservation->id),
+        ];
+
+        $this->assertEquals($qrData, $response->viewData('qrData'));
+    }
+
+    public function test_show_qr_code_returns_404_if_reservation_not_found()
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user);
+
+        $response = $this->get('/qrcode/9999');
+
+        $response->assertStatus(404);
+    }
+
+    public function test_show_qr_code_redirects_if_not_logged_in()
+    {
+        $response = $this->get('/qrcode/1');
+
+        $response->assertRedirect('/login');
+    }       
 }
