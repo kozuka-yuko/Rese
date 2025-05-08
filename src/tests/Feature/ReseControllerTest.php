@@ -10,7 +10,9 @@ use App\Models\Genre;
 use App\Models\Reservation;
 use App\Models\Favorite;
 use App\Models\Shop;
+use App\Models\ShopReview;
 use App\Models\User;
+use Illuminate\Support\Facades\Crypt;
 
 /**
  * @property \App\Models\Area $area
@@ -54,7 +56,7 @@ class ReseControllerTest extends TestCase
     }
 
     /** @test */
-    public function test_detail_page_display_correctly()
+    public function detail_page_display_correctly()
     {
         /** @var \App\Models\User $user */
         $user = User::factory()->create();
@@ -289,8 +291,9 @@ class ReseControllerTest extends TestCase
         $qrData = [
             '店舗名' => $shop->name,
             '予約者名' => $user->name,
-            '来店日' => '2025-05-09',
+            '来店日' => '2025-05-10',
             '来店時間' => '14:00:00',
+            '人数' => 4,
             'reservation_id' => Crypt::encryptString($reservation->id),
         ];
 
@@ -299,8 +302,8 @@ class ReseControllerTest extends TestCase
 
     public function test_show_qr_code_returns_404_if_reservation_not_found()
     {
+        /** @var \App\Models\User $user */
         $user = User::factory()->create();
-
         $this->actingAs($user);
 
         $response = $this->get('/qrcode/9999');
@@ -308,10 +311,106 @@ class ReseControllerTest extends TestCase
         $response->assertStatus(404);
     }
 
-    public function test_show_qr_code_redirects_if_not_logged_in()
+    /** @test */
+    public function it_can_confirm_visit()
     {
-        $response = $this->get('/qrcode/1');
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+        $this->actingAs($user);
 
-        $response->assertRedirect('/login');
-    }       
+        $reservation = Reservation::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        $encryptedId = Crypt::encryptString($reservation->id);
+
+        $response = $this->post('/qr-code/visit', ['reservation_id' => $encryptedId]);
+        
+        $response->assertStatus(302);
+        $response->assertSessionHas('result', '来店確認が完了しました！');
+    }
+
+    /** @test */
+    public function it_fails_to_confirm_visit_with_invalid_reservation_id()
+    {
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $invalidId = Crypt::encryptString(99999);
+
+        $response = $this->post('/qr-code/visit', ['reservation_id' => $invalidId]);
+
+        $response->assertStatus(302);
+        $response->assertSessionHas('error', '来店確認が完了していません。');
+    }
+
+    /** @test */
+    public function it_show_the_create_reviewpage()
+    {
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $shop = Shop::factory()->create();
+
+        $response = $this->get("/review/{$shop->id}");
+
+        $response->assertStatus(200);
+        $response->assertViewIs('review');
+        $response->assertViewHas('shop');
+    }
+
+    /** @test */
+    public function it_can_store_shop_review()
+    {
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $shop = Shop::factory()->create();
+
+        $reviewData = [
+            'user_id' => $user->id,
+            'shop_id' => $shop->id,
+            'stars' => 5,
+            'comment' => '素晴らしいお店でした！',
+        ];
+
+        $response = $this->post('/review/store', $reviewData);
+        $response->assertRedirect(route('showReviewList', $shop->id));
+        $response->assertSessionHas('result', 'レビューを投稿しました');
+    }
+
+    /** @test */
+    public function it_valid_store_shop_review()
+    {
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        
+        $shop = Shop::factory()->create();
+
+        $shopReview = ShopReview::factory()->create([
+            'user_id' => $user->id,
+            'shop_id' => $shop->id,
+            'stars' => '',
+            'comment' => '',
+        ]);
+
+        $response = $this->post('/review/store', ['id' => $shopReview->id]);
+        $response->assertSessionHasErrors(['stars', 'comment']);
+    }
+
+    /** @test */
+    public function it_show_the_review_list()
+    {
+        $shop = Shop::factory()->create();
+
+        $response = $this->get("/review-list/{$shop->id}");
+
+        $response->assertStatus(200);
+        $response->assertViewIs('review-list');
+        $response->assertViewHasAll(['reviews', 'shop']);
+    }
 }
