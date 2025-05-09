@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Reservation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Reservation;
 use App\Models\Shop;
 use App\Models\Area;
 use App\Models\Genre;
 use App\Http\Requests\ShopUpdateRequest;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 
 class ShopRepController extends Controller
 {
@@ -19,14 +19,14 @@ class ShopRepController extends Controller
         $user = Auth::user();
         $shop = $user->shops()->with(['area', 'genre'])->first();
 
-        return view('/shop_rep/shop', compact('shop'));
+        return view('shop_rep.shop', compact('shop'));
     }
 
     public function shopCreate()
     {
         $areas = Area::all();
         $genres = Genre::all();
-        return view('/shop_rep/shop_create', compact('areas', 'genres'));
+        return view('shop_rep.shop_create', compact('areas', 'genres'));
     }
 
     public function shopCreateConfirm(ShopUpdateRequest $request)
@@ -55,7 +55,7 @@ class ShopRepController extends Controller
         $area = Area::where('id', $data['area_id'])->first();
         $genre = Genre::where('id', $data['genre_id'])->first();
 
-        return view('/shop_rep/shop_create_confirm', compact('data', 'area', 'genre'));
+        return view('shop_rep.shop_create_confirm', compact('data', 'area', 'genre'));
     }
 
     public function newShopCreate()
@@ -99,7 +99,7 @@ class ShopRepController extends Controller
         $areas = Area::all();
         $genres = Genre::all();
         $shop = Shop::findOrFail($id);
-        return view('/shop_rep/edit', compact('areas', 'genres', 'shop'));
+        return view('shop_rep.edit', compact('areas', 'genres', 'shop'));
     }
 
     public function shopUpdateConfirm(Request $request, $id)
@@ -129,7 +129,7 @@ class ShopRepController extends Controller
         $area = Area::where('id', $data['area_id'])->first();
         $genre = Genre::where('id', $data['genre_id'])->first();
 
-        return view('/shop_rep/confirm_input', compact('data', 'shop', 'area', 'genre'));
+        return view('shop_rep.confirm_input', compact('data', 'shop', 'area', 'genre'));
     }
 
     public function shopUpdate(Request $request, $id)
@@ -182,6 +182,6 @@ class ShopRepController extends Controller
         $user = Auth::user();
         $reservations = Reservation::where('shop_id', $user->shops->first()->id)->where('date', $fixed_date)->paginate(10);
 
-        return view('/shop_rep/reservation_confirm', compact('num', 'dt', 'fixed_date', 'fixedDate', 'reservations'));
+        return view('shop_rep.reservation_confirm', compact('num', 'dt', 'fixed_date', 'fixedDate', 'reservations'));
     }
 }

@@ -149,6 +149,7 @@ class ReseController extends Controller
             '予約者名' => $user->name,
             '来店日' => $reservation->date,
             '来店時間' => $reservation->time,
+            '人数' => $reservation->number,
             'reservation_id' => Crypt::encryptString($reservation->id),
         ];
 

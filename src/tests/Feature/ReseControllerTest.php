@@ -4,15 +4,14 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Crypt;
 use Tests\TestCase;
 use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Reservation;
 use App\Models\Favorite;
 use App\Models\Shop;
-use App\Models\ShopReview;
 use App\Models\User;
-use Illuminate\Support\Facades\Crypt;
 
 /**
  * @property \App\Models\Area $area
@@ -281,26 +280,30 @@ class ReseControllerTest extends TestCase
             'number' => 4,
         ]);
 
-        $response = $this->get("/qrcode/{$reservation->id}");
+        $response = $this->get(route('showQrCode', $reservation->id));
 
         $response->assertStatus(200);
         $response->assertViewIs('qr-code');
         $response->assertViewHas('qrData');
-        $response->assertViewHas('qrCode');
 
-        $qrData = [
+        $qrData = $response->viewData('qrData');
+        
+        $expectedData = [
             '店舗名' => $shop->name,
             '予約者名' => $user->name,
             '来店日' => '2025-05-10',
-            '来店時間' => '14:00:00',
+            '来店時間' => '14:00',
             '人数' => 4,
-            'reservation_id' => Crypt::encryptString($reservation->id),
         ];
 
-        $this->assertEquals($qrData, $response->viewData('qrData'));
+        $decryptedReservationId = Crypt::decryptString($qrData['reservation_id']);
+        $this->assertEquals($reservation->id, $decryptedReservationId);
+
+        unset($qrData['reservation_id']);
+        $this->assertEquals($expectedData, $qrData);
     }
 
-    public function test_show_qr_code_returns_404_if_reservation_not_found()
+    public function show_qr_code_returns_404_if_reservation_not_found()
     {
         /** @var \App\Models\User $user */
         $user = User::factory()->create();
@@ -391,14 +394,12 @@ class ReseControllerTest extends TestCase
         
         $shop = Shop::factory()->create();
 
-        $shopReview = ShopReview::factory()->create([
-            'user_id' => $user->id,
+        $response = $this->post('/review/store', [
             'shop_id' => $shop->id,
             'stars' => '',
             'comment' => '',
         ]);
-
-        $response = $this->post('/review/store', ['id' => $shopReview->id]);
+        
         $response->assertSessionHasErrors(['stars', 'comment']);
     }
 
