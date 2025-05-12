@@ -39,7 +39,7 @@ class ShopRepControllerTest extends TestCase
         $this->genre = Genre::factory()->create();
     }
 
-     /** @test */
+    /** @test */
     public function get_rep_index()
     {
         $shopRepRole = RoleFactory::new()->create(['name' => 'shop_rep']);
@@ -49,7 +49,7 @@ class ShopRepControllerTest extends TestCase
         $shopRep->assignRole($shopRepRole);
 
         $this->actingAs($shopRep);
-        
+
         $response = $this->get(route('repIndex'));
 
         $response->assertStatus(200);
@@ -113,20 +113,25 @@ class ShopRepControllerTest extends TestCase
         $this->assertEquals($this->area->id, $sessionData['area_id']);
         $this->assertEquals($this->genre->id, $sessionData['genre_id']);
         $this->assertEquals('Test description', $sessionData['description']);
-    
+
         $this->assertFileExists(storage_path('app/' . $sessionData['img_url']));
     }
 
     /** @test */
     public function shopCreateConfirm_handles_missing_image()
     {
-        $area = Area::factory()->create();
-        $genre = Genre::factory()->create();
+        $shopRepRole = RoleFactory::new()->create(['name' => 'shop_rep']);
+
+        /** @var \App\Models\User $shopRep */
+        $shopRep = User::factory()->create();
+        $shopRep->assignRole($shopRepRole);
+
+        $this->actingAs($shopRep);
 
         $response = $this->post(route('shopCreateConfirm'), [
             'name' => 'Test Shop',
-            'area' => $area->id,
-            'genre' => $genre->id,
+            'area' => $this->area->id,
+            'genre' => $this->genre->id,
             'description' => 'Test description'
         ]);
 
@@ -142,6 +147,14 @@ class ShopRepControllerTest extends TestCase
     {
         $area = Area::factory()->create(['name' => 'Tokyo']);
         $genre = Genre::factory()->create(['name' => 'Sushi']);
+
+        $shopRepRole = RoleFactory::new()->create(['name' => 'shop_rep']);
+
+        /** @var \App\Models\User $shopRep */
+        $shopRep = User::factory()->create();
+        $shopRep->assignRole($shopRepRole);
+
+        $this->actingAs($shopRep);
 
         session([
             'form_input' => [
@@ -167,5 +180,89 @@ class ShopRepControllerTest extends TestCase
 
         $response->assertViewHas('area', $area);
         $response->assertViewHas('genre', $genre);
+    }
+
+    /** @test */
+    public function it_can_new_shop_create()
+    {
+        $shopRepRole = RoleFactory::new()->create(['name' => 'shop_rep']);
+
+        /** @var \App\Models\User $shopRep */
+        $shopRep = User::factory()->create();
+        $shopRep->assignRole($shopRepRole);
+
+        $this->actingAs($shopRep);
+
+        $sessionData = [
+            'name' => 'Test Shop',
+            'img_url' => 'public/images/test.jpg',
+            'area_id' => $this->area->id,
+            'genre_id' => $this->genre->id,
+            'description' => 'Test description'
+        ];
+
+        session(['form_input' => $sessionData]);
+
+        $response = $this->post(route('newShopCreate'));
+
+        $response->assertSessionMissing('form_input');
+
+        $response->assertRedirect(route('repIndex'));
+        $response->assertSessionHas('result', '店舗を登録しました');
+
+        $this->assertDatabaseHas('shops', [
+            'name' => 'Test Shop',
+            'img_url' => 'public/images/test.jpg',
+            'area_id' => $this->area->id,
+            'genre_id' => $this->genre->id,
+            'description' => 'Test description' 
+        ]);
+
+        $this->assertDatabaseHas('shop_user', [
+            'user_id' => $shopRep->id,
+            'shop_id' => Shop::first()->id,
+        ]);
+    }
+
+    /** @test */
+    public function it_deletes_image_and_clears_session_when_image_path_exists()
+    {
+        // テスト用のファイルパス
+        $testPath = 'public/images/test.jpg';
+        // セッションデータを設定
+        session(['form_input' => ['img_url' => $testPath]]);
+        // ストレージをモック
+        Storage::fake('local');
+        // テスト用ファイルを作成
+        Storage::disk('local')->put($testPath, 'dummy content');
+        // コントローラーメソッドの呼び出し
+        $response = $this->post(route('createCancel'));
+        // セッションが削除されたことを確認
+        $this->assertNull(session('form_input'));
+        // ファイルが削除されたことを確認
+        Storage::disk('local')->assertMissing($testPath);
+
+        $response->assertRedirect(route('repIndex'));
+    }
+    /** @test */
+    public function it_does_not_delete_image_when_image_path_is_null()
+    {
+        // セッションデータを設定（img_url が存在しないパターン）
+        session(['form_input' => ['img_url' => null]]);
+
+        // ストレージをモック
+        Storage::fake('local');
+
+        // コントローラーメソッドの呼び出し
+        $response = $this->post(route('createCancel'));
+
+        // セッションが削除されていることを確認
+        $this->assertNull(session('form_input'));
+
+        // ストレージの削除が呼ばれていないことを確認
+        Storage::disk('local')->assertDirectoryEmpty('public/images');
+
+        // リダイレクト先の確認
+        $response->assertRedirect(route('repIndex'));
     }
 }

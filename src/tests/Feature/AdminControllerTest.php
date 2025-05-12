@@ -232,6 +232,7 @@ class AdminControllerTest extends TestCase
     /** @test */
     public function it_create_a_new_shop_rep_from_session_data()
     {
+        //テスト時に通知を実際にとばさないように
         Notification::fake();
 
         $adminRole = RoleFactory::new()->create(['name' => 'admin']);
