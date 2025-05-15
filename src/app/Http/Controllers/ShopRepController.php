@@ -79,11 +79,10 @@ class ShopRepController extends Controller
     public function createCancel()
     {
         $path = session('form_input.img_url');
-        session()->forget('form_input');
         if ($path) {
-            Storage::disk('local')->delete($path);
+            Storage::disk('public')->delete($path);
         }
-
+        session()->forget('form_input');
         return redirect()->route('repIndex');
     }
 

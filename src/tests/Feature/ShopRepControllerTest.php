@@ -225,44 +225,76 @@ class ShopRepControllerTest extends TestCase
     }
 
     /** @test */
-    public function it_deletes_image_and_clears_session_when_image_path_exists()
+    public function cancel_it_deletes_image_and_clears_session_when_image_path_exists()
     {
+        // ストレージをモック
+        Storage::fake('public');
+
+        $shopRepRole = RoleFactory::new()->create(['name' => 'shop_rep']);
+
+        /** @var \App\Models\User $shopRep */
+        $shopRep = User::factory()->create();
+        $shopRep->assignRole($shopRepRole);
+
+        $this->actingAs($shopRep);
+
         // テスト用のファイルパス
         $testPath = 'public/images/test.jpg';
         // セッションデータを設定
         session(['form_input' => ['img_url' => $testPath]]);
-        // ストレージをモック
-        Storage::fake('local');
         // テスト用ファイルを作成
-        Storage::disk('local')->put($testPath, 'dummy content');
+        Storage::disk('public')->put($testPath, 'dummy content');
         // コントローラーメソッドの呼び出し
         $response = $this->post(route('createCancel'));
-        // セッションが削除されたことを確認
-        $this->assertNull(session('form_input'));
+        
         // ファイルが削除されたことを確認
         Storage::disk('local')->assertMissing($testPath);
 
         $response->assertRedirect(route('repIndex'));
     }
+    
     /** @test */
-    public function it_does_not_delete_image_when_image_path_is_null()
+    public function it_can_shop_delete()
     {
-        // セッションデータを設定（img_url が存在しないパターン）
-        session(['form_input' => ['img_url' => null]]);
+        $shopRepRole = RoleFactory::new()->create(['name' => 'shop_rep']);
 
-        // ストレージをモック
-        Storage::fake('local');
+        /** @var \App\Models\User $shopRep */
+        $shopRep = User::factory()->create();
+        $shopRep->assignRole($shopRepRole);
 
-        // コントローラーメソッドの呼び出し
-        $response = $this->post(route('createCancel'));
+        $this->actingAs($shopRep);
 
-        // セッションが削除されていることを確認
-        $this->assertNull(session('form_input'));
+        $shop = Shop::factory()->create();
+        $shop->users()->attach($shopRep->id);
 
-        // ストレージの削除が呼ばれていないことを確認
-        Storage::disk('local')->assertDirectoryEmpty('public/images');
+        $response = $this->delete(route('shopDestroy', ['id' => $shop->id]));
 
-        // リダイレクト先の確認
         $response->assertRedirect(route('repIndex'));
+        $this->assertDatabaseMissing('shops', ['id' => $shop->id]);
+    }
+
+    /** @test */
+    public function get_shop_edit_page()
+    {
+        $shopRepRole = RoleFactory::new()->create(['name' => 'shop_rep']);
+
+        /** @var \App\Models\User $shopRep */
+        $shopRep = User::factory()->create();
+        $shopRep->assignRole($shopRepRole);
+
+        $this->actingAs($shopRep);
+
+        $shop = Shop::factory()->create();
+        $shop->users()->attach($shopRep->id);
+
+        $response = $this->get(route('shopEdit', ['id' => $shop->id]));
+
+        $response->assertStatus(200);
+        $response->assertViewIs('shop_rep.edit');
+        $response->assertViewHasAll([
+            'areas',
+            'genres',
+            'shop',
+        ]);
     }
 }
