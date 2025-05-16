@@ -104,7 +104,11 @@ class ShopRepController extends Controller
     public function shopUpdateConfirm(Request $request, $id)
     {
         $shop = Shop::findOrFail($id);
+
         if ($request->hasFile('image')) {
+            if ($shop->img_url && Storage::exists($shop->img_url)) {
+                Storage::disk('public')->delete($shop->img_url);
+            }
             $path = $request->file('image')->store('public/images');
         } else {
             $path = $shop->img_url;
@@ -153,11 +157,12 @@ class ShopRepController extends Controller
         return redirect()->route('repIndex')->with('result', '店舗情報を変更しました');
     }
 
-    public function cancel()
+    public function cancel($id)
     {
+        $shop = Shop::findOrFail($id);
         $path = session('form_input.img_url');
         session()->forget('form_input');
-        if ($path) {
+        if ($path && $path !== $shop->img_url) {
             Storage::disk('local')->delete($path);
         }
 

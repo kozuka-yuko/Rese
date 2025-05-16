@@ -62,7 +62,7 @@ Route::middleware(['auth', 'verified', 'role:shop_rep'])->group(
         Route::post('/shop_rep/confirm_input/{id}', [ShopRepController::class, 'shopUpdateConfirm'])->name('shopUpdateConfirm');
         Route::get('/shop_rep/confirm_input/{id}', [ShopRepController::class, 'showShopUpdateConfirm'])->name('showShopUpdateConfirm');
         Route::patch('/shop_rep/confirm_input/update/{id}', [ShopRepController::class, 'shopUpdate'])->name('shopUpdate');
-        Route::post('/cancel', [ShopRepController::class, 'cancel'])->name('cancel');
+        Route::post('/cancel/{id}', [ShopRepController::class, 'cancel'])->name('cancel');
         Route::get('/shop_rep/reservation_confirm/{num?}', [ShopRepController::class, 'getReservation'])->name('getReservation');
 });
 
