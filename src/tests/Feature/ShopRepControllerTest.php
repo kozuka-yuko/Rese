@@ -521,8 +521,14 @@ class ShopRepControllerTest extends TestCase
         $fixedDate = Carbon::parse('2025-05-16');
         Carbon::setTestNow($fixedDate);
 
-        // ユーザーと店舗の作成
+        $shopRepRole = RoleFactory::new()->create(['name' => 'shop_rep']);
+
+        /** @var \App\Models\User $shopRep */
         $shopRep = User::factory()->create();
+        $shopRep->assignRole($shopRepRole);
+
+        $this->actingAs($shopRep);
+
         $shop = Shop::factory()->create();
         $shop->users()->attach($shopRep->id);
 
@@ -544,12 +550,10 @@ class ShopRepControllerTest extends TestCase
             'date' => $fixedDate->addDays(2)->toDateString(),  // 再設定しないとそのまま昨日の日付になる
         ]);
 
-        $this->actingAs($shopRep);
-
-        $response = $this->get(route('reservation.get', ['num' => 0]));
+        $response = $this->get(route('getReservation', ['num' => 0]));
 
         $response->assertStatus(200);
-        $response->assertViewHas('reservations', function ($reservations) use ($todayReservation) {
+        $response->assertViewHas('予約状況', function ($reservations) use ($todayReservation) {
             return $reservations->contains($todayReservation);
         });
 
@@ -563,7 +567,14 @@ class ShopRepControllerTest extends TestCase
         $fixedDate = Carbon::parse('2025-05-16');
         Carbon::setTestNow($fixedDate);
 
+        $shopRepRole = RoleFactory::new()->create(['name' => 'shop_rep']);
+
+        /** @var \App\Models\User $shopRep */
         $shopRep = User::factory()->create();
+        $shopRep->assignRole($shopRepRole);
+
+        $this->actingAs($shopRep);
+
         $shop = Shop::factory()->create();
         $shop->users()->attach($shopRep->id);
 
@@ -573,12 +584,10 @@ class ShopRepControllerTest extends TestCase
             'date' => $fixedDate->addDay()->toDateString(),
         ]);
 
-        $this->actingAs($shopRep);
-
-        $response = $this->get(route('reservation.get', ['num' => 1]));
+        $response = $this->get(route('getReservation', ['num' => 1]));
 
         $response->assertStatus(200);
-        $response->assertViewHas('reservations', function ($reservations) use ($tomorrowReservation) {
+        $response->assertViewHas('予約状況', function ($reservations) use ($tomorrowReservation) {
             return $reservations->contains($tomorrowReservation);
         });
 
@@ -591,7 +600,14 @@ class ShopRepControllerTest extends TestCase
         $fixedDate = Carbon::parse('2025-05-16');
         Carbon::setTestNow($fixedDate);
 
+        $shopRepRole = RoleFactory::new()->create(['name' => 'shop_rep']);
+
+        /** @var \App\Models\User $shopRep */
         $shopRep = User::factory()->create();
+        $shopRep->assignRole($shopRepRole);
+
+        $this->actingAs($shopRep);
+
         $shop = Shop::factory()->create();
         $shop->users()->attach($shopRep->id);
 
@@ -601,12 +617,10 @@ class ShopRepControllerTest extends TestCase
             'date' => $fixedDate->subDay()->toDateString(),
         ]);
 
-        $this->actingAs($shopRep);
-
-        $response = $this->get(route('reservation.get', ['num' => -1]));
+        $response = $this->get(route('getReservation', ['num' => -1]));
 
         $response->assertStatus(200);
-        $response->assertViewHas('reservations', function ($reservations) use ($yesterdayReservation) {
+        $response->assertViewHas('予約状況', function ($reservations) use ($yesterdayReservation) {
             return $reservations->contains($yesterdayReservation);
         });
 
