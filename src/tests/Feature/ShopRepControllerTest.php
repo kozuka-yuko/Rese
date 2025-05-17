@@ -541,19 +541,19 @@ class ShopRepControllerTest extends TestCase
         // 昨日の予約データ（取得されない）
         Reservation::factory()->create([
             'shop_id' => $shop->id,
-            'date' => $fixedDate->subDay()->toDateString(),
+            'date' => $fixedDate->copy()->subDay()->toDateString(),
         ]);
 
         // 明日の予約データ（取得されない）
         Reservation::factory()->create([
             'shop_id' => $shop->id,
-            'date' => $fixedDate->addDays(2)->toDateString(),  // 再設定しないとそのまま昨日の日付になる
+            'date' => $fixedDate->copy()->addDays()->toDateString(),  // 再設定しないとそのまま昨日の日付になる
         ]);
 
         $response = $this->get(route('getReservation', ['num' => 0]));
 
         $response->assertStatus(200);
-        $response->assertViewHas('予約状況', function ($reservations) use ($todayReservation) {
+        $response->assertViewHas('reservations', function ($reservations) use ($todayReservation) {
             return $reservations->contains($todayReservation);
         });
 
@@ -581,13 +581,13 @@ class ShopRepControllerTest extends TestCase
         // 明日の予約データ作成
         $tomorrowReservation = Reservation::factory()->create([
             'shop_id' => $shop->id,
-            'date' => $fixedDate->addDay()->toDateString(),
+            'date' => $fixedDate->copy()->addDay()->toDateString(),
         ]);
 
         $response = $this->get(route('getReservation', ['num' => 1]));
 
         $response->assertStatus(200);
-        $response->assertViewHas('予約状況', function ($reservations) use ($tomorrowReservation) {
+        $response->assertViewHas('reservations', function ($reservations) use ($tomorrowReservation) {
             return $reservations->contains($tomorrowReservation);
         });
 
@@ -614,13 +614,13 @@ class ShopRepControllerTest extends TestCase
         // 昨日の予約データ作成
         $yesterdayReservation = Reservation::factory()->create([
             'shop_id' => $shop->id,
-            'date' => $fixedDate->subDay()->toDateString(),
+            'date' => $fixedDate->copy()->subDay()->toDateString(),
         ]);
 
         $response = $this->get(route('getReservation', ['num' => -1]));
 
         $response->assertStatus(200);
-        $response->assertViewHas('予約状況', function ($reservations) use ($yesterdayReservation) {
+        $response->assertViewHas('reservations', function ($reservations) use ($yesterdayReservation) {
             return $reservations->contains($yesterdayReservation);
         });
 

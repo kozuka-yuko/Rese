@@ -176,15 +176,16 @@ class ShopRepController extends Controller
         if ($num == 0) {
             $date = $dt;
         } elseif ($num > 0) {
-            $date = $dt->addDays($num);
+            $date = $dt->copy()->addDays($num);
         } else {
-            $date = $dt->subDays(abs($num));
+            $date = $dt->copy()->subDays(abs($num));
         }
+        
         $fixed_date = $date->toDateString();
         $fixedDate = $date;
 
         $user = Auth::user();
-        $reservations = Reservation::where('shop_id', $user->shops->first()->id)->where('date', $fixed_date)->paginate(10);
+        $reservations = Reservation::where('shop_id', $user->shops->first()->id)->whereDate('date', $fixed_date)->paginate(10);
 
         return view('shop_rep.reservation_confirm', compact('num', 'dt', 'fixed_date', 'fixedDate', 'reservations'));
     }
