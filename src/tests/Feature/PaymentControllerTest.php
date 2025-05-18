@@ -87,14 +87,13 @@ class PaymentControllerTest extends TestCase
 
         $this->actingAs($user);
 
-        $this->mock(Session::class, function ($mock) {
-            $mock->shouldReceive('create')
-            ->andThrow(new InvalidRequestException('Stripe error'));
-        });
+        $shop = Shop::factory()->create();
+
+        $stripeMock = \Mockery::mock('overload:' . \Stripe\Checkout\Session::class);
+        $stripeMock->shouldReceive('create')
+        ->andThrow(new \Stripe\Exception\ApiErrorException('Stripe error'));
 
         Log::shouldReceive('error')->once();
-
-        $shop = Shop::factory()->create();
 
         $response = $this->postJson('/checkout', [
             'shop_id' => $shop->id,
